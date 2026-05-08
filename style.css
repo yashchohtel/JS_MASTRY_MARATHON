@@ -33,6 +33,10 @@ h1 {
   font-weight: 800;
 }
 
+.links {
+  padding: 2rem;
+}
+
 a {
   background: #595959;
   padding: 1rem;
@@ -42,13 +46,29 @@ a {
   border: 2px solid #595959;
   transition: 0.2s ease;
   border-radius: 5px;
-}
-
-.links{
-    padding: 2rem;
+  cursor: pointer;
 }
 
 a:hover {
+  background: transparent;
+  color: #595959;
+  border: 2px solid #000000;
+}
+
+.backButton {
+  margin: 1rem;
+  background: #595959;
+  padding: 8px;
+  text-decoration: none;
+  color: white;
+  font-size: 14px;
+  border: 2px solid #595959;
+  transition: 0.2s ease;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.backButton:hover {
   background: transparent;
   color: #595959;
   border: 2px solid #000000;

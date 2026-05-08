@@ -1,20 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>greating machine</title>
+    <link rel="stylesheet" href="/style.css">
 
     <!-- style -->
     <style>
+        .container {
+            width: 511px;
+            padding: 30px;
+            background: #bfb6b6;
+            backdrop-filter: blur(8px);
+            border-radius: 20px;
+            text-align: center;
+            margin: 0 auto;
+        }
 
+        input {
+            width: 100%;
+            padding: 12px;
+            margin-top: 10px;
+
+            border: none;
+            border-radius: 10px;
+
+            outline: none;
+            font-size: 16px;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 12px 25px;
+
+            border: none;
+            border-radius: 10px;
+
+            background: black;
+            color: white;
+
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        #result {
+            margin-top: 20px;
+            line-height: 1.8;
+        }
     </style>
 
 </head>
+
 <body>
-    
+
+    <!-- back button -->
+    <button class="backButton" onclick="window.location.href='index.html'">
+        ⬅ Back To Home
+    </button>
+
+    <!-- greeting machine -->
+    <div class="container">
+
+        <h1>Greeting Machine</h1>
+
+        <input type="text" id="name" placeholder="Enter your name">
+
+        <input type="number" id="age" placeholder="Enter your age">
+
+        <button onclick="greetUser()">
+            Generate Greeting
+        </button>
+
+        <div id="result"></div>
+
+    </div>
 
     <!-- jabascript part -->
 
 </body>
+
 </html>
