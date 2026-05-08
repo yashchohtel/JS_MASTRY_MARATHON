@@ -1,0 +1,39 @@
+|=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-= WEEK ONE PROBLEMS =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=|
+
+1) The Greeting Machine :- 
+
+Ask the user for their name and age. Print
+→ Hi [name], you are [age] years old.
+→ You will be [age + 10] in 10 years.
+
+PLAIN-ENGLISH DECOMPOSITION  ↓↓↓↓↓↓
+
+INPUTS:
+• Get name 
+• Get age
+
+PROCESS:
+• Check the age if valid or not
+• Add 10 with the age
+• Create a greeting message
+
+OUTPUT:
+• Hi [name], you are [age] years old.
+• You will be [age + 10] in 10 years.
+
+EDGES:
+• Age is 0 -> Show error (Age must be greater than 0)
+
+PSEUDOCODE ↓↓↓↓↓↓
+
+Get name from user
+Get age from user
+
+IF age <= 0
+    alert "Age must be greater than 0"
+ELSE
+    futureAge = age + 10
+    alert "Hi [name], you are [age] years old."
+    alert "You will be [futureAge] in 10 years."
+
+----------------------------------------------------------------------

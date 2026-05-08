@@ -1,0 +1,55 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  position: relative;
+  font-family: "Lato", sans-serif;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: url("https://s3.amazonaws.com/contents.newzenler.com/37849/courses/225049/data/thumb/l-2.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.04;
+  z-index: -1;
+  filter: blur(2px);
+}
+
+h1 {
+  font-family: "Lato", sans-serif;
+  text-align: center;
+  font-size: 3rem;
+  margin-top: 3rem;
+  font-weight: 800;
+}
+
+a {
+  background: #595959;
+  padding: 1rem;
+  text-decoration: none;
+  color: white;
+  font-size: 1.2rem;
+  border: 2px solid #595959;
+  transition: 0.2s ease;
+  border-radius: 5px;
+}
+
+.links{
+    padding: 2rem;
+}
+
+a:hover {
+  background: transparent;
+  color: #595959;
+  border: 2px solid #000000;
+}
