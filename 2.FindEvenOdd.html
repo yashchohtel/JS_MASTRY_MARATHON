@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>greating machine</title>
+    <title>Find Even Odd</title>
     <link rel="stylesheet" href="/style.css">
 
     <!-- style -->
@@ -68,48 +68,49 @@
     <!-- greeting machine -->
     <div class="container">
 
-        <h1 class="proHeading">Greeting Machine</h1>
+        <h1 class="proHeading">Find Even Odd</h1>
 
-        <input type="text" id="name" placeholder="Enter your name">
+        <input type="number" id="num" placeholder="Enter your number">
 
-        <input type="number" id="age" placeholder="Enter your age">
-
-        <button onclick="greetUser()">
-            Generate Greeting
+        <button onclick="findEvenOdd()">
+            Check Even Odd
         </button>
 
         <div id="result"></div>
 
     </div>
 
-    <!-- jabascript part -->
+    <!-- javascript part -->
     <script>
 
-        function greetUser() {
+        function findEvenOdd() {
 
-            let name = document.getElementById("name").value;
-            let ageInput = document.getElementById("age").value;
-            let age = Number(ageInput);
+            let numInput = document.getElementById("num").value;
+            let num = Number(numInput);
             let result = document.getElementById("result");
 
-            if (name.trim() === "" || ageInput.trim() === "") {
+            if (numInput.trim() === "") {
 
-                result.innerHTML = "❌ Please fill all fields";
+                result.innerHTML = "❌ Please fill the field";
 
-            } else if (age <= 0) {
+            } else if (isNaN(num)) {
 
-                result.innerHTML = "❌ Age must be greater than 0";
+                result.innerHTML = "❌ Please enter a valid number";
+
+            } else if (num === 0) {
+
+                result.innerHTML = "🫡 0 is SPECIAL! It is neither Even nor Odd.";
+
+            } else if (num % 2 === 0) {
+
+                result.innerHTML = `✅ ${num} is an Even number`;
 
             } else {
 
-                let futureAge = age + 10;
+                result.innerHTML = `✅ ${num} is an Odd number`;
 
-                result.innerHTML = `
-                Hi ${name}, you are ${age} years old.
-                <br>
-                You will be ${futureAge} in 10 years.
-                `;
             }
+
         }
 
     </script>

@@ -35,6 +35,9 @@ h1 {
 
 .links {
   padding: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 20px;
 }
 
 a {
