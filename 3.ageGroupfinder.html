@@ -22,6 +22,7 @@
 
         .proHeading {
             margin-bottom: 2rem;
+            text-transform: capitalize;
         }
 
         input {
@@ -68,14 +69,12 @@
     <!-- greeting machine -->
     <div class="container">
 
-        <h1 class="proHeading">Greeting Machine</h1>
-
-        <input type="text" id="name" placeholder="Enter your name">
+        <h1 class="proHeading">Age Group Finder</h1>
 
         <input type="number" id="age" placeholder="Enter your age">
 
-        <button onclick="greetUser()">
-            Generate Greeting
+        <button onclick="findAgeGroup()">
+            FIND AGE GROUP
         </button>
 
         <div id="result"></div>
@@ -85,30 +84,34 @@
     <!-- jabascript part -->
     <script>
 
-        function greetUser() {
+        function findAgeGroup() {
 
-            let name = document.getElementById("name").value;
             let ageInput = document.getElementById("age").value;
             let age = Number(ageInput);
             let result = document.getElementById("result");
 
-            if (name.trim() === "" || ageInput.trim() === "") {
-
-                result.innerHTML = "❌ Please fill all fields";
-
-            } else if (age <= 0) {
-
-                result.innerHTML = "❌ Age must be greater than 0";
-
-            } else {
-
-                let futureAge = age + 10;
-
-                result.innerHTML = `
-                Hi ${name}, you are ${age} years old.
-                <br>
-                You will be ${futureAge} in 10 years.
-                `;
+            if (ageInput === "") {
+                result.innerHTML = "please fill the field";
+            } else if (isNaN(age)) {
+                result.innerHTML = "please enter a valid age";
+            } else if (age == 0) {
+                result.innerHTML = "first get born 😂😂";
+            } else if (age == 12) {
+                result.innerHTML = "you just entered your teenage";
+            } else if (age == 18) {
+                result.innerHTML = "you just became an adult";
+            } else if (age == 60) {
+                result.innerHTML = "you just became a senior citizen";
+            } else if (age > 0 && age < 12) {
+                result.innerHTML = "you are just a CHILD 👶🍼";
+            } else if (age > 12 && age < 18) {
+                result.innerHTML = "you are in your teen";
+            } else if (age > 18 && age < 60) {
+                result.innerHTML = "Now you are an adult";
+            } else if (age >= 100) {
+                result.innerHTML = "death is near 💀";
+            } else if (age > 60) {
+                result.innerHTML = "hello uncle/aunty you are a Senior citizen";
             }
         }
 
