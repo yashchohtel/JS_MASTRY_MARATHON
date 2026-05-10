@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>greating machine</title>
+    <link rel="stylesheet" href="/style.css">
+
+    <!-- style -->
+    <style>
+        .container {
+            width: 550px;
+            padding: 30px;
+            background: #bfb6b6;
+            backdrop-filter: blur(8px);
+            border-radius: 20px;
+            text-align: center;
+            margin: 0 auto;
+            margin-top: 3rem;
+        }
+
+        .proHeading {
+            margin-bottom: 2rem;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin-top: 10px;
+
+            border: none;
+            border-radius: 10px;
+
+            outline: none;
+            font-size: 16px;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 12px 25px;
+
+            border: none;
+            border-radius: 10px;
+
+            background: black;
+            color: white;
+
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        #result {
+            margin-top: 20px;
+            line-height: 1.8;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <!-- back button -->
+    <button class="backButton" onclick="window.location.href='index.html'">
+        Back To Home
+    </button>
+
+    <!-- greeting machine -->
+    <div class="container">
+
+        <h1 class="proHeading">Celsius to Fahrenheit</h1>
+        <input type="number" id="temp" placeholder="Enter temperature in Celsius">
+
+        <button onclick="convertTemperature()">
+            Convert to Fahrenheit
+        </button>
+
+        <div id="result"></div>
+
+    </div>
+
+    <!-- jabascript part -->
+    <script>
+
+        function convertTemperature() {
+
+            let tempInput = document.getElementById("temp").value;
+            let temp = Number(tempInput);
+            let result = document.getElementById("result");
+
+            if (tempInput === "") {
+                result.innerHTML = "❌ Please fill the field";
+            } else if (isNaN(temp)) {
+                result.innerHTML = "❌ Please enter a valid temperature";
+            } else {
+
+                let fahrenheit = (temp * 9 / 5) + 32;
+
+                if (temp === 0) {
+
+                    result.innerHTML = `
+                    ${temp}°C = ${fahrenheit}°F
+                    <br>
+                    0°C is the freezing point of water 🧊`;
+
+                } else if (temp < 0) {
+
+                    result.innerHTML = `
+                    ${temp}°C = ${fahrenheit}°F
+                    <br>
+                    Extreme cold 🥶`;
+
+                } else if (temp < 15) {
+
+                    result.innerHTML = `
+                    ${temp}°C = ${fahrenheit}°F
+                    <br>
+                    Cold weather ❄️`;
+
+                } else if (temp >= 15 && temp <= 30) {
+
+                    result.innerHTML = `
+                    ${temp}°C = ${fahrenheit}°F
+                    <br>
+                    Pleasant weather 🌤️`;
+
+                } else if (temp > 30 && temp < 50) {
+
+                    result.innerHTML = `
+                    ${temp}°C = ${fahrenheit}°F
+                    <br>
+                    Hot weather 🔥`;
+
+                } else if (temp >= 50) {
+
+                    result.innerHTML = `
+                    ${temp}°C = ${fahrenheit}°F
+                    <br>
+                    Extreme heat ☀️🥵`;
+                }
+
+            }
+
+        }
+
+    </script>
+
+</body>
+
+</html>

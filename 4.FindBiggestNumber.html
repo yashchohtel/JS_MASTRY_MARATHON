@@ -22,7 +22,6 @@
 
         .proHeading {
             margin-bottom: 2rem;
-            text-transform: capitalize;
         }
 
         input {
@@ -69,12 +68,13 @@
     <!-- greeting machine -->
     <div class="container">
 
-        <h1 class="proHeading">Age Group Finder</h1>
+        <h1 class="proHeading">Greeting Machine</h1>
 
-        <input type="number" id="age" placeholder="Enter your age">
+        <input type="number" id="num1" placeholder="Enter first number">
+        <input type="number" id="num2" placeholder="Enter second number">
 
-        <button onclick="findAgeGroup()">
-            Find Age Group
+        <button onclick="findBiggestNumber()">
+            Find Biggest Number
         </button>
 
         <div id="result"></div>
@@ -84,35 +84,39 @@
     <!-- jabascript part -->
     <script>
 
-        function findAgeGroup() {
+        function findBiggestNumber() {
 
-            let ageInput = document.getElementById("age").value;
-            let age = Number(ageInput);
+            let num1Input = document.getElementById("num1").value;
+            let num2Input = document.getElementById("num2").value;
+
+            let num1 = Number(num1Input);
+            let num2 = Number(num2Input);
+
             let result = document.getElementById("result");
 
-            if (ageInput === "") {
-                result.innerHTML = "please fill the field";
-            } else if (isNaN(age)) {
-                result.innerHTML = "please enter a valid age";
-            } else if (age == 0) {
-                result.innerHTML = "first get born 😂😂";
-            } else if (age == 12) {
-                result.innerHTML = "you just entered your teenage";
-            } else if (age == 18) {
-                result.innerHTML = "you just became an adult";
-            } else if (age == 60) {
-                result.innerHTML = "you just became a senior citizen";
-            } else if (age > 0 && age < 12) {
-                result.innerHTML = "you are just a CHILD 👶🍼";
-            } else if (age > 12 && age < 18) {
-                result.innerHTML = "you are in your teen";
-            } else if (age > 18 && age < 60) {
-                result.innerHTML = "Now you are an adult";
-            } else if (age >= 100) {
-                result.innerHTML = "death is near 💀";
-            } else if (age > 60) {
-                result.innerHTML = "hello uncle/aunty you are a Senior citizen";
+
+            if (num1Input === "" || num2Input === "") {
+
+                result.innerHTML = "❌ Please fill the field";
+
+            } else if (isNaN(num1) || isNaN(num2)) {
+
+                result.innerHTML = "❌ Please enter a valid number";
+
+            } else if (num1 === num2) {
+
+                result.innerHTML = "🤝 Both numbers are equal";
+
+            } else if (num1 > num2) {
+
+                result.innerHTML = `✅ ${num1} is bigger and ${num2} is smaller`;
+
+            } else if (num1 < num2) {
+
+                result.innerHTML = `✅ ${num1} is smaller and ${num2} is bigger`;
+
             }
+
         }
 
     </script>
