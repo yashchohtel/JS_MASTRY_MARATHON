@@ -361,3 +361,18 @@ ELSE IF operator == "/" AND num2 == 0
     print - "cannot divide by zero"
 ELSE 
     print - num1 operator num2
+
+----------------------------------------------------------------------
+ 
+9) The Electricity Bill Calculator :-
+
+Ask for units consumed in a month. Calculate bill using slab system:
+→ First 100 units → ₹3 per unit
+→ Next 100 units (101–200) → ₹5 per unit
+→ Next 100 units (201–300) → ₹7 per unit
+→ Above 300 units → ₹10 per unit
+
+Output: total bill + breakdown of each slab.
+
+EXAMPLE · 250 units → (100 × 3) + (100 × 5) + (50 × 7) = ₹1,150
+EDGES 0 units, exactly 100/200/300, very large like 500
