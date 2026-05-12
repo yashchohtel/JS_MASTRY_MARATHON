@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>greating machine</title>
+    <link rel="stylesheet" href="/style.css">
+
+    <!-- style -->
+    <style>
+        .container {
+            width: 550px;
+            padding: 30px;
+            background: #bfb6b6;
+            backdrop-filter: blur(8px);
+            border-radius: 20px;
+            text-align: center;
+            margin: 0 auto;
+            margin-top: 3rem;
+        }
+
+        .proHeading {
+            margin-bottom: 2rem;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin-top: 10px;
+
+            border: none;
+            border-radius: 10px;
+
+            outline: none;
+            font-size: 16px;
+        }
+
+        .radioInput {
+            display: flex;
+            justify-content: center;
+            gap: 14px;
+            margin-top: 20px;
+            flex-direction: column;
+        }
+
+        .radioInput label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        .radioInput input {
+            width: 18px;
+            height: 18px;
+
+            margin: 0;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 12px 25px;
+
+            border: none;
+            border-radius: 10px;
+
+            background: black;
+            color: white;
+
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        #result {
+            margin-top: 20px;
+            line-height: 1.8;
+            text-align: justify;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <!-- back button -->
+    <button class="backButton" onclick="window.location.href='index.html'">
+        Back To Home
+    </button>
+
+    <!-- greeting machine -->
+    <div class="container">
+
+        <h1 class="proHeading">Bill Splitter</h1>
+
+        <input type="number" id="amount" placeholder="Enter your bill amount">
+        <input type="number" id="people" placeholder="Enter number of people">
+
+        <div class="radioInput">
+
+            <label>
+                <input type="checkbox" id="tip">
+                Add 15% Tip
+            </label>
+
+        </div>
+
+        <button onclick="calculateBill()">
+            Calculate Bill
+        </button>
+
+        <div id="result"></div>
+
+    </div>
+
+    <!-- jabascript part -->
+    <script>
+
+        function calculateBill() {
+
+            let billInput = document.getElementById("amount").value;
+            let bill = Number(billInput);
+            let peopleInput = document.getElementById("people").value;
+            let people = Number(peopleInput);
+            let tipChecked = document.getElementById("tip").checked;
+            let tipPercantage = 15;
+            let result = document.getElementById("result");
+
+            let tip;
+            let totalBill;
+            let billPerPerson;
+
+            if (billInput === "" || peopleInput === "") {
+                result.innerHTML = "Please enter both bill amount and number of people.";
+                return;
+            } else if (bill <= 0 || people <= 0) {
+                result.innerHTML = "Bill amount and number of people must be greater than zero.";
+                return;
+            } else if (people == 1) {
+
+                if (tipChecked) {
+
+                    tip = (bill * tipPercantage) / 100;
+                    totalBill = bill + tip;
+
+                    result.innerHTML = `
+                    Bill: ₹${bill}
+                    <br>
+                    Tip (15%): ₹${tip.toFixed(2)}
+                    <br>
+                    Total Bill (including tip): ₹${totalBill.toFixed(2)}`;
+
+                } else {
+
+                    result.innerHTML = `Total Bill : ₹${bill}`;
+
+                }
+
+            } else {
+
+                if (tipChecked) {
+
+                    tip = (bill * tipPercantage) / 100;
+                    totalBill = bill + tip;
+                    billPerPerson = totalBill / people;
+
+                    result.innerHTML = `
+                    Bill: ₹${bill}
+                    <br>
+                    Tip (15%): ₹${tip.toFixed(2)}
+                    <br>
+                    Total Bill: ₹${totalBill.toFixed(2)}
+                    <br>
+                    Bill per person (including tip): ₹${billPerPerson.toFixed(2)}`;
+
+                } else {
+
+                    totalBill = bill;
+                    billPerPerson = totalBill / people;
+
+                    result.innerHTML = `
+                    Total Bill: ₹${totalBill.toFixed(2)}
+                    <br>
+                    Bill per person: ₹${billPerPerson.toFixed(2)}`;
+                }
+
+            }
+        }
+
+    </script>
+
+</body>
+
+</html>
