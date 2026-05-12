@@ -68,14 +68,12 @@
     <!-- greeting machine -->
     <div class="container">
 
-        <h1 class="proHeading">Greeting Machine</h1>
+        <h1 class="proHeading">Bill Calculator</h1>
 
-        <input type="text" id="name" placeholder="Enter your name">
+        <input type="number" id="unit" placeholder="Enter your unit">
 
-        <input type="number" id="age" placeholder="Enter your age">
-
-        <button onclick="greetUser()">
-            Generate Greeting
+        <button onclick="calculateBill()">
+            Calculate Bill
         </button>
 
         <div id="result"></div>
@@ -85,31 +83,69 @@
     <!-- jabascript part -->
     <script>
 
-        function greetUser() {
+        function calculateBill() {
 
-            let name = document.getElementById("name").value;
-            let ageInput = document.getElementById("age").value;
-            let age = Number(ageInput);
+            let unitInput = document.getElementById("unit").value;
+            let unit = Number(unitInput);
             let result = document.getElementById("result");
 
-            if (name.trim() === "" || ageInput.trim() === "") {
+            if (unitInput === "") {
 
-                result.innerHTML = "❌ Please fill all fields";
+                result.innerHTML = "❌ Please fill the field";
 
-            } else if (age <= 0) {
+            } else if (unit < 0) {
 
-                result.innerHTML = "❌ Age must be greater than 0";
+                result.innerHTML = "❌ Unit should be greater than zero";
 
-            } else {
+            } else if (unit >= 300) {
 
-                let futureAge = age + 10;
+                let totalBill = (100 * 3) + (100 * 5) + (100 * 7) + ((unit - 300) * 10);
 
                 result.innerHTML = `
-                Hi ${name}, you are ${age} years old.
+                First 100 Units → ₹${100 * 3}
                 <br>
-                You will be ${futureAge} in 10 years.
-                `;
+                Next 100 Units → ₹${100 * 5}
+                <br>
+                Next 100 Units → ₹${100 * 7}
+                <br>
+                Above 300 Units → ₹${(unit - 300) * 10} (${unit - 300} remaining units)
+                <br><br>
+                ✅ Total Bill → ₹${totalBill}`;
+
+                if (unit >= 500) {
+
+                    result.innerHTML += `<br><br>🔥 Very High Consumption`;
+                }
+
+            } else if (unit >= 200) {
+
+                let totalBill = (100 * 3) + (100 * 5) + ((unit - 200) * 7);
+
+                result.innerHTML = `
+                First 100 Units → ₹${100 * 3}
+                <br>
+                Next 100 Units → ₹${100 * 5}
+                <br>
+                ${unit > 200 ? `Remaining Units → ₹${(unit - 200) * 7} (${unit - 200} remaining units) <br><br>` : ""}
+                ✅ Total Bill → ₹${totalBill}`;
+
+            } else if (unit >= 100) {
+
+                let totalBill = (100 * 3) + ((unit - 100) * 5);
+
+                result.innerHTML = `
+                First 100 Units → ₹${100 * 3}
+                <br>
+                ${unit > 100 ? `Remaining Units → ₹${(unit - 100) * 5} (${unit - 100} remaining units) <br><br>` : ""}
+                ✅ Total Bill → ₹${totalBill}`;
+
+            } else if (unit < 100) {
+
+                let totalBill = unit * 3;
+
+                result.innerHTML = `⚡ Electricity Bill → ₹${totalBill}`;
             }
+
         }
 
     </script>
