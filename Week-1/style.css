@@ -41,7 +41,7 @@ h1 {
   text-transform: uppercase;
   font-size: 1.5rem;
   font-weight: 600;
-} 
+}
 
 .links {
   padding: 2rem;
@@ -86,4 +86,9 @@ a:hover {
   background: transparent;
   color: #595959;
   border: 2px solid #000000;
+}
+
+.proHeading {
+  margin-bottom: 2rem;
+  text-transform: capitalize !important;
 }
