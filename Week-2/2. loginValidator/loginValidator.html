@@ -1,13 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>login validator</title>
-</head>
-<body>
-    
+    <title>Even Odd Checker</title>
 
-    <script src="/"></script>
+    <link rel="stylesheet" href="/style.css">
+
+    <!-- style -->
+    <style>
+        .container {
+            width: 550px;
+            padding: 30px;
+            background: #bfb6b6;
+            backdrop-filter: blur(8px);
+            border-radius: 20px;
+            text-align: center;
+            margin: 0 auto;
+            margin-top: 3rem;
+        }
+
+        .proHeading {
+            margin-bottom: 2rem;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            margin-top: 10px;
+
+            border: none;
+            border-radius: 10px;
+
+            outline: none;
+            font-size: 16px;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 12px 25px;
+
+            border: none;
+            border-radius: 10px;
+
+            background: black;
+            color: white;
+
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        #result {
+            margin-top: 20px;
+            line-height: 1.8;
+        }
+    </style>
+
+
+</head>
+
+<body>
+
+    <!-- back button -->
+    <button class="backButton" onclick="window.location.href='/index.html'">
+        Back To Home
+    </button>
+
+    <!-- Even Odd Checker -->
+    <div class="container">
+
+        <h1 class="proHeading">Login Validator</h1>
+
+        <input type="number" id="num" placeholder="Enter your number">
+
+        <button onclick="findEvenOdd()">
+            Check
+        </button>
+
+        <div id="result"></div>
+
+    </div>
+
+    <!-- javascript part -->
+    <script src="/2. loginValidator/solution.js"></script>
+
 </body>
+
 </html>
