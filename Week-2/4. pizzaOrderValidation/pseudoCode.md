@@ -13,20 +13,24 @@ EDGES invalid size, more than 5 toppings, negative toppings count, invalid deliv
 INPUT :-
 
 • select the size of the pizza (useing radio buttion)
-•
+• select the topping of the pizza maxium 5 (using checkboxs)
+• select the delivery type (using radio button)
 
 PROCESS :-
 
-• validate both of the fields for being empty.
-• Validate both of the fields for being zero and negative.
-• Calculate the BMI BY THIS FORMULA - BMI = weight ÷ (height × height)
+• validate the size and delivery field for being empty (selecting topping is optional)
+• Extract the value price of the pizza using (lookup object and select size value)
+• Extract the topping from the select topping variable using loop
+• get the type of the delivery 
+• Calculate the total bill pizza size + numbers of topping + deleviry type
+
 
 OUTPUT :-
 
-• Below 18.5 → "Underweight"
-• 18.5 – 24.9 → "Normal"
-• 25 – 29.9 → "Overweight"
-• 30 and above → "Obese"
+• base price - 199/299/299
+• topping - numbers of topping * 40
+• delivery - free/40
+• total  - *****
 
 EDGE :-
 • height = 0 (would crash division), negative inputs, decimal inputs
@@ -35,21 +39,28 @@ EDGE :-
 
 PSEUDOCODE :-
 
-get the weight in kg and store it in variable name (weight)
-get the height in cm, convert it in meter using (value/100) and store it in variable name (height) 
+get the pizza size by select the checked pizza size radio button and store it in variable name (pizzaSize)
+get the topping by selecting the checkbox and sotre it in variable name (pizzaToppings)
+get the deleviry type by selection the deliviry type radio button and store it in variale name (deliveryType)
 
-validate bothe the field for empty
-IF (weight == "" || height == "")
-    print - "please fill all the fields"
-ElSE IF (weight <= 0 || height <= 0)
-    print - "height and weight should bhe greater then zero"
-ELSE
-    calculate BMI = weight / (heightInMeter * heightInMeter)
-    IF (bmi < 18.5)
-        print - "Underweight"
-    ELSE IF (bmi >= 18.5 && bmi <= 24.9)
-        print - "Normal"
-    ELSE IF (bmi >= 25 && <= 29.9 )
-        print - "Overweight"
-    ELSE IF (bmi >= 30)
-        print - "Obese"
+create a lookup object for pizzaSizePrice with price and value
+get the pizza size using pizzaSizes lookup object and pizzaSize variable
+get all the tooping name / pice / count by looping pizzaToppings variable
+extract the value of of the deleviry type from deliveryType using .value()
+
+empty validation
+IF (pizzaSize === null || deliveryType === null){
+    print - "please select pizza size and delivery type"
+}
+
+topping validation
+ELSE IF (toppingsCount > 5){
+    print - "you can select max 5 topping"
+} 
+
+total bill calculation
+ELSE 
+    IF (deliveryTypeValue === "homeDelivery")
+        print - "total as per home delivery"
+    else 
+        print - "as per take pickup" 

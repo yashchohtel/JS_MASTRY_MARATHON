@@ -55,6 +55,7 @@
         #result {
             margin-top: 20px;
             line-height: 1.8;
+            text-align: left;
         }
 
         h3 {
@@ -112,17 +113,17 @@
         <div class="radioInput">
 
             <label>
-                <input type="radio" name="size" value="small">
+                <input type="radio" name="pizzaSize" value="small">
                 small ₹199
             </label>
 
             <label>
-                <input type="radio" name="size" value="medium">
+                <input type="radio" name="pizzaSize" value="medium">
                 Medium ₹299
             </label>
 
             <label>
-                <input type="radio" name="size" value="large">
+                <input type="radio" name="pizzaSize" value="large">
                 Large ₹399
             </label>
 
@@ -179,18 +180,18 @@
         <div class="radioInput">
 
             <label>
-                <input type="radio" name="delivery" value="pickup">
+                <input type="radio" name="deliveryType" value="pickup">
                 Pickup (Free)
             </label>
 
             <label>
-                <input type="radio" name="delivery" value="Home Delivery">
+                <input type="radio" name="deliveryType" value="homeDelivery">
                 Home Delivery ₹40 (free for orders above ₹500)
             </label>
 
         </div>
 
-        <button onclick="knowBMI()">
+        <button onclick="orderPizza()">
             Place Order
         </button>
 
