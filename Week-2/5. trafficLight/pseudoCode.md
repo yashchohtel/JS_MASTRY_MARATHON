@@ -28,7 +28,7 @@ EDGE :-
 
 PSEUDOCODE :-
 
-<!-- witch switch case ------------------------------------- -->
+<!-- with switch case ------------------------------------- -->
 
 get the input from the user and store it in variable name colorInput
 
@@ -36,7 +36,7 @@ get the input from the user and store it in variable name colorInput
 
 IF (colorInput === "")
     print - "please fill the field"
-ELSE IF (colorInput !== "red" || colorInput !== "yellow" || colorInput !== "green")
+ELSE IF (colorInput !== "red" && colorInput !== "yellow" && colorInput !== "green")
     print - "please enter a valid input - no numbers, no uppercase, no symbols"
 ELSE IF
 
@@ -74,7 +74,7 @@ green: "Go"
 
 IF (colorInput === "")
     print - "please fill the field"
-ELSE IF (colorInput !== "red" || colorInput !== "yellow" || colorInput !== "green")
+ELSE IF (colorInput !== "red" && colorInput !== "yellow" && colorInput !== "green")
     print - "please enter a valid input - no numbers, no uppercase, no symbols"
 
 print - trafficSignal[colorInput];
