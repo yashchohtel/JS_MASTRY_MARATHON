@@ -1,66 +1,80 @@
-4) The Pizza Order Validator :-
+5. The Traffic Light Action :-
 
-Build the order validator for a pizza app. Take size, toppings count, and delivery type.
-→ Sizes: Small 199, Medium 299, Large 399 ₹ ₹ ₹
-→ Toppings: ₹40 per topping (max 5 toppings)
-→ Delivery: "pickup" (free) or "delivery" ( 40, free over 500) ₹ ₹
-→ Output: base price, toppings cost, delivery fee, final total
+User enters a color: red, yellow, or green. Print "Stop," "Slow down," or "Go." Anything else → "Invalid signal."
+Solve this twice — once with switch, once with a lookup object. Notice which one feels cleaner.
+EDGES capitalization ("RED" vs "red"), empty string, numbers as input
 
-EDGES invalid size, more than 5 toppings, negative toppings count, invalid delivery type
-
--------------------------
+---
 
 INPUT :-
 
-• select the size of the pizza (useing radio buttion)
-• select the topping of the pizza maxium 5 (using checkboxs)
-• select the delivery type (using radio button)
+• Text input (red, yellow, green)
 
 PROCESS :-
 
-• validate the size and delivery field for being empty (selecting topping is optional)
-• Extract the value price of the pizza using (lookup object and select size value)
-• Extract the topping from the select topping variable using loop
-• get the type of the delivery 
-• Calculate the total bill pizza size + numbers of topping + deleviry type
-
+• get the input
+• validate the input field for being empty
+• Check for invalid inputs other then (red yellow and green)
+• Check for capitalization input should be in lower case
 
 OUTPUT :-
 
-• base price - 199/299/299
-• topping - numbers of topping * 40
-• delivery - free/40
-• total  - *****
+• print the acton according to colors
 
 EDGE :-
-• height = 0 (would crash division), negative inputs, decimal inputs
+• EDGES capitalization ("RED" vs "red"), empty string, numbers as input
 
--------------------------
+---
 
 PSEUDOCODE :-
 
-get the pizza size by select the checked pizza size radio button and store it in variable name (pizzaSize)
-get the topping by selecting the checkbox and sotre it in variable name (pizzaToppings)
-get the deleviry type by selection the deliviry type radio button and store it in variale name (deliveryType)
+<!-- witch switch case ------------------------------------- -->
 
-create a lookup object for pizzaSizePrice with price and value
-get the pizza size using pizzaSizes lookup object and pizzaSize variable
-get all the tooping name / pice / count by looping pizzaToppings variable
-extract the value of of the deleviry type from deliveryType using .value()
+get the input from the user and store it in variable name colorInput
 
-empty validation
-IF (pizzaSize === null || deliveryType === null){
-    print - "please select pizza size and delivery type"
+<!-- validation -->
+
+IF (colorInput === "")
+    print - "please fill the field"
+ELSE IF (colorInput !== "red" || colorInput !== "yellow" || colorInput !== "green")
+    print - "please enter a valid input - no numbers, no uppercase, no symbols"
+ELSE IF
+
+<!-- action -->
+
+switch(colorInput) {
+
+    case "red":
+        print - "stop"
+        break;
+
+    case "yellow":
+        print - "slow down"
+        break;
+
+    case "green":
+        print - "go"
+        break;
+
 }
 
-topping validation
-ELSE IF (toppingsCount > 5){
-    print - "you can select max 5 topping"
-} 
+<!-- witch lookup object ------------------------------------- -->
 
-total bill calculation
-ELSE 
-    IF (deliveryTypeValue === "homeDelivery")
-        print - "total as per home delivery"
-    else 
-        print - "as per take pickup" 
+get the input from the user and store it in variable name colorInput
+
+<!-- lookup object -->
+
+const trafficSignal = {
+red: "Stop",
+yellow: "Slow down",
+green: "Go"
+};
+
+<!-- validation -->
+
+IF (colorInput === "")
+    print - "please fill the field"
+ELSE IF (colorInput !== "red" || colorInput !== "yellow" || colorInput !== "green")
+    print - "please enter a valid input - no numbers, no uppercase, no symbols"
+
+print - trafficSignal[colorInput];
