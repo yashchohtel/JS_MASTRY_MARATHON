@@ -1,27 +1,17 @@
-suggestActivity = () => {
+calculateTax = () => {
 
-    let selectedDay = document.getElementById("weekDay").value;
+    // Get the income value from the input field
+    let incomeInput = document.getElementById("income").value;
+    let income = Number(incomeInput);
     let result = document.getElementById("result");
 
-    const daySuggestion = {
-        monday: "Plan the week",
-        tuesday: "Deep work day",
-        wednesday: "Deep work day",
-        thursday: "Review progress",
-        friday: "Wrap up",
-        saturday: "Rest or hobby",
-        sunday: "Rest or hobby"
-    };
-
-    // validation
-    if (selectedDay === "") {
-        result.innerHTML = "Please select a day.";
+    // Validate the input
+    if(incomeInput === ""){
+        result.innerHTML = "Please enter your income.";
+    } else if(income <= 0){
+        result.innerHTML = "Your income should be greater than zero.";
     }
 
-    // suggestion
-    else {
-        let suggestion = daySuggestion[selectedDay];
-        result.innerHTML = suggestion;
-    }
+    // Calculate the tax based on the income
 
 }
