@@ -37,15 +37,31 @@ EDGE :-
 
 PSEUDOCODE :-
 
-get the input value convert it to number using numNumber(value) and store it to variable name cartValue
+get the input value convert it to number using Number(value) and store it to variable name cartValue
 
 validation
-IF (valueInput === "")
+IF (cartValue === "")
     print - "please fill the field"
 ELSE IF (cartValue <= 0)
-    print - "totol cart value should be greater then 0"
+    print - "total cart value should be greater then 0"
 
 discount calculation
 ELSE IF (cartValue < 500)
-    print - "total - ****, no disccount on value bellow 500"
-ELSE IF (carValue)
+    discount = 0
+    finalAmount = cartValue
+    print - "original total, no discount, final amount"
+
+ELSE IF (cartValue >= 500 && cartValue < 2000)
+    discount = 5% of cartValue
+    finalAmount = cartValue - discount
+    print - "original total, discount amount, final amount"
+
+ELSE IF (cartValue >= 2000 && cartValue < 5000)
+    discount = 10% of cartValue
+    finalAmount = cartValue - discount
+    print - "original total, discount amount, final amount"
+
+ELSE IF (cartValue >= 5000)
+    discount = 15% of cartValue
+    finalAmount = cartValue - discount
+    print - "original total, discount amount, final amount"

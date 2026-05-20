@@ -59,38 +59,14 @@
             text-align: left;
         }
 
-        h3 {
-            text-align: left;
-            font-size: 1.4rem;
-            text-transform: capitalize;
-        }
-
-        .radioInput {
-            display: flex;
-            gap: 14px;
-            margin-top: 20px;
-            margin-bottom: 20px;
-            flex-direction: column;
-        }
-
-        .checkboxInput {
-            flex-direction: column;
-        }
-
-        .radioInput label {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-
-            font-size: 18px;
-            cursor: pointer;
-        }
-
-        .radioInput input {
-            width: 18px;
-            height: 18px;
-
-            margin: 0;
+        select {
+            padding: 10px 10px;
+            border: 1px solid #999;
+            border-radius: 4px;
+            font-size: 17px;
+            background: white;
+            width: 100%;
+            outline: none;
         }
     </style>
 
@@ -107,13 +83,13 @@
     <!-- Even Odd Checker -->
     <div class="container">
 
-        <h1 class="proHeading">The Tiered Discount Calculator</h1>
+        <h1 class="proHeading">The Income Tax Calculator</h1>
 
-        <input type="number" id="totalValue" placeholder="Enter Total Cart Value">
+        <input type="number" id="income" placeholder="Enter your income">
 
         <div class="buttons">
 
-            <button onclick="calculateDiscount()">calculate discount</button>
+            <button onclick="suggestActivity()">Calculate Tax</button>
 
         </div>
 
@@ -122,9 +98,7 @@
     </div>
 
     <!-- javascript part -->
-    <script src="/6. TheTieredDiscountCalculator/solution.js"></script>
-
-
+    <script src="/8. The Income Tax Calculator/solution.js"></script>
 
 </body>
 

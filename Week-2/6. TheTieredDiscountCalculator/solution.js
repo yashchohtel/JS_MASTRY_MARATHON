@@ -1,66 +1,47 @@
-// with switch statement
-checkActionSwitch = () => {
+calculateDiscount = () => {
 
-    // get the value of the input field
-    const colorInput = document.getElementById("color").value
-
+    const totalValueInput = document.getElementById('totalValue').value;
+    const cartValue = Number(totalValueInput);
     let result = document.getElementById("result");
 
-    // validation 
-    if (colorInput === "") {
-        result.innerHTML = "Please enter a traffic light color.";
-    } else if (colorInput !== "red" && colorInput !== "yellow" && colorInput !== "green") {
-        print - "please enter a valid input - no numbers, no uppercase, no symbols"
-        result.innerHTML = "please enter a valid input - no numbers, no uppercase, no symbols - only (red, yellow, green).";
+    let discount = 0;
+    let finalAmount = 0;
+
+    // validation
+    if (totalValueInput === "") {
+        result.innerHTML = "Please enter the total cart value.";
+    } else if (isNaN(cartValue) || cartValue <= 0) {
+        result.innerHTML = "Please enter a valid positive number, Or number should be greater then zero.";
     }
 
-    // switch statement to check the value of the input field and print the corresponding message
-    switch (colorInput) {
+    // calculate discount based on cart value
+    else if (cartValue < 500) {
 
-        case "red":
-            print - "stop"
-            result.innerHTML = "stop";
-            break;
+        discount = 0;
+        finalAmount = cartValue;
+        result.innerHTML = `No discount applied. Final amount: ₹${finalAmount.toFixed(2)}`;
 
-        case "yellow":
-            result.innerHTML = "slow down";
-            break;
+    } else if (cartValue >= 500 && cartValue < 2000) {
 
-        case "green":
-            result.innerHTML = "go";
-            break;
+        // 5% discount
+        discount = (5 / 100) * cartValue;
+        finalAmount = cartValue - discount;
+        result.innerHTML = `5% discount applied. Final amount: ₹${finalAmount.toFixed(2)}`;
 
-    }
+    } else if (cartValue >= 2000 && cartValue < 5000) {
 
-}
+        // 10% discount
+        discount = (10 / 100) * cartValue;
+        finalAmount = cartValue - discount;
+        result.innerHTML = `10% discount applied. Final amount: ₹${finalAmount.toFixed(2)}`;
 
-// with lookup object
-checkActionLookup = () => {
+    } else if (cartValue >= 5000) {
 
-    // get the value of the input field
-    const colorInput = document.getElementById("color").value
-    let result = document.getElementById("result");
+        // 15% discount
+        discount = (15 / 100) * cartValue;
+        finalAmount = cartValue - discount;
+        result.innerHTML = `15% discount applied. Final amount: ₹${finalAmount.toFixed(2)}`;
 
-    // validation 
-    if (colorInput === "") {
-        result.innerHTML = "Please enter a traffic light color.";
-    } else if (colorInput !== "red" && colorInput !== "yellow" && colorInput !== "green") {
-        result.innerHTML = "please enter a valid input - no numbers, no uppercase, no symbols - only (red, yellow, green).";
-    }
-
-    // lookup object for traffic light colors and corresponding messages
-    const trafficLightActions = {
-        "red": "stop",
-        "yellow": "slow down",
-        "green": "go"
-    };
-
-    // get the corresponding message from the lookup object based on the input value
-    const action = trafficLightActions[colorInput];
-    
-    // if the input value is valid, print the corresponding message
-    if (action) {
-        result.innerHTML = action;
     }
 
 }
