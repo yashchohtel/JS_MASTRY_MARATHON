@@ -1,14 +1,18 @@
-8. The Income Tax Calculator
+9. The Vending Machine
 
-Calculate Indian income tax (simplified slabs):
-→ Up to 2,50,000 → No tax ₹
-→ ₹ 2,50,001 – 5,00,000 → 5% on amount above 2,50,000
-→ ₹ 5,00,001 – 10,00,000 → 12,500 + 20% on amount above 5,00,000
-→ Above 10,00,000 → 1,12,500 + 30% on amount above 10,00,000 ₹ 
+Build the logic for a vending machine.
+→ Items: Chips 20, Soda 35, Chocolate 50, Water 15 ₹ ₹ ₹ ₹
+→ Stock: Chips (3), Soda (0), Chocolate (5), Water (2)
+→ User enters: item name + amount of money
 
-Output: total income, tax payable, take-home amount.
+Your code must:
+→ 1. Check if the item exists
+→ 2. Check if it's in stock
+→ 3. Check if money is enough
+→ 4. If all good — dispense, calculate change, reduce stock
+→ 5. If anything fails — return money with the right error message
 
-EDGES boundary income ( 5,00,000), negative income, zero income
+EDGES item not in menu, item out of stock (Soda), insufficient money, exact change, 0 or ₹ negative inserted
 
 ---------------------------
 
