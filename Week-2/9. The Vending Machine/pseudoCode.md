@@ -1,7 +1,7 @@
-9. The Vending Machine
+9. The Vending Machine :-                                                                                          
 
 Build the logic for a vending machine.
-→ Items: Chips 20, Soda 35, Chocolate 50, Water 15 ₹ ₹ ₹ ₹
+→ Items: Chips 20, Soda 35, Chocolate 50, Water 15 ₹
 → Stock: Chips (3), Soda (0), Chocolate (5), Water (2)
 → User enters: item name + amount of money
 
@@ -18,7 +18,7 @@ EDGES item not in menu, item out of stock (Soda), insufficient money, exact chan
 
 INPUT :-
 
-• get the income amount form number input and store it in variable name (incomeInput)
+• 
 
 PROCESS :-
 

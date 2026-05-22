@@ -27,16 +27,67 @@
             font-size: 2rem;
         }
 
-        input {
+        /* items div */
+        .items {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            width: 100%;
+        }
+
+        /* item */
+        .item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            width: 100%;
+            background: #cbcbcb;
+            padding: 15px 10px;
+            border-radius: 5px;
+            justify-content: space-between;
+        }
+
+        .item label {
+            width: 30%;
+            display: inline-flex;
+            gap: 10px;
+            font-size: 18px;
+            align-items: center;
+        }
+
+        .item input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+        }
+
+        .item .stock {
+            font-size: 18px;
+            width: 30%;
+        }
+
+        .item .stock .stockCount {
+            font-weight: bold;
+        }
+
+        .item input[type="number"] {
+            width: 30%;
+            padding: 6px;
+            font-size: 1rem;
+            outline: none;
+            border-radius: 10px;
+            border: none;
+        }
+
+        #moneyInput {
             width: 100%;
             padding: 12px;
             margin-top: 10px;
 
             border: none;
             border-radius: 10px;
-
             outline: none;
             font-size: 16px;
+            margin-top: 20px;
         }
 
         button {
@@ -59,14 +110,43 @@
             text-align: left;
         }
 
-        select {
-            padding: 10px 10px;
-            border: 1px solid #999;
-            border-radius: 4px;
-            font-size: 17px;
-            background: white;
-            width: 100%;
-            outline: none;
+        h3 {
+            text-align: left;
+            font-size: 1.4rem;
+            text-transform: capitalize;
+        }
+
+        .radioInput {
+            display: flex;
+            gap: 14px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            flex-direction: column;
+        }
+
+        .checkboxInput {
+            flex-direction: column;
+        }
+
+        .radioInput label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        .radioInput input {
+            width: 18px;
+            height: 18px;
+            margin: 0;
+        }
+
+        .desc {
+            font-size: 1rem;
+            text-align: left;
+            margin-bottom: 10px;
         }
     </style>
 
@@ -85,7 +165,82 @@
 
         <h1 class="proHeading">The vending machine</h1>
 
-        <input type="number" id="income" placeholder="Enter your income">
+        <p class="desc">select the items to enter quentity</p>
+
+        <!-- items -->
+        <div class="items">
+
+            <!-- single item -->
+            <div class="item">
+
+                <!-- checkbox -->
+                <label>
+                    <input type="checkbox" name="item" id="chips">
+                    Chips ₹20
+                </label>
+
+                <!-- stock -->
+                <div class="stock" id="chipsStock">Stock: <span class="stockCount">3</span></div>
+
+                <!-- item quentity input -->
+                <input type="number" id="chipsQuantity" placeholder="Enter quantity" min="1">
+
+            </div>
+
+            <!-- single item -->
+            <div class="item">
+
+                <!-- checkbox -->
+                <label>
+                    <input type="checkbox" name="item" id="soda">
+                    soda ₹35
+                </label>
+
+                <!-- stock -->
+                <div class="stock" id="sodaStock">Stock: <span class="stockCount">0</span></div>
+
+                <!-- item quentity input -->
+                <input type="number" id="sodaQuantity" placeholder="Enter quantity" min="1">
+
+            </div>
+
+            <!-- single item -->
+            <div class="item">
+
+                <!-- checkbox -->
+                <label>
+                    <input type="checkbox" id="chocolate">
+                    chocolate ₹50
+                </label>
+
+                <!-- stock -->
+                <div class="stock" id="chocolateStock">Stock: <span class="stockCount">5</span></div>
+
+                <!-- item quentity input -->
+                <input type="number" id="chocolateQuantity" placeholder="Enter quantity" min="1">
+
+            </div>
+
+            <!-- single item -->
+            <div class="item">
+
+                <!-- checkbox -->
+                <label>
+                    <input type="checkbox" id="water">
+                    water ₹15
+                </label>
+
+                <!-- stock -->
+                <div class="stock" id="waterStock">Stock: <span class="stockCount">2</span></div>
+
+                <!-- item quentity input -->
+                <input type="number" id="waterQuantity" placeholder="Enter quantity" min="1">
+
+            </div>
+
+        </div>
+
+        <input type="number" id="moneyInput" placeholder="Enter money" min="1">
 
         <div class="buttons">
 
@@ -98,7 +253,7 @@
     </div>
 
     <!-- javascript part -->
-    <script src="/8. The Income Tax Calculator/solution.js"></script>
+    <script src="/9. The Vending Machine/solution.js"></script>
 
 </body>
 
