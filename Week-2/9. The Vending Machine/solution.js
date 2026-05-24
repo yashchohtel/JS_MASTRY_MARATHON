@@ -83,4 +83,8 @@ processPurchase = () => {
 
     });
 
+    // stock validation check started
+
+
+
 }
