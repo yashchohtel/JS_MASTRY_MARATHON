@@ -53,6 +53,7 @@
             gap: 10px;
             font-size: 18px;
             align-items: center;
+            user-select: none;
         }
 
         .item input[type="checkbox"] {
@@ -174,7 +175,7 @@
 
                 <!-- checkbox -->
                 <label>
-                    <input type="checkbox" name="item" id="chips">
+                    <input type="checkbox" name="item" id="chips" value="chips">
                     Chips ₹20
                 </label>
 
@@ -191,7 +192,7 @@
 
                 <!-- checkbox -->
                 <label>
-                    <input type="checkbox" name="item" id="soda">
+                    <input type="checkbox" name="item" id="soda" value="soda">
                     soda ₹35
                 </label>
 
@@ -208,7 +209,7 @@
 
                 <!-- checkbox -->
                 <label>
-                    <input type="checkbox" id="chocolate">
+                    <input type="checkbox" name="item" id="chocolate" value="chocolate">
                     chocolate ₹50
                 </label>
 
@@ -225,7 +226,7 @@
 
                 <!-- checkbox -->
                 <label>
-                    <input type="checkbox" id="water">
+                    <input type="checkbox" name="item" id="water" value="water">
                     water ₹15
                 </label>
 
@@ -243,7 +244,7 @@
 
         <div class="buttons">
 
-            <button onclick="getItem()">Get you item</button>
+            <button onclick="processPurchase()">Get you item</button>
 
         </div>
 
