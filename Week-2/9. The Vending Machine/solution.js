@@ -86,7 +86,10 @@ processPurchase = () => {
     // stock validation check started
     for (let item in selectedItems) {
 
-        console.log(selectedItems[item]);
+        if(selectedItems[item] > itemStock[item]){
+            errorMessages.push(`Sorry, only ${itemStock[item]} ${item} are available.`);
+            console.log(errorMessages);
+        }
         
     }
 
