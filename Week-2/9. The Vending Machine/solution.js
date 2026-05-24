@@ -49,7 +49,7 @@ processPurchase = () => {
     let result = document.getElementById("result");
 
     // array to store all selected items
-    let selectedItems = {};  
+    let selectedItems = {};
 
     // get all selected items
     let selectedCheckboxes = document.querySelectorAll('input[name="item"]:checked');
@@ -84,6 +84,12 @@ processPurchase = () => {
     });
 
     // stock validation check started
+    for (let item in selectedItems) {
+
+        console.log(selectedItems[item]);
+        
+    }
+
 
 
 
