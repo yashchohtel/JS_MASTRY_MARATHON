@@ -30,7 +30,7 @@ PROCESS :-
 • validate the selectedCheckboxes for being empty and show eroor - ("please select at least 1 item").
 • get selected item name and quentity and store it in selectedItems object, item name as key and item quentity as value.`
 • validate the item quentity for being empty nevatige zero and non decimal integer
-• now we got the selectedItems object which has item name and quentity now validate the quentity 
+• now we got the selectedItems object which has item name and quentity now validate the quentity
 
 OUTPUT :-
 

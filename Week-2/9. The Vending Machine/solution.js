@@ -54,10 +54,6 @@ processPurchase = () => {
     // get all selected items
     let selectedCheckboxes = document.querySelectorAll('input[name="item"]:checked');
 
-    // get the money input value and convert it to a number
-    let moneyInput = document.getElementById('moneyInput');
-    let money = Number(moneyInput.value);
-
     // validation for item selection (at least one item must be selected)
     if (selectedCheckboxes.length === 0) {
         errorMessages.push('Please select at least one item.');
@@ -65,35 +61,73 @@ processPurchase = () => {
         return;
     }
 
-    // getting select items value and quentity and storeing it in selectedItems object, item name as key and item quentity as value.
+    // getting selected items value and quentity and storeing it in selectedItems object, item name as key and item quentity as value.
     selectedCheckboxes.forEach(item => {
 
         let itemName = item.value;
         let itemQuentity = Number(item.closest('.item').querySelector('input[type="number"]').value);
 
-        // validation for quentity input (must be a positive integer)
-        if (isNaN(itemQuentity) || itemQuentity <= 0 || !Number.isInteger(itemQuentity)) {
-            errorMessages.push(`Please enter a quentity for ${itemName}. It must be a positive integer.`);
-            result.innerHTML = errorMessages.map(error => `• ${error}`).join("<br>");
-            return; // skip to the next item
+        // validation for item which is out of stock
+        if (itemStock[itemName] == 0) {
+            errorMessages.push(`${itemName} is out of stock (pleae unselect it).`);
         }
 
-        // insert item and quentity into selectedItems object
-        selectedItems[itemName] = itemQuentity;
+        // validation for item which is not out of stock
+        else if (isNaN(itemQuentity) || itemQuentity <= 0 || !Number.isInteger(itemQuentity)) {
+            errorMessages.push(`Please enter a quentity for ${itemName}. It must be a positive integer.`);
+        }
+
+        // valid item
+        else {
+            selectedItems[itemName] = itemQuentity;
+        }
 
     });
 
     // stock validation check started
     for (let item in selectedItems) {
 
-        if(selectedItems[item] > itemStock[item]){
-            errorMessages.push(`Sorry, only ${itemStock[item]} ${item} are available.`);
-            console.log(errorMessages);
+        // check quentity
+        if (selectedItems[item] > itemStock[item]) {
+
+            // push error
+            errorMessages.push(
+                itemStock[item] === 0 ?
+                    `No stock available for ${item}.`
+                    :
+                    `Sorry, only ${itemStock[item]} ${item} are available, please enter quentity equal or lessthen stock.`
+            );
+
         }
-        
+
     }
 
+    // get the money input value and convert it to a number
+    let moneyInput = document.getElementById('moneyInput');
+    let money = Number(moneyInput.value);
 
+    // money input validation for being empty zero and negative
+    if (moneyInput === "" || money <= 0) {
+        errorMessages.push(`Please enter the money - must be greater than zero`);
+    }
 
+    // print error or quentity input field empty validation
+    result.innerHTML = errorMessages.map(error => `• ${error}`).join("<br>");
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
