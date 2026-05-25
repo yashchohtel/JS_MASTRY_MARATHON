@@ -45,8 +45,8 @@ processPurchase = () => {
     // reset error messages 
     errorMessages = []
 
-    // select result element to how result and errors
-    let result = document.getElementById("result");
+    // select result element to show errors
+    let error = document.getElementById("error");
 
     // array to store all selected items
     let selectedItems = {};
@@ -57,7 +57,7 @@ processPurchase = () => {
     // validation for item selection (at least one item must be selected)
     if (selectedCheckboxes.length === 0) {
         errorMessages.push('Please select at least one item.');
-        result.innerHTML = errorMessages.map(error => `• ${error}`).join("<br>");
+        error.innerHTML = errorMessages.map(error => `• ${error}`).join("<br>");
         return;
     }
 
@@ -108,21 +108,55 @@ processPurchase = () => {
 
     // money input validation for being empty zero and negative
     if (moneyInput === "" || money <= 0) {
+
+        // push error
         errorMessages.push(`Please enter the money - must be greater than zero`);
+
+    } else {
+
+        // calculate total, change and error if not enough money
+        let total = 0;
+        let change = 0;
+
+        // select element to show result 
+        let result = document.getElementsByClassName("result");
+
+        console.log(result)
+
+        for (let item in selectedItems) {
+            total += itemPrices[item] * selectedItems[item]
+        }
+
+        // total cost validaiton
+        if (money < total) {
+
+            // push error
+            errorMessages.push(`money is not enough your total is ₹${total}, need ₹${total - money} more`);
+
+        } else {
+
+            // calculate change
+            change = money - total;
+
+            console.log(total)
+            console.log(change)
+            console.log(errorMessages)
+            console.log(errorMessages.length)
+            console.log(errorMessages.length === 0)
+
+            // print result if no error
+            if (errorMessages.length === 0) {
+
+                result.innerHTML = `Your total is ₹${total}. Your change is ₹${change}. Thank you for your purchase!`;
+                return;
+            }
+
+        }
+
     }
 
-    // calculate total, change and error if not enough money
-
-    let total = 0;
-
-    for (let item in selectedItems) {
-        total += itemPrices[item] * selectedItems[item]
-    }
-
-    console.log(total);
-    
     // print error or quentity input field empty validation
-    result.innerHTML = errorMessages.map(error => `• ${error}`).join("<br>");
+    error.innerHTML = errorMessages.map(error => `• ${error}`).join("<br>");
 
 }
 
