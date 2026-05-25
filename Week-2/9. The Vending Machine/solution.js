@@ -111,6 +111,16 @@ processPurchase = () => {
         errorMessages.push(`Please enter the money - must be greater than zero`);
     }
 
+    // calculate total, change and error if not enough money
+
+    let total = 0;
+
+    for (let item in selectedItems) {
+        total += itemPrices[item] * selectedItems[item]
+    }
+
+    console.log(total);
+    
     // print error or quentity input field empty validation
     result.innerHTML = errorMessages.map(error => `• ${error}`).join("<br>");
 
