@@ -119,7 +119,7 @@ processPurchase = () => {
         let change = 0;
 
         // select element to show result 
-        let result = document.getElementsByClassName("result");
+        let result = document.querySelector('.result');
 
         console.log(result)
 
@@ -138,25 +138,22 @@ processPurchase = () => {
             // calculate change
             change = money - total;
 
-            console.log(total)
-            console.log(change)
-            console.log(errorMessages)
-            console.log(errorMessages.length)
-            console.log(errorMessages.length === 0)
-
             // print result if no error
             if (errorMessages.length === 0) {
-
                 result.innerHTML = `Your total is ₹${total}. Your change is ₹${change}. Thank you for your purchase!`;
-                return;
             }
 
         }
 
     }
 
-    // print error or quentity input field empty validation
-    error.innerHTML = errorMessages.map(error => `• ${error}`).join("<br>");
+    if (errorMessages.length > 0) {
+        // print error or quentity input field empty validation
+        error.innerHTML = errorMessages.map(error => `• ${error}`).join("<br>");
+    } else {
+        // clear error if there is no error 
+        error.innerHTML = '';
+    }
 
 }
 
