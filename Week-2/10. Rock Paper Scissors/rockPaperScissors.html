@@ -128,7 +128,7 @@
             gap: 14px;
             margin-top: 20px;
             margin-bottom: 20px;
-            flex-direction: column;
+            justify-content: space-between;
         }
 
         .checkboxInput {
@@ -171,7 +171,24 @@
 
         <h1 class="proHeading">Rock Paper Scissors</h1>
 
-        <div class="result"></div>
+        <div class="radioInput">
+
+            <label>
+                <input type="radio" name="pick" value="rock">
+                ROCK 🪨
+            </label>
+
+            <label>
+                <input type="radio" name="pick" value="paper">
+                PAPER 📃
+            </label>
+
+            <label>
+                <input type="radio" name="pick" value="scissor">
+                SCISSOR ✂️
+            </label>
+
+        </div>
 
         <div id="error"></div>
 

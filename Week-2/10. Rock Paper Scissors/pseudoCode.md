@@ -12,7 +12,7 @@ EDGES tie in a round (no one scores), final tie across 3 rounds, invalid input l
 
 INPUT :-
 
-•
+• user select rock, paper or scissor form radio button
 
 PROCESS :-
 
