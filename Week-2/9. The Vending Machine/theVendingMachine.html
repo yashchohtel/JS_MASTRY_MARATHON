@@ -105,7 +105,12 @@
             font-size: 16px;
         }
 
-        #result,
+        #error {
+            margin-top: 20px;
+            line-height: 1.8;
+            text-align: left;
+        }
+
         .result {
             margin-top: 20px;
             line-height: 1.8;
@@ -181,7 +186,7 @@
                 </label>
 
                 <!-- stock -->
-                <div class="stock" id="chipsStock">Stock: <span class="stockCount">3</span></div>
+                <div class="stock chips" data-item="chips">Stock: <span class="stockCount">3</span></div>
 
                 <!-- item quentity input -->
                 <input type="number" id="chipsQuantity" disabled placeholder="Enter quantity" min="1">
@@ -198,7 +203,7 @@
                 </label>
 
                 <!-- stock -->
-                <div class="stock" id="sodaStock">Stock: <span class="stockCount">0</span></div>
+                <div class="stock soda" data-item="soda">Stock: <span class="stockCount">0</span></div>
 
                 <!-- item quentity input -->
                 <input type="number" id="sodaQuantity" disabled placeholder="Enter quantity" min="1">
@@ -215,7 +220,7 @@
                 </label>
 
                 <!-- stock -->
-                <div class="stock" id="chocolateStock">Stock: <span class="stockCount">5</span></div>
+                <div class="stock chocolate" data-item="chocolate">Stock: <span class="stockCount">5</span></div>
 
                 <!-- item quentity input -->
                 <input type="number" id="chocolateQuantity" disabled placeholder="Enter quantity" min="1">
@@ -232,10 +237,10 @@
                 </label>
 
                 <!-- stock -->
-                <div class="stock" id="waterStock">Stock: <span class="stockCount">2</span></div>
+                <div class="stock water" data-item="water">Stock: <span class="stockCount">2</span></div>
 
                 <!-- item quentity input -->
-                <input type="number" id="waterQuantity" disabled placeholder="Enter quantity" min="1">
+                <input type="number" data-item="water" id="waterQuantity" disabled placeholder="Enter quantity" min="1">
 
             </div>
 

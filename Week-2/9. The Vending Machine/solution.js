@@ -1,4 +1,4 @@
-// checkbox tick enable quentity input feater
+// checkbox tick enable quentity input feature
 
 // select all the items
 let items = document.querySelectorAll('.item');
@@ -19,6 +19,8 @@ items.forEach(item => {
     });
 
 });
+
+/* ------------------------------------------- */
 
 // lookup object for item prices
 const itemPrices = {
@@ -41,7 +43,7 @@ let errorMessages = [];
 
 // function to get items, calculate total and show errors
 processPurchase = () => {
-
+    
     // reset error messages 
     errorMessages = []
 
@@ -103,8 +105,8 @@ processPurchase = () => {
     }
 
     // get the money input value and convert it to a number
-    let moneyInput = document.getElementById('moneyInput');
-    let money = Number(moneyInput.value);
+    let moneyInput = document.getElementById('moneyInput').value;
+    let money = Number(moneyInput);
 
     // money input validation for being empty zero and negative
     if (moneyInput === "" || money <= 0) {
@@ -120,8 +122,6 @@ processPurchase = () => {
 
         // select element to show result 
         let result = document.querySelector('.result');
-
-        console.log(result)
 
         for (let item in selectedItems) {
             total += itemPrices[item] * selectedItems[item]
@@ -151,24 +151,23 @@ processPurchase = () => {
         // print error or quentity input field empty validation
         error.innerHTML = errorMessages.map(error => `• ${error}`).join("<br>");
     } else {
+
         // clear error if there is no error 
         error.innerHTML = '';
+
+        // reducer stock if there every thing is fine
+        for (let item in selectedItems) {
+
+            // select exact stock div
+            let stockElement = document.querySelector(`.${item}`);
+
+            // select stock count span inside that div
+            let stockCount = stockElement.querySelector('.stockCount');
+
+            stockCount.innerHTML = `${itemStock[item] - selectedItems[item]}`
+
+        }
+
     }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
