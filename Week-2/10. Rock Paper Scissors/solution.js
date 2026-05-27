@@ -34,7 +34,7 @@ playGame = (userMove) => {
 
     }
 
-    // generate random move
+    // generate random number
     const computerMove = moves[Math.floor(Math.random() * 3)]
 
     // display user and computer move
