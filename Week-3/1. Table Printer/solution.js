@@ -1,26 +1,16 @@
-function findEvenOdd() {
+printTable = () => {
 
-    // Get the number 
-    let numInput = document.getElementById("num").value;
-    let num = Number(numInput);
-    let result = document.getElementById("result");
+    // select the result element to show result
+    let result = document.querySelector("#result")
 
-    // empty input validation check
-    if(numInput === ""){
-        result.innerHTML = "❌ Please fill all fields";
-    } 
+    // get the number
+    let tableNumInput = document.querySelector("#num").value;
+    let tableNum = Number(tableNumInput)
 
-    // if number is zero 
-    else if (num === 0){
-        result.innerHTML = "zero is special";
+    // loop the number to print table
+    for (let i = 1; i <= 10 ; i++) {
+        console.log(`${tableNum} x ${i} = ${tableNum*i}`);  
     }
+    
 
-    // odd even check
-    else if (num % 2 === 0){
-        result.innerHTML = `${num} is even number`;
-    } else{
-        result.innerHTML = `${num} is odd number`;
-    }
-
-
-}
+} 

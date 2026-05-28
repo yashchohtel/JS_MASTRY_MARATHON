@@ -1,48 +1,47 @@
-1. The Even / Odd Checker :-
+1. Multiplication Table Printer :-
 
-Take a number from the user. Tell them whether it's Even, Odd, or Zero.
-EDGES - zero (handle separately), negative numbers, non-numeric inp
+Ask the user for a number. Print its multiplication table from 1 to 10.
 
--------------------------
+EDGES
+• User enters 0 (table of zeros — still print it)
+• User enters a negative number
+• User enters a decimal (e.g., 7.5)
+
+---
 
 INPUT :-
 
-• Get the number input from the user
+• Get the number from the user 
 
 PROCESS :-
 
 • validate the number for being empty.
-• Handle the Condition for zero input
-• Check the number is odd or even by using modulo (%) for positive or negative both
+• Handle the Condition for negative input
+• Print table of the given number in multiplication
 
 OUTPUT :-
 
-• number is odd/even/zero
+• table of the number like (5 x 1 = 5)
 
 EDGE :-
-• zero (handle separately), negative numbers, non-numeric input
 
--------------------------
+• User enters 0 (table of zeros — still print it)
+• User enters a negative number
+• User enters a decimal (e.g., 7.5)
+
+---
 
 PSEUDOCODE :-
 
-Get the number from the user (using input type number) store it in variable name (num) and convert it in number using Number() method
+Get the number from the user and store the number in variable name tableNum
 
-Validate the input for being empty
-IF (num === "")
-    print - "please fill the field"
+validate the input field for being empty and nevative
+IF (tableNum === "")
+    print - please fill the field
+ELSE IF (tableNum < 0)
+    print - please enter the positive number
 
-if value of num is zero
-ELSE IF (num === 0) 
-    print - "result.innerHTML = "❌ Please fill all fields";"
-
-check if the number is odd or even
-ELSE IF(num%2 === 0)
-    print - "the number is even"
-ELSE
-    print - "the number is odd"
-   
-
-
+now loop the number ten time to print the multiplicaion of the number from 1 to 10
+using foor loop because we now the exact Repetition, LOOP patter is (Transform).
 
 
