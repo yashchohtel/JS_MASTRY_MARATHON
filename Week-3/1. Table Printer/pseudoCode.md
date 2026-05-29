@@ -31,17 +31,17 @@ EDGE :-
 
 ---
 
-PSEUDOCODE :-
+PSEUDOCODE :- LOOP patter is (Transform)
 
 Get the number from the user and store the number in variable name tableNum
 
-validate the input field for being empty and nevative
+validate the input field for being empty and negative
 IF (tableNum === "")
     print - please fill the field
 ELSE IF (tableNum < 0)
     print - please enter the positive number
 
 now loop the number ten time to print the multiplicaion of the number from 1 to 10
-using foor loop because we now the exact Repetition, LOOP patter is (Transform).
+using foor loop because we now the exact Repetition
 
 

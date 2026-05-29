@@ -1,26 +1,43 @@
-function findEvenOdd() {
+countVovel = () => {
 
-    // Get the number 
-    let numInput = document.getElementById("num").value;
-    let num = Number(numInput);
-    let result = document.getElementById("result");
+    // vowels
+    const vowels = ["a", "e", "i", "o", "u"];
+    const wordVowel = []; // to store the vowel in the world
+    let vowelCount = 0;
 
-    // empty input validation check
-    if(numInput === ""){
-        result.innerHTML = "❌ Please fill all fields";
-    } 
+    // get the world 
+    const word = document.querySelector("#word").value.toLowerCase()
 
-    // if number is zero 
-    else if (num === 0){
-        result.innerHTML = "zero is special";
+    // select result element to show result
+    const result = document.querySelector("#result")
+
+    // validate 
+    if (word === "") {
+        result.innerHTML = "please fill the field"
     }
 
-    // odd even check
-    else if (num % 2 === 0){
-        result.innerHTML = `${num} is even number`;
-    } else{
-        result.innerHTML = `${num} is odd number`;
-    }
+    // count vowels
+    else {
 
+        // loop the word
+        for (let i = 0; i < word.length; i++) {
+
+            // get the single character
+            const char = word[i];
+
+            // find vowel
+            let hasVowel = vowels.includes(char)
+
+            if (hasVowel) {
+                vowelCount++
+                wordVowel.push(char)
+            }
+
+        }
+
+        // display result
+        result.innerHTML = `word ${word} has ${vowelCount} Vowel ${vowelCount > 0 ? `(${wordVowel.join(",")})` : ""} `;
+
+    }
 
 }

@@ -1,48 +1,44 @@
-1. The Even / Odd Checker :-
+2. Count Vowels in a Word :-
 
-Take a number from the user. Tell them whether it's Even, Odd, or Zero.
-EDGES - zero (handle separately), negative numbers, non-numeric inp
+Take a word from the user. Count how many vowels (a, e, i, o, u) it contains. Show the count.
+
+EDGES
+• Empty string (count is 0)
+• Uppercase vowels ("A" should count)
+• Word with no vowels (e.g., "rhythm")
 
 -------------------------
 
 INPUT :-
 
-• Get the number input from the user
+• Get the word from the user as string 
 
 PROCESS :-
 
-• validate the number for being empty.
-• Handle the Condition for zero input
-• Check the number is odd or even by using modulo (%) for positive or negative both
+• validate the input field for being empty 
+• convert the string into lowercase
+• loop the word the search for vowels
 
 OUTPUT :-
 
-• number is odd/even/zero
+• count of vowels
 
 EDGE :-
-• zero (handle separately), negative numbers, non-numeric input
+
+• Empty string (count is 0)
+• Uppercase vowels ("A" should count)
+• Word with no vowels (e.g., "rhythm")
 
 -------------------------
 
-PSEUDOCODE :-
+PSEUDOCODE :- LOOP patter is (search)
 
-Get the number from the user (using input type number) store it in variable name (num) and convert it in number using Number() method
+Get the string from the user and convert it in lowercase
+validate it for being empty
+create a arrow of vowels in lowercasse - const vowels = ["a", "e", "i", "o", "u"];
 
-Validate the input for being empty
-IF (num === "")
-    print - "please fill the field"
-
-if value of num is zero
-ELSE IF (num === 0) 
-    print - "result.innerHTML = "❌ Please fill all fields";"
-
-check if the number is odd or even
-ELSE IF(num%2 === 0)
-    print - "the number is even"
-ELSE
-    print - "the number is odd"
-   
-
-
-
-
+loop the word to the length of the given world
+get each of the charactor by using index and bracket notation
+now find the word in the vowels array to using js array method (.includes()) which return true or false 
+if it return true increment the count and store that character into the another array.
+then print the result
