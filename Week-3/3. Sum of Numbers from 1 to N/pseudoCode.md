@@ -1,9 +1,17 @@
-1. The Even / Odd Checker :-
+1. Sum of Numbers from 1 to N :-
 
-Take a number from the user. Tell them whether it's Even, Odd, or Zero.
-EDGES - zero (handle separately), negative numbers, non-numeric inp
+Ask the user for a number N. Calculate the sum of all numbers from 1 to N.
+Example: N = 5 → 1 + 2 + 3 + 4 + 5 = 15
 
--------------------------
+EDGES
+• N = 0 (sum is 0)
+• Negative N
+• Very large N (e.g., 1,000,000 — should still work fast)
+
+HINT - This is the textbook Accumulator pattern. let total = 0 goes outside the loop. Inside, total = total +
+i. Trust the pattern.
+
+---
 
 INPUT :-
 
@@ -11,38 +19,29 @@ INPUT :-
 
 PROCESS :-
 
-• validate the number for being empty.
-• Handle the Condition for zero input
-• Check the number is odd or even by using modulo (%) for positive or negative both
+• validate the number for being empty 
+• loop the number to accumulate the sum 
 
 OUTPUT :-
 
-• number is odd/even/zero
+• sum of the number
 
 EDGE :-
-• zero (handle separately), negative numbers, non-numeric input
+• N = 0 (sum is 0)
+• Negative N
+• Very large N (e.g., 1,000,000 — should still work fast)
 
--------------------------
+---
 
-PSEUDOCODE :-
+PSEUDOCODE :- LOOP patter is (Accumulator)
 
 Get the number from the user (using input type number) store it in variable name (num) and convert it in number using Number() method
+create the accumulator to store the sum
 
-Validate the input for being empty
+<!-- Validate the input for being empty -->
 IF (num === "")
-    print - "please fill the field"
+print - "please fill the field"
 
-if value of num is zero
-ELSE IF (num === 0) 
-    print - "result.innerHTML = "❌ Please fill all fields";"
-
-check if the number is odd or even
-ELSE IF(num%2 === 0)
-    print - "the number is even"
-ELSE
-    print - "the number is odd"
-   
-
-
-
-
+<!-- CALCULATE THE SUM -->
+ELSE 
+    accumulate the sum by loopin the given number 
