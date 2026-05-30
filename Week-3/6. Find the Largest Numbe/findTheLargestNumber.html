@@ -51,10 +51,12 @@
             font-size: 16px;
         }
 
-        #result {
+        #result,
+        .numInputMsg {
             margin-top: 20px;
             line-height: 1.8;
         }
+
     </style>
 
 
@@ -72,10 +74,12 @@
 
         <h1 class="proHeading">Find largest Number</h1>
 
-        <input type="text" id="num" placeholder="Enter your number seprated by (,). Ex - 1,2,3,4,5">
+        <input type="number" id="num" placeholder="Enter first Number">
 
-        <button onclick="findLargestNumber()">
-            Find
+        <div class="numInputMsg">Please enter you first Number</div>
+
+        <button onclick="collectNumber()">
+            Enter your numbers
         </button>
 
         <div id="result"></div>
