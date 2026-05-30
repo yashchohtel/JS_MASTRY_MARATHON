@@ -41,8 +41,3 @@ ELSE IF(num%2 === 0)
     print - "the number is even"
 ELSE
     print - "the number is odd"
-   
-
-
-
-

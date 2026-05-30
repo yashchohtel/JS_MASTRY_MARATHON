@@ -1,26 +1,27 @@
-function findEvenOdd() {
+function fizzBuzz() {
 
-    // Get the number 
-    let numInput = document.getElementById("num").value;
-    let num = Number(numInput);
     let result = document.getElementById("result");
 
-    // empty input validation check
-    if(numInput === ""){
-        result.innerHTML = "❌ Please fill all fields";
-    } 
+    result.innerHTML = "";
 
-    // if number is zero 
-    else if (num === 0){
-        result.innerHTML = "zero is special";
+    for (let num = 1; num <= 30; num++) {
+
+        if (num % 3 === 0 && num % 5 === 0) {
+            result.innerHTML += `<p>${num} - FizzBuzz</p>`;
+        }
+
+        else if (num % 3 === 0) {
+            result.innerHTML += `<p>${num} - Fizz</p>`;
+        }
+
+        else if (num % 5 === 0) {
+            result.innerHTML += `<p>${num} - Buzz</p>`;
+        }
+
+        else {
+            result.innerHTML += `<p>${num}</p>`;
+        }
+
     }
-
-    // odd even check
-    else if (num % 2 === 0){
-        result.innerHTML = `${num} is even number`;
-    } else{
-        result.innerHTML = `${num} is odd number`;
-    }
-
 
 }

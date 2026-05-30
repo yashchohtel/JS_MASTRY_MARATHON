@@ -1,48 +1,50 @@
-1. The Even / Odd Checker :-
+1. Reverse a String (Without .reverse()) :-
 
-Take a number from the user. Tell them whether it's Even, Odd, or Zero.
-EDGES - zero (handle separately), negative numbers, non-numeric inp
+Take a word. Print it reversed. You're not allowed to use .reverse(). Use a loop.
+
+Example: "rajdeep" → "peejdar"
+
+EDGES
+• Empty string
+• Single character ("a" → "a")
+• Word with spaces ("code easy" → "ysae edoc")
+
+HINT
+Start with an empty result string. Loop the original from LAST character to FIRST. Add each
+character to the result. Pattern: Accumulator.
 
 -------------------------
 
 INPUT :-
 
-• Get the number input from the user
+• Get the word from the user as text.
 
 PROCESS :-
 
 • validate the number for being empty.
-• Handle the Condition for zero input
-• Check the number is odd or even by using modulo (%) for positive or negative both
+• reverse the word ans store it in another array and then join and display
 
 OUTPUT :-
 
-• number is odd/even/zero
+• given world in reverse Example: "rajdeep" → "peejdar"
 
 EDGE :-
-• zero (handle separately), negative numbers, non-numeric input
+• Empty string
+• Single character ("a" → "a")
+• Word with spaces ("code easy" → "ysae edoc")
 
 -------------------------
 
-PSEUDOCODE :-
+PSEUDOCODE :- LOOP pattern (Accumulator)
 
-Get the number from the user (using input type number) store it in variable name (num) and convert it in number using Number() method
+Get the text input from the user 
 
 Validate the input for being empty
-IF (num === "")
+IF (word === "")
     print - "please fill the field"
 
-if value of num is zero
-ELSE IF (num === 0) 
-    print - "result.innerHTML = "❌ Please fill all fields";"
-
-check if the number is odd or even
-ELSE IF(num%2 === 0)
-    print - "the number is even"
-ELSE
-    print - "the number is odd"
-   
-
+ELSE 
+    loop the word from the last and store it in another array then join and display
 
 
 

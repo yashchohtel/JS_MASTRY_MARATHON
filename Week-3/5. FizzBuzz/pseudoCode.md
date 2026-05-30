@@ -1,48 +1,48 @@
-1. The Even / Odd Checker :-
+5. FizzBuzz :-
 
-Take a number from the user. Tell them whether it's Even, Odd, or Zero.
-EDGES - zero (handle separately), negative numbers, non-numeric inp
+For numbers 1 to 30, print:
+• "Fizz" if divisible by 3
+• "Buzz" if divisible by 5
+• "FizzBuzz" if divisible by BOTH 3 and 5
+• The number itself otherwise
 
--------------------------
+EDGES
+• Order of checks matters (FizzBuzz before Fizz, or you'll never reach FizzBuzz)
+• Numbers like 15, 30 (divisible by both)
+
+---
 
 INPUT :-
 
-• Get the number input from the user
+• no any input required as the the problem (only button click is enough to trigger the loop)
 
 PROCESS :-
 
-• validate the number for being empty.
-• Handle the Condition for zero input
-• Check the number is odd or even by using modulo (%) for positive or negative both
+• divide each number from 1 to 30 if it's devisible both 3 and 5 its fizzbuzz
+• if it is devisible by 3 it's a fizz
+• if it is devisibly by 5 it's a buzz
 
 OUTPUT :-
 
-• number is odd/even/zero
+• fizzbuzz/fizz/buzz accordint to number from 1 to 30
 
 EDGE :-
-• zero (handle separately), negative numbers, non-numeric input
+• Order of checks matters (FizzBuzz before Fizz, or you'll never reach FizzBuzz)
+• Numbers like 15, 30 (divisible by both)
 
--------------------------
+---
 
-PSEUDOCODE :-
+PSEUDOCODE :- LOOP patter is (Transform)
 
-Get the number from the user (using input type number) store it in variable name (num) and convert it in number using Number() method
+If divisible by both 3 and 5
+    print FizzBuzz
 
-Validate the input for being empty
-IF (num === "")
-    print - "please fill the field"
+Else if divisible by 3
+    print Fizz
 
-if value of num is zero
-ELSE IF (num === 0) 
-    print - "result.innerHTML = "❌ Please fill all fields";"
+Else if divisible by 5
+    print Buzz
 
-check if the number is odd or even
-ELSE IF(num%2 === 0)
-    print - "the number is even"
-ELSE
-    print - "the number is odd"
-   
-
-
-
+Else
+    print the number
 

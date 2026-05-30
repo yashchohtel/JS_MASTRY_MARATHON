@@ -1,26 +1,29 @@
-function findEvenOdd() {
+function reverseString() {
 
     // Get the number 
-    let numInput = document.getElementById("num").value;
-    let num = Number(numInput);
+    let word = document.getElementById("word").value;
     let result = document.getElementById("result");
 
+    // empty aray to store word character in reverse order
+    let reverseWord = [];
+
     // empty input validation check
-    if(numInput === ""){
-        result.innerHTML = "❌ Please fill all fields";
+    if(word === ""){
+        result.innerHTML = "❌ Please fill the field";
     } 
 
-    // if number is zero 
-    else if (num === 0){
-        result.innerHTML = "zero is special";
+    // reverse the string
+    else{
+
+        for (let index = word.length - 1; index >= 0; index--) {
+            
+            reverseWord.push(word[index])
+
+        }
+
+        result.innerHTML = reverseWord.join("")
+
     }
 
-    // odd even check
-    else if (num % 2 === 0){
-        result.innerHTML = `${num} is even number`;
-    } else{
-        result.innerHTML = `${num} is odd number`;
-    }
-
-
+    
 }
