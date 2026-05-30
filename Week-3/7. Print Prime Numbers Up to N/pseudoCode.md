@@ -33,22 +33,6 @@ EDGE :-
 
 PSEUDOCODE :-
 
-Get the number from the user (using input type number) store it in variable name (num) and convert it in number using Number() method
-
-Validate the input for being empty
-IF (num === "")
-    print - "please fill the field"
-
-if value of num is zero
-ELSE IF (num === 0) 
-    print - "result.innerHTML = "❌ Please fill all fields";"
-
-check if the number is odd or even
-ELSE IF(num%2 === 0)
-    print - "the number is even"
-ELSE
-    print - "the number is odd"
-   
 
 
 
