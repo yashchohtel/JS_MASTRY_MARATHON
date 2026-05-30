@@ -1,26 +1,33 @@
-1. The Even / Odd Checker :-
+2. Print Prime Numbers Up to N :-
 
-Take a number from the user. Tell them whether it's Even, Odd, or Zero.
-EDGES - zero (handle separately), negative numbers, non-numeric inp
+Ask the user for a number N. Print all prime numbers from 2 to N. (A prime is divisible only by 1 and
+itself.)
+
+EDGES
+• N less than 2 (no primes to print)
+• N = 2 (only one prime: 2 itself)
+• N is large (1000)
+
+HINT
+This is a NESTED loop. Outer loop walks 2 to N. For each number, an inner loop checks if anything
+from 2 to that-number-minus-1 divides it cleanly. If nothing does — it's prime.
 
 -------------------------
 
 INPUT :-
 
-• Get the number input from the user
+• 
 
 PROCESS :-
 
-• validate the number for being empty.
-• Handle the Condition for zero input
-• Check the number is odd or even by using modulo (%) for positive or negative both
+• 
 
 OUTPUT :-
 
-• number is odd/even/zero
+• 
 
 EDGE :-
-• zero (handle separately), negative numbers, non-numeric input
+• 
 
 -------------------------
 

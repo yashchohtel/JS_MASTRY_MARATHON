@@ -1,4 +1,4 @@
-function findEvenOdd() {
+function findPrime() {
 
     // Get the number 
     let numInput = document.getElementById("num").value;
@@ -7,7 +7,7 @@ function findEvenOdd() {
 
     // empty input validation check
     if(numInput === ""){
-        result.innerHTML = "❌ Please fill all fields";
+        result.innerHTML = "Please fill the field";
     } 
 
     // if number is zero 
