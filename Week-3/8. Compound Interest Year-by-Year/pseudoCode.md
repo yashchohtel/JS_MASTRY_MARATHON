@@ -1,7 +1,19 @@
-1. The Even / Odd Checker :-
+8. Compound Interest Year-by-Year :-
 
-Take a number from the user. Tell them whether it's Even, Odd, or Zero.
-EDGES - zero (handle separately), negative numbers, non-numeric inp
+A user invests ₹50,000 at 8% annual interest, compounded yearly. Show the balance at the end of each
+year for 10 years.
+Year 1: ₹54,000
+Year 2: ₹58,320
+...
+
+EDGES
+• Year 0 (initial balance, before any interest)
+• Decimal precision — round to 2 decimals
+• Interest rate of 0 (balance stays same)
+
+HINT
+Transform pattern over time. Start with balance = 50000. Each year: balance = balance +
+balance × 0.08. So clean that most students overthink it.
 
 -------------------------
 
