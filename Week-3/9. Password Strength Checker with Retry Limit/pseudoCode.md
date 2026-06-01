@@ -1,46 +1,50 @@
-1. The Even / Odd Checker :-
+9. Password Strength Checker with Retry Limit :-
 
-Take a number from the user. Tell them whether it's Even, Odd, or Zero.
-EDGES - zero (handle separately), negative numbers, non-numeric inp
+WHY THIS IS THE STAR
+It forces nested loops AND combines 3 loop patterns — Counter (attempts), Search (scan for
+digit/uppercase), and Conditional Exit. Get this right, and loops stop being scary forever.
+
+Build a password validator. The user has 3 attempts to create a strong password. A strong password must:
+• Be at least 8 characters
+• Contain at least one digit (0–9)
+• Contain at least one uppercase letter (A–Z)
+If they enter a weak password, tell them WHY it's weak (which rules failed). After 3 failed attempts, lock
+them out. On success, say which attempt succeeded.
+
+EDGES
+• Empty password
+• Password fails multiple rules at once (show ALL reasons, not just the first)
+• Success on attempt 1 vs attempt 3
+• User exhausts all 3 attempts
+
+HINT
+Draw the structure FIRST. Don't open your editor for 10 minutes. You need: an OUTER while loop
+(attempts), and INSIDE it, FOR loops that scan the password. If you skip the drawing, you'll write
+80 lines of tangled if/else and still have bugs
 
 -------------------------
 
 INPUT :-
 
-• Get the number input from the user
+• 
 
 PROCESS :-
 
-• validate the number for being empty.
-• Handle the Condition for zero input
-• Check the number is odd or even by using modulo (%) for positive or negative both
+• 
 
 OUTPUT :-
 
-• number is odd/even/zero
+• 
 
 EDGE :-
-• zero (handle separately), negative numbers, non-numeric input
+
+• 
 
 -------------------------
 
 PSEUDOCODE :-
 
-Get the number from the user (using input type number) store it in variable name (num) and convert it in number using Number() method
 
-Validate the input for being empty
-IF (num === "")
-    print - "please fill the field"
-
-if value of num is zero
-ELSE IF (num === 0) 
-    print - "result.innerHTML = "❌ Please fill all fields";"
-
-check if the number is odd or even
-ELSE IF(num%2 === 0)
-    print - "the number is even"
-ELSE
-    print - "the number is odd"
    
 
 
