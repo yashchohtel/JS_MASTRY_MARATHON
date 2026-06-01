@@ -37,51 +37,66 @@ EDGE :-
 
 ---
 
-PSEUDOCODE :- LOOP type (search)
+PSEUDOCODE :- LOOP type (transform)
 
-<!-- get the number input and convert it to the number -->
+<!-- get all the input and convert them to numbers -->
 
-numInput = document.getElementById("num").value;
-num = Number(numInput);
+amountInput = document.querySelector("#amount").value;
+amount = Number(amountInput);
 
-<!-- validate the input for being empty zero and negative -->
+interestInput = document.querySelector("#rateInput").value;
+interest = Number(interestInput);
 
-IF (numInput == "")
-print - "please fill the field"
+tenureInput = document.querySelector("#tenure").value;
+tenure = Number(tenureInput);
 
-<!-- if num is less then zero -->
+<!-- validate all fields are filled -->
 
-ELSE IF (num > 2)
-print - "no prime numbers"
+IF (amountInput == "" OR interestInput == "" OR tenureInput == "")
+print - "please fill all fields"
 
-<!-- if num is equal to 2 -->
+<!-- validate for zero and negative values -->
 
-ELSE IF (num == 2)
-print - "2 is the only printe till 2"
+ELSE IF (amount <= 0 OR interest < 0 OR tenure <= 0)
+print - "invalid input"
 
-<!-- find the prime number betwwen 2 to n -->
+<!-- validate interest rate -->
+
+ELSE IF (interest > 20)
+print - "interest rate cannot be greater than 20%"
+
+<!-- calculate compound interest -->
+
 ELSE {
 
-    <!-- loop the number to find the prime number -->
+    <!-- clear previous result -->
 
-    // outer loop
-    lfor (let i = 1; i <= num; i++) {
+    clear result
 
-        <!-- a variable to store the count how many time a number is fully divisible -->
-        let divisibleCount = 0;
+    <!-- print initial balance -->
 
-        <!-- loop equal to the count of current number of outer loop  -->
-        for (let j = 1; j <= i; j++) {
+    print - "Year 0 : amount"
 
-            if (i % j === 0) {
-                divisibleCount++
-            }
+    <!-- loop till tenure years -->
 
-        }
+    FOR (year = 1 TO tenure)
 
-        if (divisibleCount === 2) {
-            print - `${j} is prime number`   
-        }
-    }
+        <!-- calculate new balance -->
+
+        amount = amount + (amount * interest / 100)
+
+        <!-- store latest amount as total amount -->
+
+        totalAmount = amount
+
+        <!-- print yearly balance -->
+
+        print - "Year year : amount"
+
+    END FOR
+
+    <!-- print final amount -->
+
+    print - "Total Amount : totalAmount"
 
 }

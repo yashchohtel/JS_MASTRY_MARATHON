@@ -19,41 +19,28 @@ balance × 0.08. So clean that most students overthink it.
 
 INPUT :-
 
-• Get the number input from the user
+• amount, tenure, intrest
 
 PROCESS :-
 
-• validate the number for being empty.
-• Handle the Condition for zero input
-• Check the number is odd or even by using modulo (%) for positive or negative both
+• validate the inputs for bein empty zero and neative
+• validate the intrest rate for bein more then 20%
+• loop the tenure and calculate per year intrest and total
 
 OUTPUT :-
 
-• number is odd/even/zero
+• Total amount per year (principa + intrest) and total amount
 
 EDGE :-
-• zero (handle separately), negative numbers, non-numeric input
+• Year 0 (initial balance, before any interest)
+• Decimal precision — round to 2 decimals
+• Interest rate of 0 (balance stays same)
 
 -------------------------
 
 PSEUDOCODE :-
 
-Get the number from the user (using input type number) store it in variable name (num) and convert it in number using Number() method
 
-Validate the input for being empty
-IF (num === "")
-    print - "please fill the field"
-
-if value of num is zero
-ELSE IF (num === 0) 
-    print - "result.innerHTML = "❌ Please fill all fields";"
-
-check if the number is odd or even
-ELSE IF(num%2 === 0)
-    print - "the number is even"
-ELSE
-    print - "the number is odd"
-   
 
 
 
