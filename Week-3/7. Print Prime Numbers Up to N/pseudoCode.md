@@ -37,35 +37,24 @@ EDGE :-
 
 ---
 
-PSEUDOCODE :- LOOP type (transform)
+PSEUDOCODE :- LOOP type (search)
 
-<!-- get all the input and convert them to numbers -->
+<!-- get the number input and convert it to the number -->
 
-amountInput = document.querySelector("#amount").value;
-amount = Number(amountInput);
+numInput = document.getElementById("num").value;
+num = Number(numInput);
 
-interestInput = document.querySelector("#rateInput").value;
-interest = Number(interestInput);
+<!-- validate the input for being empty -->
 
-tenureInput = document.querySelector("#tenure").value;
-tenure = Number(tenureInput);
+IF (numInput == "")
+print - "Please fill the field"
 
-<!-- validate all fields are filled -->
+<!-- validate for zero and negative numbers -->
 
-IF (amountInput == "" OR interestInput == "" OR tenureInput == "")
-print - "please fill all fields"
+ELSE IF (num <= 0)
+print - "please enter a number greater than zero"
 
-<!-- validate for zero and negative values -->
-
-ELSE IF (amount <= 0 OR interest < 0 OR tenure <= 0)
-print - "invalid input"
-
-<!-- validate interest rate -->
-
-ELSE IF (interest > 20)
-print - "interest rate cannot be greater than 20%"
-
-<!-- calculate compound interest -->
+<!-- find prime numbers -->
 
 ELSE {
 
@@ -73,30 +62,44 @@ ELSE {
 
     clear result
 
-    <!-- print initial balance -->
+    <!-- loop from 1 to N -->
 
-    print - "Year 0 : amount"
+    FOR (i = 1 TO num)
 
-    <!-- loop till tenure years -->
+        <!-- count how many times current number is fully divisible -->
 
-    FOR (year = 1 TO tenure)
+        divisibleCount = 0
 
-        <!-- calculate new balance -->
+        <!-- if N is less than 2 -->
 
-        amount = amount + (amount * interest / 100)
+        IF (num < 2)
+        print - "no prime number till N"
 
-        <!-- store latest amount as total amount -->
+        <!-- if N is equal to 2 -->
 
-        totalAmount = amount
+        ELSE IF (num == 2)
+        print - "only one prime : 2 itself"
 
-        <!-- print yearly balance -->
+        <!-- check if current number is prime -->
 
-        print - "Year year : amount"
+        ELSE {
+
+            <!-- check all divisors from 1 to current number -->
+
+            FOR (j = 1 TO i)
+
+                IF (i is fully divisible by j)
+                divisibleCount++
+
+            END FOR
+
+            <!-- a prime number is divisible exactly 2 times -->
+
+            IF (divisibleCount == 2)
+            print - "i is a prime number"
+
+        }
 
     END FOR
-
-    <!-- print final amount -->
-
-    print - "Total Amount : totalAmount"
 
 }
