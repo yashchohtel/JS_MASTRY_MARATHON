@@ -1,48 +1,38 @@
-1. The Even / Odd Checker :-
+10. ATM PIN Block-Out :-
 
-Take a number from the user. Tell them whether it's Even, Odd, or Zero.
-EDGES - zero (handle separately), negative numbers, non-numeric inp
+Simulate an ATM PIN entry. Correct PIN is "4231". User has 3 tries. On each wrong try, tell them how
+many attempts are left. On the 3rd wrong try, block the card and show: "Card blocked. Contact your
+branch."
+
+EDGES
+• Correct PIN on attempt 1 (don't burn the other 2 attempts)
+• Empty input
+• User enters non-numeric input
+
+HINT
+This is the Counter + Search combo. The while exits on EITHER attemptsLeft = 0 OR correct PIN.
+Two exit conditions — same shape as the Star problem.
 
 -------------------------
 
 INPUT :-
 
-• Get the number input from the user
+• 
 
 PROCESS :-
 
-• validate the number for being empty.
-• Handle the Condition for zero input
-• Check the number is odd or even by using modulo (%) for positive or negative both
+• 
 
 OUTPUT :-
 
-• number is odd/even/zero
+• 
 
 EDGE :-
-• zero (handle separately), negative numbers, non-numeric input
+• 
 
 -------------------------
 
 PSEUDOCODE :-
-
-Get the number from the user (using input type number) store it in variable name (num) and convert it in number using Number() method
-
-Validate the input for being empty
-IF (num === "")
-    print - "please fill the field"
-
-if value of num is zero
-ELSE IF (num === 0) 
-    print - "result.innerHTML = "❌ Please fill all fields";"
-
-check if the number is odd or even
-ELSE IF(num%2 === 0)
-    print - "the number is even"
-ELSE
-    print - "the number is odd"
-   
-
 
 
 

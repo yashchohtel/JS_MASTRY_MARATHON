@@ -49,7 +49,7 @@ EDGES
 
 ---
 
-PSEUDOCODE :-
+PSEUDOCODE :- Loop type [search]
 
 <!-- create array to store failur reason -->
 
