@@ -1,26 +1,44 @@
-function findEvenOdd() {
+let maxAttempts = 3;
 
-    // Get the number 
-    let numInput = document.getElementById("num").value;
-    let num = Number(numInput);
+const originalPin = "4321";
+
+function validatePin() {
+
+    let pinInput = document.getElementById("num").value;
     let result = document.getElementById("result");
 
-    // empty input validation check
-    if(numInput === ""){
-        result.innerHTML = "❌ Please fill all fields";
-    } 
-
-    // if number is zero 
-    else if (num === 0){
-        result.innerHTML = "zero is special";
+    // empty validation
+    if (pinInput === "") {
+        result.innerHTML = "Please enter your four digit PIN";
     }
 
-    // odd even check
-    else if (num % 2 === 0){
-        result.innerHTML = `${num} is even number`;
-    } else{
-        result.innerHTML = `${num} is odd number`;
-    }
+    // check attempts left
+    else if (maxAttempts > 0) {
 
+        // correct pin
+        if (pinInput === originalPin) {
+
+            result.innerHTML = "PIN is correct. Access granted.";
+
+        }
+
+        // wrong pin
+        else {
+
+            maxAttempts--;
+
+            if (maxAttempts > 0) {
+
+                result.innerHTML = `Incorrect PIN. You have ${maxAttempts} attempts left.`;
+
+            } else {
+
+                result.innerHTML = "Card blocked. Contact your branch.";
+
+            }
+
+        }
+
+    }
 
 }
