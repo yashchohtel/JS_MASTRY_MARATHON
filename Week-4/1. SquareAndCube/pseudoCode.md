@@ -1,47 +1,42 @@
-1. Multiplication Table Printer :-
+1. Square and Cube :-
 
-Ask the user for a number. Print its multiplication table from 1 to 10.
+Write two functions: square(n) and cube(n) . Each takes a number and returns the result.
+Then write a third function printPowers(n) that calls both and prints:
 
-EDGES
-• User enters 0 (table of zeros — still print it)
-• User enters a negative number
-• User enters a decimal (e.g., 7.5)
+Square of 4: 16
+Cube of 4: 64
+
+Edges: n = 0, n = negative, n = decimal
 
 ---
 
 INPUT :-
 
-• Get the number from the user 
+• Get the number from the user
 
 PROCESS :-
 
 • validate the number for being empty.
 • Handle the Condition for negative input
-• Print table of the given number in multiplication
+• and calculate the square and cube of the num
 
 OUTPUT :-
 
-• table of the number like (5 x 1 = 5)
+• square of 2 is = ""
+• square of 3 is = ""
 
 EDGE :-
 
-• User enters 0 (table of zeros — still print it)
-• User enters a negative number
-• User enters a decimal (e.g., 7.5)
+n = 0, n = negative, n = decimal
 
 ---
 
-PSEUDOCODE :- LOOP patter is (Transform)
+PSEUDOCODE :- 
 
-Get the number from the user and store the number in variable name tableNum
+Get the number from the user and store the number in variable name num and convert it to number using Number(num)
 
 validate the input field for being empty and negative
-IF (tableNum === "")
+IF (num === "")
     print - please fill the field
-ELSE IF (tableNum < 0)
-    print - please enter the positive number
-
-now loop the number ten time to print the multiplicaion of the number from 1 to 10
-using foor loop because we now the exact Repetition
-
-
+ELSE IF (num < 0)
+    
