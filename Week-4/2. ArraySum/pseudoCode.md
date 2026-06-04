@@ -1,23 +1,21 @@
-1. Multiplication Table Printer :-
+2. Array Sum :-
 
-Ask the user for a number. Print its multiplication table from 1 to 10.
+Write a function sumArray(numbers) that takes an array of numbers and returns their total.
 
-EDGES
-• User enters 0 (table of zeros — still print it)
-• User enters a negative number
-• User enters a decimal (e.g., 7.5)
+Example: sumArray([10, 20, 30]) → 60
+
+Edges: empty array (return 0), array with one item, negative numbers
 
 ---
 
 INPUT :-
 
-• Get the number from the user 
+• Get the text input from the user as coma seperated Number Eg. 10,20,30,40,50
 
 PROCESS :-
 
-• validate the number for being empty.
-• Handle the Condition for negative input
-• Print table of the given number in multiplication
+• conver te text of number seperated by comma into an array
+• 
 
 OUTPUT :-
 
@@ -37,11 +35,9 @@ Get the number from the user and store the number in variable name tableNum
 
 validate the input field for being empty and negative
 IF (tableNum === "")
-    print - please fill the field
+print - please fill the field
 ELSE IF (tableNum < 0)
-    print - please enter the positive number
+print - please enter the positive number
 
 now loop the number ten time to print the multiplicaion of the number from 1 to 10
 using foor loop because we now the exact Repetition
-
-

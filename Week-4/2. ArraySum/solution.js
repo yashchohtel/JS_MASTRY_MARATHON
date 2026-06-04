@@ -1,31 +1,24 @@
-printTable = () => {
+getSum = () => {
 
-    // select the result element to show result
-    let result = document.querySelector("#result")
-    result.innerHTML = "";
+    // get the value from input field
+    let numberText = document.getElementById("number").value;
 
-    // get the number
-    let tableNumInput = document.querySelector("#num").value;
-    let tableNum = Number(tableNumInput)
+    // split the string into an array of numbers
+    console.log(numberText);
 
-    // empty validation
-    if (tableNumInput === "") {
-        result.innerHTML = "Please enter a number";
-    } 
+    let numberArray = numberText.split(",")
+    console.log(numberArray);
 
-    // negative validation
-    else if (tableNum < 0){
-        result.innerHTML = "Number should be positive";
-    }
+    let trimmedNumber = numberArray.map((item) => {
+        return item.trim();
+    })
 
-    // print table
-    else {
+    let realNum = trimmedNumber.map((item) => {
 
-        // loop the number to print table
-        for (let i = 1; i <= 10; i++) {
-            result.innerHTML += `<p>${tableNum} x ${i} = ${tableNum * i}</p>`;
+        if (!isNaN(item)) {
+            return Number(item);
         }
 
-    }
+    })
 
 }
