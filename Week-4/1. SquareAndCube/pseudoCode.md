@@ -33,10 +33,39 @@ n = 0, n = negative, n = decimal
 
 PSEUDOCODE :- 
 
-Get the number from the user and store the number in variable name num and convert it to number using Number(num)
+<!-- create a function to get square of the number -->
+function square(num) {
+    return num ** 2; // it returns the square of the given number
+}
 
-validate the input field for being empty and negative
-IF (num === "")
-    print - please fill the field
-ELSE IF (num < 0)
+
+<!-- create a function to get cube of the number -->
+function cube(num) {
+    return num ** 3; // it returns the cube of the given number
+}
+
+<!-- create a function for validation and calling cube and square and showing -->
+function squareAndCube () {
+ 
+    <!-- get the numInput and convert it in number -->
+    numInput = input.value
+    num = Number(numInput)
+
+    <!-- validate numInput for being empty -->
+    IF (numInput === "")
+        print - "please fill the field"
+        return
     
+    <!-- zero validation -->
+    ELSE IF (num === 0)
+        print - "please enter non zero number"
+        return
+
+    <!-- call the cube and square function and store it in variable -->
+    cubeResult = cube(num)
+    squareResult = square(num)
+
+    <!-- show result -->
+    print - square and cube or num is cubeResult squareResult
+
+}
