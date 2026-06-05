@@ -1,3 +1,20 @@
+// function to calculate the sum of numbers entered in the input field
+calculateSum = (numArr) => {
+
+    // initialize sum variable
+    let sum = 0;
+
+    // loop through the array and add each number to the sum
+    for (let i = 0; i < numArr.length; i++) {
+        sum += Number(numArr[i]); // convert string to number and add to sum
+    }
+
+    // return the calculated sum
+    return sum;
+
+}
+
+
 getSum = () => {
 
     // get the value from input field
@@ -21,13 +38,17 @@ getSum = () => {
         // inditividual value
         const value = numberArray[i];
 
-        if (value === "" || isNaN(value)) {
+        if (isNaN(value)) {
             result.innerHTML = "Please enter only numbers separated by commas.";
             return; // stop further execution if invalid input is found
         }
 
     }
 
-    console.log(numberArray);
+    // calculate the sum using the calculateSum function
+    const sum = calculateSum(numberArray);
 
+    // display the result
+    result.innerHTML = `The sum of the numbers is: ${sum}`;
+    
 }
