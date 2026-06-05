@@ -1,24 +1,33 @@
 getSum = () => {
 
     // get the value from input field
-    let numberText = document.getElementById("number").value;
+    const input = document.getElementById("number").value;
 
-    // split the string into an array of numbers
-    console.log(numberText);
+    // select result element
+    const result = document.getElementById("result");
 
-    let numberArray = numberText.split(",")
-    console.log(numberArray);
+    // split the input by commas and trim whitespace
+    let numberArray = input.split(",").map(item => item.trim());
 
-    let trimmedNumber = numberArray.map((item) => {
-        return item.trim();
-    })
+    // check if the input is empty    
+    if (input === "") {
+        result.innerHTML = "Please enter some numbers separated by commas.";
+        return;
+    }
 
-    let realNum = trimmedNumber.map((item) => {
+    // only numbers seprated by commas are allowed
+    for (let i = 0; i < numberArray.length; i++) {
 
-        if (!isNaN(item)) {
-            return Number(item);
+        // inditividual value
+        const value = numberArray[i];
+
+        if (value === "" || isNaN(value)) {
+            result.innerHTML = "Please enter only numbers separated by commas.";
+            return; // stop further execution if invalid input is found
         }
 
-    })
+    }
+
+    console.log(numberArray);
 
 }
