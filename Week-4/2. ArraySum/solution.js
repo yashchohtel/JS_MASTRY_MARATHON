@@ -23,14 +23,14 @@ getSum = () => {
     // select result element
     const result = document.getElementById("result");
 
-    // split the input by commas and trim whitespace
-    let numberArray = input.split(",").map(item => item.trim());
-
     // check if the input is empty    
     if (input === "") {
         result.innerHTML = "Please enter some numbers separated by commas.";
         return;
     }
+
+    // split the input by commas and trim whitespace
+    let numberArray = input.split(",").map(item => item.trim());
 
     // only numbers seprated by commas are allowed
     for (let i = 0; i < numberArray.length; i++) {
@@ -49,6 +49,6 @@ getSum = () => {
     const sum = calculateSum(numberArray);
 
     // display the result
-    result.innerHTML = `The sum of the numbers is: ${sum}`;
-    
+    result.innerHTML = `The sum of the ${numberArray} is: ${sum}`;
+
 }

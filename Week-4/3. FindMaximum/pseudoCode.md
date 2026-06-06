@@ -1,47 +1,79 @@
-1. Multiplication Table Printer :-
+3. Find Maximum :-
 
-Ask the user for a number. Print its multiplication table from 1 to 10.
-
-EDGES
-• User enters 0 (table of zeros — still print it)
-• User enters a negative number
-• User enters a decimal (e.g., 7.5)
+Write a function findMax(numbers) that takes an array and returns the largest number. Don’t use Math.max() .
+Example: findMax([3, 9, 1, 7, 5]) → 9
+Edges: all same values, one item, all negatives
 
 ---
 
 INPUT :-
 
-• Get the number from the user 
+• Get the text input from the user as coma seperated Number Eg. 10,20,30,40,50
 
 PROCESS :-
 
-• validate the number for being empty.
-• Handle the Condition for negative input
-• Print table of the given number in multiplication
+• createa a funciton whihch take array as parameter to calculate the the largest number
+• create a function to get input, validates and call the function which find the largest number
 
 OUTPUT :-
 
-• table of the number like (5 x 1 = 5)
+• The largest among 10,20,30,40,50, is: 50
 
 EDGE :-
 
-• User enters 0 (table of zeros — still print it)
-• User enters a negative number
-• User enters a decimal (e.g., 7.5)
+Edges: all same values, one item, all negatives
 
 ---
 
-PSEUDOCODE :- LOOP patter is (Transform)
+PSEUDOCODE :-
 
-Get the number from the user and store the number in variable name tableNum
+<!-- a function that finds a maximum in the array -->
 
-validate the input field for being empty and negative
-IF (tableNum === "")
-    print - please fill the field
-ELSE IF (tableNum < 0)
-    print - please enter the positive number
+findMax = (array) => {
 
-now loop the number ten time to print the multiplicaion of the number from 1 to 10
-using foor loop because we now the exact Repetition
+    <!-- create a variable to store the largest number and assign the first element of the array as value -->
+    max = array[0]
+
+    <!-- loop the array to compare the number to find the largest -->
+    LOOP (item of array){
+
+        IF (item > max){
+            max = item
+        }
+
+    }
+
+    <!-- return the max -->
+    return max
+
+}
+
+<!-- a function that tell is all element in array  -->
+
+<!-- funciton to get the input value and validaiton and get sum -->
+getMax = () => {
+
+    <!-- get the input value -->
+    input = inputElement.value
+
+    <!-- empty validaiton check -->
+    IF (input === "")
+        print - "Please enter some numbers separated by commas."
+
+    <!-- a array to store the splited and trimed value -->
+    let numberArray = input -> split -> trim
+
+    <!-- loop the numberArray to validate only number seprated buy (,) input -->
+    FOR LOOP (i, i < array.length, i++){
+
+        IF (isNaN(Array(i))){
+            print - "Please enter some numbers separated by commas."
+            return;
+        }
+
+    }
+
+    <!-- all number are similar validation -->
 
 
+}
