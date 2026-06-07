@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Table Printer</title>
+    <title>Count Occurrences</title>
 
     <link rel="stylesheet" href="/style.css">
 
@@ -69,15 +69,18 @@
         Back To Home
     </button>
 
-    <!-- Table Printer -->
+    <!-- Count Occurrences -->
     <div class="container">
 
-        <h1 class="proHeading">print table</h1>
+        <h1 class="proHeading">Count Occurrences</h1>
 
-        <input type="number" id="num" placeholder="Enter your number">
+        <p>Enter your word and Character to find its occurrences</p>
 
-        <button onclick="printTable()">
-            print table
+        <input type="text" id="word" placeholder="Enter your Word">
+        <input type="text" id="char" placeholder="Enter your Character">
+
+        <button id="button">
+            Count 
         </button>
 
         <div id="result"></div>
