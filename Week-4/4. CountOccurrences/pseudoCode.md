@@ -1,6 +1,6 @@
 4. Count Occurrences :-
 
-Write a function countOccurrences(arr, target) that counts how many times target appears in arr .
+Write a function countOccurrences(arr, target) that counts how many times target appears in array .
 Example: countOccurrences(["a", "b", "a", "c", "a"], "a") → 3
 Edges: target not in array (return 0), empty array, numbers vs strings
 
@@ -12,23 +12,21 @@ INPUT :-
 
 PROCESS :-
 
-• validate the number for being empty.
-• Handle the Condition for negative input
-• Print table of the given number in multiplication
+• Create a function to validate only text input
+• create a function to count occurence
+• create a function to validate the input field and call onlyText validation functiona nd countOccurence function
 
 OUTPUT :-
 
-• table of the number like (5 x 1 = 5)
+• p occurce 2 time in apple
 
 EDGE :-
 
-• User enters 0 (table of zeros — still print it)
-• User enters a negative number
-• User enters a decimal (e.g., 7.5)
+target not in array (return 0), empty array, numbers vs strings
 
 ---
 
-PSEUDOCODE :- LOOP patter is (Transform)
+PSEUDOCODE :- 
 
 Get the number from the user and store the number in variable name tableNum
 
