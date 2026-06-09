@@ -25,6 +25,14 @@
             margin-bottom: 2rem;
         }
 
+
+        .head {
+            font-size: 1.4rem;
+            font-weight: 600;
+            text-transform: capitalize;
+            margin-bottom: 1rem;
+        }
+
         input {
             width: 100%;
             padding: 12px;
@@ -35,6 +43,11 @@
 
             outline: none;
             font-size: 16px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 1rem;
         }
 
         button {
@@ -49,13 +62,47 @@
 
             cursor: pointer;
             font-size: 16px;
+            flex: 1;
         }
 
-        #result {
+        .gradeResult,
+        .cardResult {
             margin-top: 20px;
             line-height: 1.8;
             text-align: left;
-            font-size: 1.2rem;
+            font-size: 1rem;
+        }
+
+        .cardResult {
+            margin-top: 2rem;
+        }
+
+        .reportTable {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .reportTable th,
+        .reportTable td {
+            padding: 12px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+
+        .reportTable th {
+            background: #353535;
+            color: white;
+        }
+
+        .reportTable tr:nth-child(even) {
+            background: #f5f5f5;
+        }
+
+        .reportTable tr:hover {
+            background: #ececec;
         }
     </style>
 
@@ -72,13 +119,23 @@
     <!-- Grade Classifier -->
     <div class="container">
 
-        <h1 class="proHeading"> Grade Classifier</h1>
+        <!-- reportcard -->
+        <div class="card">
 
-        <input type="number" id="num" placeholder="Enter your number">
+            <p class="head">Class Report Generator</p>
 
-        <button onclick="printTable()">
-            print table
-        </button>
+            <input type="text" id="name" placeholder="Enter student name">
+            <input type="number" id="cardMarks" placeholder="Enter Student marks out of 100">
+
+            <div class="buttons">
+                <button onclick="addStudent()">Add Student</button>
+                <button onclick="printClassReport()"">Generate Report</button>
+            </div>
+
+            <div class=" cardResult">
+            </div>
+
+        </div>
 
         <div id="result"></div>
 
