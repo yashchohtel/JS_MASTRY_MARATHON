@@ -47,8 +47,6 @@ getReversed = () => {
         }
 
     }
-
-    console.log(numberArray);
     
     // show error is only one element 
     if (numberArray.length === 1) {
