@@ -31,7 +31,7 @@ OUTPUT :-
 •  90 → ”A” 
 
 [Class Report Generator]
-• yash | 100.
+• yash | 100 | A++
 
 EDGE :-
 

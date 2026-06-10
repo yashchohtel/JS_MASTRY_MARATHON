@@ -1,47 +1,160 @@
-1. Multiplication Table Printer :-
+8. Student Report Card :-
 
-Ask the user for a number. Print its multiplication table from 1 to 10.
+You have two arrays:
+names = ["Aman", "Priya", "Rohit"] and scores = [88, 45, 73] .
 
-EDGES
-• User enters 0 (table of zeros — still print it)
-• User enters a negative number
-• User enters a decimal (e.g., 7.5)
+Write a function generateReport(names, scores) that:
+• Prints each student’s name, score, and grade (use getGrade from Problem 5)
+• Prints the class average
+• Prints who scored highest
+
+Edges: all failing, all same score, one studen
 
 ---
 
 INPUT :-
 
-• Get the number from the user 
+[Grade Calculator]
+• take the score input from number input field
+
+[Class Report Generator]
+• take the score input from number input field
+• take the name of the student
 
 PROCESS :-
 
-• validate the number for being empty.
-• Handle the Condition for negative input
-• Print table of the given number in multiplication
+[Grade Calculator]
+• calculate the grade accordint to the score
+
+[Class Report Generator]
+• create a function to print class report which take 2 array names and scores array
 
 OUTPUT :-
 
-• table of the number like (5 x 1 = 5)
+[Grade Calculator]
+• 90 → ”A”
+
+[Class Report Generator]
+• yash | 100 | A++
 
 EDGE :-
 
-• User enters 0 (table of zeros — still print it)
-• User enters a negative number
-• User enters a decimal (e.g., 7.5)
+• all failing, all same score, one studen
 
 ---
 
-PSEUDOCODE :- LOOP patter is (Transform)
+PSEUDOCODE :-
 
-Get the number from the user and store the number in variable name tableNum
+<!-- function to Calculator Grade -->
+calculateGrade = (marks) => {
 
-validate the input field for being empty and negative
-IF (tableNum === "")
-    print - please fill the field
-ELSE IF (tableNum < 0)
-    print - please enter the positive number
+    IF (marks === 100) {
+        return "A++";
+    }
 
-now loop the number ten time to print the multiplicaion of the number from 1 to 10
-using foor loop because we now the exact Repetition
+    ELSE IF (marks >= 90) {
+        return "A";
+    }
 
+    ELSE IF (marks >= 75) {
+        return "B";
+    }
 
+    ELSE IF (marks >= 60) {
+        return "C";
+    }
+
+    ELSE {
+        return "F";
+    }
+
+}
+
+<!-- create array to store student name and marks -->
+students = [];
+studentMarks = [];
+
+<!-- function to add student data -->
+addStudent = () => {
+
+    <!-- get name and marks input values -->
+    nameInput = nameInputElement.value
+    marksInput = marksInputElement.value
+
+    <!-- convert marks to number -->
+    marks = Number(marksInput)
+
+    <!-- get result element -->
+    cardResult = cardResultElement
+
+    <!-- validate empty fields -->
+    IF (nameInput is empty OR marksInput is empty) {
+
+        print - "Please enter both name and marks"
+        return
+
+    }
+
+    <!-- validate marks range -->
+    IF (marks is not a number OR marks < 0 OR marks > 100) {
+
+        print - "Please enter a valid number between 0 and 100"
+        return
+
+    }
+
+    <!-- store student name -->
+    students.push(nameInput)
+
+    <!-- store student marks -->
+    studentMarks.push(marks)
+
+    <!-- clear input fields -->
+    clear name input
+    clear marks input
+
+    <!-- show success message -->
+    print - "Enter next student details or click Generate Report"
+
+}
+
+<!-- function to generate class report -->
+generateReposrt = (names, marks) = {
+
+    <!-- create a result array to store object -->
+    result = []
+
+    <!-- loop the names array to create object of student data -->
+    result = name.map(item, index){
+
+        return{
+            anme: item,
+            marks: marks[index]
+            <!-- call calculateGrade to get grade -->
+            grade: calculateGrade(marks[index])
+        }
+
+    }
+
+    <!-- return result -->
+    return result
+
+}
+
+<!-- function to print class report -->
+printClassReport = () => {
+
+    <!-- call generateReport funciotn and pass name and marks array -->
+    result = generateReport(students, studentMarks);
+
+    <!-- if no data eror and return -->
+    IF (result.length === 0){
+        print - "insert data"
+        return
+    }
+
+    create a table of the data
+
+    print on diaplay
+
+}
