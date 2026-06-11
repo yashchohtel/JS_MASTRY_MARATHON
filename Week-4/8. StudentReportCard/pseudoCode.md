@@ -45,39 +45,40 @@ EDGE :-
 
 PSEUDOCODE :-
 
-<!-- function to Calculator Grade -->
+<!-- arrays to store student names and marks -->
+students = []
+studentMarks = []
+
+<!-- function to calculate grade -->
 calculateGrade = (marks) => {
 
+    <!-- return grade based on marks -->
     IF (marks === 100) {
-        return "A++";
+        return "A++"
     }
 
     ELSE IF (marks >= 90) {
-        return "A";
+        return "A"
     }
 
     ELSE IF (marks >= 75) {
-        return "B";
+        return "B"
     }
 
     ELSE IF (marks >= 60) {
-        return "C";
+        return "C"
     }
 
     ELSE {
-        return "F";
+        return "F"
     }
 
 }
 
-<!-- create array to store student name and marks -->
-students = [];
-studentMarks = [];
-
-<!-- function to add student data -->
+<!-- function to add student -->
 addStudent = () => {
 
-    <!-- get name and marks input values -->
+    <!-- get name and marks from input fields -->
     nameInput = nameInputElement.value
     marksInput = marksInputElement.value
 
@@ -95,7 +96,7 @@ addStudent = () => {
 
     }
 
-    <!-- validate marks range -->
+    <!-- validate marks -->
     IF (marks is not a number OR marks < 0 OR marks > 100) {
 
         print - "Please enter a valid number between 0 and 100"
@@ -118,43 +119,113 @@ addStudent = () => {
 
 }
 
-<!-- function to generate class report -->
-generateReposrt = (names, marks) = {
+<!-- function to create report data -->
+generateReport = (names, marks) => {
 
-    <!-- create a result array to store object -->
+    <!-- array to store report data -->
     result = []
 
-    <!-- loop the names array to create object of student data -->
-    result = name.map(item, index){
+    <!-- loop both arrays and create object -->
+    MAP names array {
 
-        return{
-            anme: item,
-            marks: marks[index]
-            <!-- call calculateGrade to get grade -->
-            grade: calculateGrade(marks[index])
+        create object with:
+
+        name
+        marks
+        grade
+
+    }
+
+    <!-- return report data -->
+    return result
+
+}
+
+<!-- function to generate class statistics -->
+generateStats = (studentData) => {
+
+    <!-- variable to store total marks -->
+    total = 0
+
+    <!-- loop all students and add marks -->
+    FOR EACH student {
+
+        total += student.marks
+
+    }
+
+    <!-- calculate average -->
+    average = total / total students
+
+    <!-- assume first student has highest and lowest marks -->
+    studentWithMaxMark = first student
+    studentWithLowMark = first student
+
+    <!-- loop all students -->
+    FOR EACH student {
+
+        <!-- update highest scorer -->
+        IF (student.marks > studentWithMaxMark.marks) {
+
+            studentWithMaxMark = student
+
+        }
+
+        <!-- update lowest scorer -->
+        IF (student.marks < studentWithLowMark.marks) {
+
+            studentWithLowMark = student
+
         }
 
     }
 
-    <!-- return result -->
-    return result
+    <!-- return average, highest and lowest scorer details -->
+    return stats
 
 }
 
 <!-- function to print class report -->
 printClassReport = () => {
 
-    <!-- call generateReport funciotn and pass name and marks array -->
-    result = generateReport(students, studentMarks);
+    <!-- call generateReport -->
+    result = generateReport(students, studentMarks)
 
-    <!-- if no data eror and return -->
-    IF (result.length === 0){
-        print - "insert data"
+    <!-- get result elements -->
+    cardResult = cardResultElement
+    statsResult = statsResultElement
+
+    <!-- validate student data exists -->
+    IF (result.length === 0) {
+
+        print - "Please add student details first"
         return
+
     }
 
-    create a table of the data
+    <!-- create table structure -->
+    tableHTML = table header
 
-    print on diaplay
+    <!-- loop report data -->
+    FOR LOOP (i) {
+
+        <!-- add row containing -->
+        S.No.
+        Name
+        Marks
+        Grade
+
+    }
+
+    <!-- close table -->
+
+    <!-- display table -->
+    print table
+
+    <!-- get statistics -->
+    stats = generateStats(result)
+
+    <!-- display statistics -->
+    print stats
 
 }

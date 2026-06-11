@@ -4,14 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Table Printer</title>
+    <title>Cart Total with Discounts</title>
 
     <link rel="stylesheet" href="/style.css">
 
     <!-- style -->
     <style>
         .container {
-            width: 550px;
+            width: 650px;
             padding: 30px;
             background: #bfb6b6;
             backdrop-filter: blur(8px);
@@ -37,7 +37,13 @@
             font-size: 16px;
         }
 
+        .buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
         button {
+            flex: 1;
             margin-top: 20px;
             padding: 12px 25px;
 
@@ -55,7 +61,21 @@
             margin-top: 20px;
             line-height: 1.8;
             text-align: left;
+            font-size: 1.1rem;
+        }
+
+        .receipt {
+            font-family: "Courier New", monospace;
+            white-space: pre-line;
+            line-height: 1;
+            text-align: left;
             font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .receipt span {
+          width: 190px;
+          display: inline-block;
         }
     </style>
 
@@ -69,18 +89,23 @@
         Back To Home
     </button>
 
-    <!-- Table Printer -->
+    <!-- Cart Total with Discounts -->
     <div class="container">
 
-        <h1 class="proHeading">print table</h1>
+        <h1 class="proHeading">Cart Total with Discounts</h1>
 
-        <input type="number" id="num" placeholder="Enter your number">
+        <input type="text" id="item" placeholder="Enter your product itme name Eg. Shirt">
+        <input type="number" id="price" placeholder="Enter your product itme price Eg. 299">
 
-        <button onclick="printTable()">
-            print table
-        </button>
+        <div class="buttons">
+            <button onclick="addItem()">Add Item</button>
+            <button onclick="printReceipt()"">Print Receipt</button>
+        </div>
 
-        <div id="result"></div>
+        <div id="result">
+        </div>
+
+        <p class="receipt"></p>
 
     </div>
 
