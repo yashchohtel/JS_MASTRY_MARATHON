@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>greating machine</title>
+    <title>Expense Splitter</title>
+
     <link rel="stylesheet" href="/style.css">
 
     <!-- style -->
@@ -56,63 +57,33 @@
         }
     </style>
 
+
 </head>
 
 <body>
 
     <!-- back button -->
-    <button class="backButton" onclick="window.location.href='../index.html'">
+    <button class="backButton" onclick="window.location.href='/index.html'">
         Back To Home
     </button>
 
-    <!-- greeting machine -->
+    <!-- Expense Splitter -->
     <div class="container">
 
-        <h1 class="proHeading">Greeting Machine</h1>
+        <h1 class="proHeading">Expense Splitter</h1>
 
-        <input type="text" id="name" placeholder="Enter your name">
+        <input type="number" id="num" placeholder="Enter your number">
 
-        <input type="number" id="age" placeholder="Enter your age">
-
-        <button onclick="greetUser()">
-            Generate Greeting
+        <button onclick="findEvenOdd()">
+            Check
         </button>
 
         <div id="result"></div>
 
     </div>
 
-    <!-- jabascript part -->
-    <script>
-
-        function greetUser() {
-
-            let name = document.getElementById("name").value;
-            let ageInput = document.getElementById("age").value;
-            let age = Number(ageInput);
-            let result = document.getElementById("result");
-
-            if (name.trim() === "" || ageInput.trim() === "") {
-
-                result.innerHTML = "❌ Please fill all fields";
-
-            } else if (age <= 0) {
-
-                result.innerHTML = "❌ Age must be greater than 0";
-
-            } else {
-
-                let futureAge = age + 10;
-
-                result.innerHTML = `
-                Hi ${name}, you are ${age} years old.
-                <br>
-                You will be ${futureAge} in 10 years.
-                `;
-            }
-        }
-
-    </script>
+    <!-- javascript part -->
+    <script src="/Week-5/10. Expense Splitter/solution.js"></script>
 
 </body>
 

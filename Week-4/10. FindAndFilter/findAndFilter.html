@@ -4,14 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Table Printer</title>
+    <title>Find and Filter</title>
 
     <link rel="stylesheet" href="/style.css">
 
     <!-- style -->
     <style>
         .container {
-            width: 550px;
+            width: 950px;
             padding: 30px;
             background: #bfb6b6;
             backdrop-filter: blur(8px);
@@ -51,11 +51,35 @@
             font-size: 16px;
         }
 
-        #result {
+        /* section */
+        .section {
+            width: 100%;
+            display: flex;
+            gap: 2rem;
+        }
+
+        /* both boxes */
+        .findFirst,
+        .filterAbove {
+            flex: 1;
+            padding: 1rem;
+            border: 1px solid #aaa2a2;
+            border-radius: 10px;
+        }
+
+        /* heading */
+        .findFirst h2,
+        .filterAbove h2 {
+            margin-bottom: 1rem;
+        }
+
+        /* result */
+        #findResult,
+        #filterResult {
             margin-top: 20px;
             line-height: 1.8;
             text-align: left;
-            font-size: 1.2rem;
+            font-size: 1rem;
         }
     </style>
 
@@ -69,18 +93,44 @@
         Back To Home
     </button>
 
-    <!-- Table Printer -->
+    <!-- Find and Filter -->
     <div class="container">
 
-        <h1 class="proHeading">print table</h1>
+        <div class="section">
 
-        <input type="number" id="num" placeholder="Enter your number">
+            <!-- Find First -->
+            <div class="findFirst">
 
-        <button onclick="printTable()">
-            print table
-        </button>
+                <h2>Find First</h2>
 
-        <div id="result"></div>
+                <p class="desc">Enter values separated by commas Eg. a,b,c,b</p>
+                <input type="text" id="findArray" placeholder="Eg. a,b,c,b">
+
+                <input type="text" id="target" placeholder="Enter target value Eg. b">
+
+                <button onclick="getFirstMatch()">Find First Match</button>
+
+                <div id="findResult"></div>
+
+            </div>
+
+            <!-- Filter Above -->
+            <div class="filterAbove">
+
+                <h2>Filter Above</h2>
+
+                <p class="desc">Enter numbers separated by commas Eg. 10,25,8,40,15</p>
+                <input type="text" id="numbers" placeholder="Eg. 10,25,8,40,15">
+
+                <input type="number" id="threshold" placeholder="Enter threshold Eg. 20">
+
+                <button onclick="getFilteredNumbers()">Filter Numbers</button>
+
+                <div id="filterResult"></div>
+
+            </div>
+
+        </div>
 
     </div>
 

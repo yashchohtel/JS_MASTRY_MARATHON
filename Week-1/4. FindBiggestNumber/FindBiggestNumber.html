@@ -68,12 +68,13 @@
     <!-- greeting machine -->
     <div class="container">
 
-        <h1 class="proHeading">Calculate Age in Days</h1>
+        <h1 class="proHeading">Find biggest number</h1>
 
-        <input type="number" id="age" placeholder="Enter your age in years">
+        <input type="number" id="num1" placeholder="Enter first number">
+        <input type="number" id="num2" placeholder="Enter second number">
 
-        <button onclick="calculateAge()">
-            Calculate Age in Days
+        <button onclick="findBiggestNumber()">
+            Find Biggest Number
         </button>
 
         <div id="result"></div>
@@ -81,45 +82,7 @@
     </div>
 
     <!-- jabascript part -->
-    <script>
-
-        function calculateAge() {
-
-            let ageInput = document.getElementById("age").value;
-            let age = Number(ageInput);
-            let result = document.getElementById("result");
-
-            if (ageInput === "") {
-                result.innerHTML = "❌ Please fill the field";
-            } else if (isNaN(age)) {
-                result.innerHTML = "❌ Please enter a valid age";
-            } else if (age <= 0) {
-                result.innerHTML = "❌ Age must be greater than zero";
-            } else {
-
-                let months = age * 12;
-                let weeks = age * 52;
-                let days = age * 365;
-                let hours = age * 365 * 24;
-
-                result.innerHTML = `
-                your age is ${age} years
-                <br>
-
-                Age in Months: ${months}
-                <br>
-
-                Age in Weeks: ${weeks}
-                <br>
-
-                Age in Days: ${days}
-                <br>
-
-                Age in Hours: ${hours}`;
-            }
-
-        }
-    </script>
+    <script src="/Week-1/4. FindBiggestNumber/solution.js"></script>
 
 </body>
 

@@ -31,33 +31,7 @@ applyTax = (amount, taxRate) => {
 // function to add get item and store it into the array in the form of object
 
 // array to store items
-// let items = [];
-const items = [
-    {
-        name: "jeans",
-        price: 899
-    },
-    {
-        name: "shirt",
-        price: 799
-    },
-    {
-        name: "tshirt",
-        price: 449
-    },
-    {
-        name: "shoe",
-        price: 1899
-    },
-    {
-        name: "watch",
-        price: 4599
-    },
-    {
-        name: "cap",
-        price: 149
-    }
-];
+let items = [];
 
 // function to add item
 addItem = () => {
@@ -131,22 +105,22 @@ printReceipt = () => {
     let itemsList = "";
 
     for (const item of items) {
-        itemsList += `<span>${item.name}</span>: ₹ ${item.price}<br>`;
+        itemsList += `<span>${item.name}</span>: ₹ ${item.price.toLocaleString("en-IN")}<br>`;
     }
 
     // print reciept
     result.innerHTML = ""
 
     receipt.innerHTML = `
-        ------------- RECEIPT -------------- <br>
-        ${itemsList} 
-        ------------------------------------ <br>
-        <span>Subtotal</span>: ₹ ${total} 
-        <span>Discount (${discountRate}%)</span>: ₹ ${(total * discountRate / 100).toFixed(2)} 
-        <span>After Discount</span>: ₹ ${discounted.toFixed(2)} 
-        <span>Tax (${taxRate}%)</span>: ₹ ${((discounted * taxRate) / 100).toFixed(2)} <br>
-        ------------------------------------ <br>
-        <span>Total</span>: ₹ ${priceAfterTax.toFixed(2)}
-    `;
+    ------------- RECEIPT -------------- <br>
+    ${itemsList} 
+    ------------------------------------ <br>
+    <span>Subtotal</span>: ₹ ${total.toLocaleString("en-IN")} 
+    <span>Discount (${discountRate}%)</span>: ₹ ${(total * discountRate / 100).toLocaleString("en-IN", { minimumFractionDigits: 2, maximumFractionDigits: 2 })} 
+    <span>After Discount</span>: ₹ ${discounted.toLocaleString("en-IN", { minimumFractionDigits: 2, maximumFractionDigits: 2 })} 
+    <span>Tax (${taxRate}%)</span>: ₹ ${((discounted * taxRate) / 100).toLocaleString("en-IN", { minimumFractionDigits: 2, maximumFractionDigits: 2 })} <br>
+    ------------------------------------ <br>
+    <span>Total</span>: ₹ ${priceAfterTax.toLocaleString("en-IN", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+`;
 
 }

@@ -157,20 +157,60 @@ addItem = () => {
 <!-- create a function to get total discount tax and print reciept -->
 printReceipt = () => {
 
-    <!-- show error if no item and return -->
-    IF (items length is zero){
-        print - "please enter product details first"
+    <!-- get result and receipt elements -->
+    result = resultElement
+    receipt = receiptElement
+
+    <!-- show error if no item exists -->
+    IF (items.length === 0) {
+
+        print - "Please enter product details first"
         return
+
     }
 
-    <!-- calculate total -->
+    <!-- set discount and tax rates -->
+    discountRate = 10
+    taxRate = 18
+
+    <!-- calculate subtotal -->
     total = calculateSubtotal(items)
 
-    // calculate discount
-    discounted = applyDiscount(total, 10)
+    <!-- calculate discounted price -->
+    discounted = applyDiscount(total, discountRate)
 
-    // calculate tax on discounted price
-    priceAfterTax = applyTax(discounted, 18)
+    <!-- calculate final price after tax -->
+    priceAfterTax = applyTax(discounted, taxRate)
 
+    <!-- variable to store receipt item list -->
+    itemsList = ""
+
+    <!-- loop all items -->
+    FOR EACH item in items {
+
+        <!-- add item name and price to receipt -->
+        itemsList += item name and price
+
+    }
+
+    <!-- clear previous messages -->
+    clear result
+
+    <!-- display receipt -->
+    print -
+
+    RECEIPT
+
+    item list
+
+    subtotal
+
+    discount amount
+
+    discounted price
+
+    tax amount
+
+    final total
 
 }
