@@ -19,10 +19,7 @@
             text-align: center;
             margin: 0 auto;
             margin-top: 3rem;
-        }
-
-        .proHeading {
-            margin-bottom: 2rem;
+            margin-bottom: 4rem;
         }
 
         input {
@@ -37,9 +34,16 @@
             font-size: 16px;
         }
 
-        button {
+        .buttons {
+            display: flex;
+            gap: 10px;
             margin-top: 20px;
-            padding: 12px 25px;
+            flex-direction: column;
+        }
+
+        button {
+            flex: 1;
+            padding: 12px;
 
             border: none;
             border-radius: 10px;
@@ -51,10 +55,6 @@
             font-size: 16px;
         }
 
-        #result {
-            margin-top: 20px;
-            line-height: 1.8;
-        }
     </style>
 
 
@@ -70,13 +70,27 @@
     <!-- Movie Watchlist -->
     <div class="container">
 
-        <h1 class="proHeading">Movie Watchlist</h1>
+        <h1 class="proHeading">Movie Watch List</h1>
 
-        <input type="number" id="num" placeholder="Enter your number">
+        <input type="text" id="movieName" placeholder="Enter Movie Name">
 
-        <button onclick="findEvenOdd()">
-            Check
-        </button>
+        <input type="text" id="movieGenre" placeholder="Enter Movie Genre">
+
+        <div class="buttons">
+
+            <button onclick="addMovie()">
+                Add Movie
+            </button>
+
+            <button onclick="showMovieList()">
+                Show Total Movies
+            </button>
+
+            <button onclick="searchByGenre()">
+                Search By Genre
+            </button>
+
+        </div>
 
         <div id="result"></div>
 
