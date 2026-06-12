@@ -19,10 +19,7 @@
             text-align: center;
             margin: 0 auto;
             margin-top: 3rem;
-        }
-
-        .proHeading {
-            margin-bottom: 2rem;
+            margin-bottom: 4rem;
         }
 
         input {
@@ -37,9 +34,16 @@
             font-size: 16px;
         }
 
-        button {
-            margin-top: 20px;
-            padding: 12px 25px;
+        h3 {
+            text-align: left;
+            font-size: 1.4rem;
+            margin-top: 1.5rem;
+        }
+
+        .bankbtn {
+            width: 100%;
+            margin-top: 15px;
+            padding: 12px;
 
             border: none;
             border-radius: 10px;
@@ -51,10 +55,6 @@
             font-size: 16px;
         }
 
-        #result {
-            margin-top: 20px;
-            line-height: 1.8;
-        }
     </style>
 
 
@@ -72,16 +72,32 @@
 
         <h1 class="proHeading">Bank Account</h1>
 
-        <input type="number" id="num" placeholder="Enter your number">
+        <!-- Deposit Section -->
+        <h3>Deposit Money</h3>
 
-        <button onclick="findEvenOdd()">
-            Check
+        <input type="number" id="depositAmount" placeholder="Enter Deposit Amount">
+
+        <button class="bankbtn" onclick="depositMoney()">
+            Deposit
+        </button>
+
+        <!-- Withdraw Section -->
+        <h3>Withdraw Money</h3>
+
+        <input type="number" id="withdrawAmount" placeholder="Enter Withdraw Amount">
+
+        <button class="bankbtn" onclick="withdrawMoney()">
+            Withdraw
+        </button>
+
+        <!-- Balance -->
+        <button class="bankbtn" onclick="showBankBalance()">
+            Show Balance
         </button>
 
         <div id="result"></div>
 
     </div>
-
     <!-- javascript part -->
     <script src="/Week-5/3. Bank Account/solution.js"></script>
 
