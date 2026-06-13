@@ -7,78 +7,189 @@
     <title>Zomato Order Tracker</title>
 
     <link rel="stylesheet" href="/style.css">
-
-    <!-- style -->
-    <style>
-        .container {
-            width: 550px;
-            padding: 30px;
-            background: #bfb6b6;
-            backdrop-filter: blur(8px);
-            border-radius: 20px;
-            text-align: center;
-            margin: 0 auto;
-            margin-top: 3rem;
-        }
-
-        .proHeading {
-            margin-bottom: 2rem;
-        }
-
-        input {
-            width: 100%;
-            padding: 12px;
-            margin-top: 10px;
-
-            border: none;
-            border-radius: 10px;
-
-            outline: none;
-            font-size: 16px;
-        }
-
-        button {
-            margin-top: 20px;
-            padding: 12px 25px;
-
-            border: none;
-            border-radius: 10px;
-
-            background: black;
-            color: white;
-
-            cursor: pointer;
-            font-size: 16px;
-        }
-
-        #result {
-            margin-top: 20px;
-            line-height: 1.8;
-        }
-    </style>
-
+    <link rel="stylesheet" href="/Week-5/5. Zomato Order Tracker/zomatoOrderTrackerStyle.css">
 
 </head>
 
 <body>
 
-    <!-- back button -->
-    <button class="backButton" onclick="window.location.href='/index.html'">
-        Back To Home
-    </button>
-
     <!-- Zomato Order Tracker -->
     <div class="container">
 
-        <h1 class="proHeading">Zomato Order Tracker</h1>
-
-        <input type="number" id="num" placeholder="Enter your number">
-
-        <button onclick="findEvenOdd()">
-            Check
+        <!-- back button -->
+        <button class="backButton" onclick="window.location.href='/index.html'">
+            Back To Home
         </button>
 
-        <div id="result"></div>
+        <h1 class="proHeading">Zomato Order Tracker</h1>
+
+        <div class="panelWrapper">
+
+            <div class="panel">
+
+                <div class="panelHeading">
+                    Customer Panel
+                </div>
+
+                <div class="panelBody">
+
+                    <!-- descHeading -->
+                    <p class="descHead">Enter Order Detail</p>
+
+                    <!-- enter name -->
+                    <input type="text" id="customerName" placeholder="Enter Customer Name">
+
+                    <!-- select restroretn -->
+                    <select id="restaurant">
+                        <option value="">Select Restaurant</option>
+                        <option value="Domino's">Domino's</option>
+                        <option value="Pizza Hut">Pizza Hut</option>
+                        <option value="KFC">KFC</option>
+                        <option value="Burger King">Burger King</option>
+                        <option value="McDonald's">McDonald's</option>
+                    </select>
+
+                    <!-- select items -->
+                    <p class="foodItem descHead">Select Items</p>
+
+                    <div class="checkboxInput">
+
+                        <label>
+                            <input type="checkbox" value="Veg Pizza">
+                            Veg Pizza ₹199
+                        </label>
+
+                        <label>
+                            <input type="checkbox" value="Burger">
+                            Burger ₹149
+                        </label>
+
+                        <label>
+                            <input type="checkbox" value="French Fries">
+                            French Fries ₹99
+                        </label>
+
+                        <label>
+                            <input type="checkbox" value="Coke">
+                            Coke ₹49
+                        </label>
+
+                        <label>
+                            <input type="checkbox" value="Pasta">
+                            Pasta ₹179
+                        </label>
+
+                    </div>
+
+                    <!-- place order button -->
+                    <button type="button" class="placeOrderBtn" onclick="placeOrder()">
+                        Place Order
+                    </button>
+
+                    <!-- descHeading -->
+                    <p class="descHead">Check Order Status</p>
+
+                    <!-- order actons -->
+                    <div class="orderActions">
+
+                        <input type="number" id="orderIdStatus" placeholder="Enter Order ID">
+
+                        <button onclick="checkOrderStatus()">
+                            Check Order Status
+                        </button>
+
+                    </div>
+
+                    <!-- descHeading -->
+                    <p class="descHead">View All Order</p>
+
+                    <div class="orderActions">
+
+                        <input type="text" id="customerOrderName" placeholder="Enter Customer Name">
+
+                        <button onclick="viewAllOrders()">
+                            View All Orders
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <!-- user result -->
+                <div class="userResult"></div>
+
+            </div>
+
+            <div class="panel">
+
+                <div class="panelHeading">
+                    Restaurant Dashboard
+                </div>
+
+                <div class="panelBody">
+
+                    <p class="descHead"> View Orders By Restaurant </p>
+
+                    <!-- View Orders -->
+                    <div class="restaurantOrders">
+
+                        <div class="restaurantOrdersRow">
+
+                            <select id="ownerRestaurant">
+
+                                <option value="">Select Restaurant</option>
+                                <option value="Domino's">Domino's</option>
+                                <option value="Pizza Hut">Pizza Hut</option>
+                                <option value="KFC">KFC</option>
+                                <option value="Burger King">Burger King</option>
+                                <option value="McDonald's">McDonald's</option>
+
+                            </select>
+
+                            <button onclick="viewRestaurantOrders()">
+                                View Orders
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                    <!-- Update Status -->
+                    <div class="updateStatus">
+
+                        <p class="descHead">Update Order Status</p>
+
+                        <div class="updateStatusRow">
+
+                            <input type="number" id="orderId" placeholder="Enter Order ID">
+
+                            <select id="orderStatus">
+
+                                <option value="">Select Status</option>
+                                <option value="Pending">Pending</option>
+                                <option value="Preparing">Preparing</option>
+                                <option value="Out For Delivery">Out For Delivery</option>
+                                <option value="Delivered">Delivered</option>
+                                <option value="Cancelled">Cancelled</option>
+
+                            </select>
+
+                        </div>
+
+                        <button onclick="updateOrderStatus()">
+                            Update Order Status
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <!-- user result -->
+                <div class="ownerResult"></div>
+
+            </div>
+
+        </div>
 
     </div>
 

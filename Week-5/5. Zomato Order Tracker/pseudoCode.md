@@ -11,12 +11,11 @@ Valid statuses: ”Placed” → ”Confirmed” → ”Preparing” → ”Out 
 
 EDGES: Updating to an invalid status, showing order before placing it
 
-
 -------------------------
 
 INPUT :-
 
-•
+• 
 
 PROCESS :-
 

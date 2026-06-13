@@ -1,0 +1,197 @@
+.container {
+  width: 100%;
+  padding: 1rem;
+  background: #ffffff;
+  backdrop-filter: blur(8px);
+  margin: 0 auto;
+  margin-top: 0rem;
+  height: 100vh;
+  position: absolute;
+  inset: 0;
+  overflow-y: scroll;
+}
+
+.container .backButton {
+  margin: 0rem !important;
+  background: #595959;
+  padding: 8px;
+  text-decoration: none;
+  color: white;
+  font-size: 14px;
+  border: 2px solid #595959;
+  transition: 0.2s ease;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.panelWrapper {
+  display: flex;
+  gap: 10px;
+  margin-top: 2rem;
+}
+
+.panel {
+  flex: 1;
+  padding: 20px 10px;
+  background: #cfcfcf;
+  border-radius: 10px;
+}
+
+.panelHeading {
+  background: #bfb6b6;
+  color: #000000;
+  text-align: center;
+  padding: 12px;
+  border-radius: 8px;
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+.divider {
+  width: 2px;
+  background: #cfcfcf;
+}
+
+.panelBody {
+  margin-top: 10px;
+}
+
+.panelBody input,
+.panelBody select {
+  width: 100%;
+  padding: 12px;
+  margin-top: 10px;
+
+  border: none;
+  border-radius: 10px;
+
+  font-size: 16px;
+  outline: none;
+}
+
+.foodItem {
+  margin-top: 15px;
+}
+
+.checkboxInput {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 15px;
+}
+
+.checkboxInput label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  cursor: pointer;
+}
+
+.checkboxInput input {
+  width: 18px;
+  height: 18px;
+  margin-top: 0px;
+}
+
+.buttons {
+  display: flex;
+  gap: 10px;
+}
+
+button {
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  background: black;
+  color: white;
+  cursor: pointer;
+  flex: 1;
+}
+
+.placeOrderBtn {
+  width: 150px;
+  margin: 15px 0;
+}
+
+.orderActions {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.orderActions input {
+  flex: 1;
+  margin-top: 0;
+}
+
+.orderActions button {
+  width: 220px;
+  margin-top: 0;
+}
+
+.descHead {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-top: 10px;
+  text-transform: capitalize;
+}
+
+.panelBodyRES {
+  margin-top: 20px;
+}
+
+.panelBodyRES label {
+  display: block;
+
+  font-size: 1.4rem;
+  font-weight: 600;
+
+  margin-bottom: 10px;
+}
+
+.restaurantOrdersRow,
+.updateStatusRow {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.restaurantOrdersRow select,
+.updateStatusRow input,
+.updateStatusRow select {
+  flex: 1;
+  width: auto;
+  margin: 0;
+  padding: 12px;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+}
+
+.restaurantOrdersRow button {
+  flex: 1;
+  margin: 0;
+}
+
+.updateStatus button {
+  width: 100%;
+  margin-top: 10px;
+}
+
+.panelBodyRES button {
+  padding: 12px;
+
+  border: none;
+  border-radius: 10px;
+
+  background: black;
+  color: white;
+
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.updateStatus{
+    margin-top: 20px;
+}
