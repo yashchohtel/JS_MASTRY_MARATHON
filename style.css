@@ -93,7 +93,7 @@ a:hover {
   text-transform: capitalize !important;
 }
 
-#result {
+#result, .result {
   margin-top: 20px !important;
   line-height: 1.8 !important;
   text-align: left !important;

@@ -11,7 +11,7 @@
     <!-- style -->
     <style>
         .container {
-            width: 550px;
+            width: 650px;
             padding: 30px;
             background: #bfb6b6;
             backdrop-filter: blur(8px);
@@ -23,6 +23,11 @@
 
         .proHeading {
             margin-bottom: 2rem;
+        }
+
+        .descHead {
+            text-align: left;
+            margin-top: 1rem;
         }
 
         input {
@@ -51,10 +56,26 @@
             font-size: 16px;
         }
 
-        #result {
+        .startBtn {
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .quizActions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .quizActions button {
+            margin-top: 10px;
+            flex: 1;
+        }
+
+
+        /* #result {
             margin-top: 20px;
             line-height: 1.8;
-        }
+        } */
     </style>
 
 
@@ -72,13 +93,36 @@
 
         <h1 class="proHeading">Quiz Score Tracker</h1>
 
-        <input type="number" id="num" placeholder="Enter your number">
+        <!-- Player Name -->
+        <h3 class="descHead">Player Name</h3>
 
-        <button onclick="findEvenOdd()">
-            Check
+        <input type="text" id="playerName" placeholder="Enter Player Name">
+
+        <button class="startBtn" onclick="startQuiz()">
+            Start Quiz
         </button>
 
-        <div id="result"></div>
+        <!-- Quiz Actions -->
+        <h3 class="descHead">Quiz Actions</h3>
+
+        <div class="quizActions">
+
+            <button onclick="submitAnswer(true)">
+                Correct Answer
+            </button>
+
+            <button onclick="submitAnswer(false)">
+                Wrong Answer
+            </button>
+
+        </div>
+
+        <button onclick="showResult()">
+            Show Result
+        </button>
+
+        <!-- Result -->
+        <div class="result"></div>
 
     </div>
 
