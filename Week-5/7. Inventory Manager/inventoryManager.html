@@ -16,44 +16,64 @@
             background: #bfb6b6;
             backdrop-filter: blur(8px);
             border-radius: 20px;
+            margin: 3rem auto 4rem;
             text-align: center;
-            margin: 0 auto;
-            margin-top: 3rem;
-        }
-
-        .proHeading {
-            margin-bottom: 2rem;
         }
 
         input {
             width: 100%;
             padding: 12px;
-            margin-top: 10px;
-
+            margin-top: 12px;
             border: none;
             border-radius: 10px;
-
             outline: none;
             font-size: 16px;
         }
 
-        button {
-            margin-top: 20px;
-            padding: 12px 25px;
+        .btnRow,
+        .searchRow {
+            display: flex;
+            gap: 20px;
+            margin-top: 10px;
+        }
 
+        button {
+            flex: 1;
+            padding: 12px;
             border: none;
             border-radius: 10px;
-
             background: black;
             color: white;
-
             cursor: pointer;
             font-size: 16px;
         }
 
-        #result {
+        .searchRow input {
+            margin-top: 0;
+            flex: 1;
+        }
+
+        .searchRow button {
+            flex: 0.8;
+        }
+
+        .inventoryCards {
             margin-top: 20px;
-            line-height: 1.8;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .inventoryCard {
+            background: white;
+            border-radius: 12px;
+            padding: 15px;
+            text-align: left;
+        }
+
+        .inventoryCard p {
+            margin: 6px 0;
+            font-size: 16px;
         }
     </style>
 
@@ -70,13 +90,25 @@
     <!-- Inventory Manager -->
     <div class="container">
 
-        <h1 class="proHeading">Inventory Manager</h1>
+        <h1 class="proHeading">Inventory Management</h1>
 
-        <input type="number" id="num" placeholder="Enter your number">
+        <h3 class="descHead">Enter items detail</h3>
+        <input type="text" id="itemName" placeholder="Enter Item Name">
 
-        <button onclick="findEvenOdd()">
-            Check
-        </button>
+        <input type="number" id="itemPrice" placeholder="Enter Item Price">
+
+        <input type="number" id="itemQuantity" placeholder="Enter Item Quantity">
+
+        <div class="btnRow">
+            <button id="addItemBtn" onclick="addItem()">Add Item</button>
+            <button id="showInventoryBtn" onclick="showInventory()">Show Inventory</button>
+        </div>
+
+        <h3 class="descHead">Find item</h3>
+        <div class="searchRow">
+            <input type="text" id="findItemInput" placeholder="Enter Item Name">
+            <button id="findItemBtn" onclick="findItem()">Find Item</button>
+        </div>
 
         <div id="result"></div>
 
