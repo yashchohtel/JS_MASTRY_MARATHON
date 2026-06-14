@@ -31,7 +31,7 @@
                     Customer Panel
                 </div>
 
-                <div class="panelBody">
+                <form class="panelBody" id="userForm">
 
                     <!-- descHeading -->
                     <p class="descHead">Enter Order Detail</p>
@@ -55,27 +55,27 @@
                     <div class="checkboxInput">
 
                         <label>
-                            <input type="checkbox" value="Veg Pizza">
+                            <input type="checkbox" name="item" value="Veg Pizza">
                             Veg Pizza ₹199
                         </label>
 
                         <label>
-                            <input type="checkbox" value="Burger">
+                            <input type="checkbox" name="item" value="Burger">
                             Burger ₹149
                         </label>
 
                         <label>
-                            <input type="checkbox" value="French Fries">
+                            <input type="checkbox" name="item" value="French Fries">
                             French Fries ₹99
                         </label>
 
                         <label>
-                            <input type="checkbox" value="Coke">
+                            <input type="checkbox" name="item" value="Coke">
                             Coke ₹49
                         </label>
 
                         <label>
-                            <input type="checkbox" value="Pasta">
+                            <input type="checkbox" name="item" value="Pasta">
                             Pasta ₹179
                         </label>
 
@@ -92,9 +92,9 @@
                     <!-- order actons -->
                     <div class="orderActions">
 
-                        <input type="number" id="orderIdStatus" placeholder="Enter Order ID">
+                        <input type="text" id="orderIdStatus" placeholder="Enter Order ID">
 
-                        <button onclick="checkOrderStatus()">
+                        <button type="button" onclick="checkOrderStatus()">
                             Check Order Status
                         </button>
 
@@ -107,16 +107,21 @@
 
                         <input type="text" id="customerOrderName" placeholder="Enter Customer Name">
 
-                        <button onclick="viewAllOrders()">
+                        <button type="button" onclick="viewAllOrders()">
                             View All Orders
                         </button>
 
                     </div>
 
-                </div>
+                </form>
+
+                <hr>
 
                 <!-- user result -->
                 <div class="userResult"></div>
+
+                <!-- order card -->
+                <div class="orderCard"></div>
 
             </div>
 
@@ -161,7 +166,7 @@
 
                         <div class="updateStatusRow">
 
-                            <input type="number" id="orderId" placeholder="Enter Order ID">
+                            <input type="text" id="orderId" placeholder="Enter Order ID">
 
                             <select id="orderStatus">
 
@@ -186,6 +191,9 @@
 
                 <!-- user result -->
                 <div class="ownerResult"></div>
+
+                <!-- owner card -->
+                <div class="ownerOrders"></div>
 
             </div>
 
