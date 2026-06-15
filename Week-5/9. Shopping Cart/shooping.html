@@ -5,59 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shooping Card</title>
-
     <link rel="stylesheet" href="/style.css">
-
-    <!-- style -->
-    <style>
-        .container {
-            width: 550px;
-            padding: 30px;
-            background: #bfb6b6;
-            backdrop-filter: blur(8px);
-            border-radius: 20px;
-            text-align: center;
-            margin: 0 auto;
-            margin-top: 3rem;
-        }
-
-        .proHeading {
-            margin-bottom: 2rem;
-        }
-
-        input {
-            width: 100%;
-            padding: 12px;
-            margin-top: 10px;
-
-            border: none;
-            border-radius: 10px;
-
-            outline: none;
-            font-size: 16px;
-        }
-
-        button {
-            margin-top: 20px;
-            padding: 12px 25px;
-
-            border: none;
-            border-radius: 10px;
-
-            background: black;
-            color: white;
-
-            cursor: pointer;
-            font-size: 16px;
-        }
-
-        #result {
-            margin-top: 20px;
-            line-height: 1.8;
-        }
-    </style>
-
-
+    <link rel="stylesheet" href="/Week-5/9. Shopping Cart/shoopingCart.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
 </head>
 
 <body>
@@ -67,18 +17,82 @@
         Back To Home
     </button>
 
-    <!-- Shooping Card -->
+    <!-- heaading -->
+    <h1 class="proHeading">Shoping Cart</h1>
+
+    <!-- SHOOPING CARD -->
     <div class="container">
 
-        <h1 class="proHeading">Shooping Card</h1>
+        <!-- Products Page -->
+        <div id="productsPage">
 
-        <input type="number" id="num" placeholder="Enter your number">
+            <div class="pageHeader">
+                <h2>Browse Products</h2>
 
-        <button onclick="findEvenOdd()">
-            Check
-        </button>
+                <div class="cartIcon" id="openCartBtn">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span id="cartCount">0</span>
+                </div>
 
-        <div id="result"></div>
+            </div>
+
+            <!-- rule -->
+            <hr>
+
+            <div id="productsList">
+
+            </div>
+
+        </div>
+
+        <!-- Cart Page -->
+        <div id="cartPage">
+
+            <div class="couponWrapper">
+
+                <div id="backToProducts" class="backIcon">
+                    <i class="fa-solid fa-arrow-left"></i>
+                </div>
+
+                <div class="couponSection">
+
+                    <input type="number" id="couponInput" placeholder="Discount %">
+
+                    <button id="applyCouponBtn">
+                        Apply
+                    </button>
+
+                </div>
+
+            </div>
+
+            <div id="cartItems">
+
+            </div>
+
+            <div class="cartSummary">
+
+                <p><strong>Total Items :</strong> <span id="itemCount">0</span></p>
+
+                <p><strong>Total Price :</strong> ₹<span id="totalPrice">0</span></p>
+
+            </div>
+
+            <div class="cartButtons">
+
+                <button id="showCartBtn">
+                    Show Receipt
+                </button>
+
+                <button id="clearCartBtn">
+                    Clear Cart
+                </button>
+
+            </div>
+
+            <div id="result"></div>
+
+        </div>
 
     </div>
 
