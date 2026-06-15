@@ -16,47 +16,93 @@
             background: #bfb6b6;
             backdrop-filter: blur(8px);
             border-radius: 20px;
+            margin: 3rem auto 4rem;
             text-align: center;
-            margin: 0 auto;
-            margin-top: 3rem;
-        }
-
-        .proHeading {
-            margin-bottom: 2rem;
         }
 
         input {
             width: 100%;
             padding: 12px;
-            margin-top: 10px;
-
+            margin-top: 12px;
             border: none;
             border-radius: 10px;
-
             outline: none;
             font-size: 16px;
         }
 
-        button {
-            margin-top: 20px;
-            padding: 12px 25px;
+        .btnRow {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
 
+        button {
+            flex: 1;
+            padding: 12px;
             border: none;
             border-radius: 10px;
-
             background: black;
             color: white;
-
             cursor: pointer;
             font-size: 16px;
         }
 
-        #result {
+        .searchRow {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .searchRow button {
+            flex: 1;
+        }
+
+        .leaderboardCards {
             margin-top: 20px;
-            line-height: 1.8;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .leaderboardCard {
+            background: white;
+            border-radius: 12px;
+            padding: 15px;
+            text-align: left;
+        }
+
+        .leaderboardCard p {
+            margin: 6px 0;
+            font-size: 16px;
+        }
+
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        th {
+            background: black;
+            color: white;
+            padding: 12px;
+            font-size: 16px;
+            text-align: center;
+        }
+
+        td {
+            padding: 12px;
+            text-align: center;
+            border-bottom: 1px solid #ddd;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
         }
     </style>
-
 
 </head>
 
@@ -70,13 +116,21 @@
     <!-- Leader Board -->
     <div class="container">
 
-        <h1 class="proHeading">Leader Board</h1>
+        <h1 class="proHeading">Leaderboard Management</h1>
 
-        <input type="number" id="num" placeholder="Enter your number">
+        <h3 class="descHead">Enter Play Name & Score</h3>
+        <input type="text" id="playerName" placeholder="Enter Player Name">
 
-        <button onclick="findEvenOdd()">
-            Check
-        </button>
+        <input type="number" id="playerScore" placeholder="Enter Player Score">
+
+        <div class="btnRow">
+            <button id="addPlayerBtn" onclick="addPlayer()">Add Player</button>
+            <button id="showLeaderboardBtn" onclick="showLeaderboard()">Show Leaderboard</button>
+        </div>
+
+        <div class="searchRow">
+            <button id="topThreeBtn" onclick="getTopThree()">Get Top 3 Players</button>
+        </div>
 
         <div id="result"></div>
 

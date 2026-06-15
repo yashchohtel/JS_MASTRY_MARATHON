@@ -1,4 +1,4 @@
-7. omvemtpru Management :-
+7. inventory Management :-
 
 let inventory = { items: [], totalValue: 0 }
 
