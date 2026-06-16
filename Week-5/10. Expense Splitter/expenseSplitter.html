@@ -14,49 +14,57 @@
             width: 550px;
             padding: 30px;
             background: #bfb6b6;
-            backdrop-filter: blur(8px);
             border-radius: 20px;
-            text-align: center;
-            margin: 0 auto;
-            margin-top: 3rem;
+            margin: 3rem auto;
         }
 
-        .proHeading {
-            margin-bottom: 2rem;
+        h3 {
+            text-align: left;
+            margin: 20px 0 10px;
+            font-size: 1.3rem;
         }
 
-        input {
+        .inputRow {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .inputRow input,
+        .inputRow select {
+            flex: 1;
+        }
+
+        input,
+        select {
             width: 100%;
             padding: 12px;
-            margin-top: 10px;
-
             border: none;
             border-radius: 10px;
-
             outline: none;
             font-size: 16px;
         }
 
         button {
-            margin-top: 20px;
-            padding: 12px 25px;
-
+            padding: 12px 18px;
             border: none;
             border-radius: 10px;
-
             background: black;
             color: white;
-
             cursor: pointer;
             font-size: 16px;
+            white-space: nowrap;
         }
 
-        #result {
+        .fullBtn {
+            width: 100%;
+            margin-top: 18px;
+        }
+
+        .descHead {
             margin-top: 20px;
-            line-height: 1.8;
         }
     </style>
-
 
 </head>
 
@@ -72,10 +80,54 @@
 
         <h1 class="proHeading">Expense Splitter</h1>
 
-        <input type="number" id="num" placeholder="Enter your number">
+        <p class="descHead">Trip Name</p>
 
-        <button onclick="findEvenOdd()">
-            Check
+        <div class="inputRow">
+
+            <input type="text" id="tripName" placeholder="Enter Trip Name">
+
+            <button id="createTripBtn" onclick="addTripName()">
+                Create Trip
+            </button>
+
+        </div>
+
+        <p class="descHead">Add Member</p>
+
+        <div class="inputRow">
+
+            <input type="text" id="memberName" placeholder="Enter Member Name">
+
+            <button id="addMemberBtn" onclick="addMember()">
+                Add Member
+            </button>
+
+        </div>
+
+        <p class="descHead">Add Expense</p>
+
+        <div class="inputRow">
+
+            <select id="paidBy">
+                <option value="">Paid By</option>
+            </select>
+
+            <input type="text" id="expenseName" placeholder="Expense Name">
+
+        </div>
+
+        <div class="inputRow">
+
+            <input type="number" id="expenseAmount" placeholder="Expense Amount">
+
+            <button id="addExpenseBtn" onclick="addExpense()">
+                Add Expense
+            </button>
+
+        </div>
+
+        <button class="fullBtn" id="showSummaryBtn" onclick="showSummary()">
+            Show Summary
         </button>
 
         <div id="result"></div>
