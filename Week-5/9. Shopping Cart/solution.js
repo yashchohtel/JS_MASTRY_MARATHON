@@ -158,45 +158,8 @@ let cart = {
     couponApplied: false
 };
 
-// function to add itme to the card
-addToCart = (productId) => {
-
-    // check product already in cart
-    let alreadyAdded = cart.items.find((item) => item.id === productId);
-
-    if (alreadyAdded) {
-        alert("Product is already in the cart.");
-        return;
-    }
-
-    // find product
-    let product = products.find((item) => item.id === productId);
-
-    // insert that product into cart's items array
-    cart.items.push(product);
-
-    // calculat total
-    cart.total += product.price;
-
-    // increment items count
-    cart.itemCount += 1
-
-    // show item count on cart icon
-    document.querySelector("#cartCount").innerHTML = cart.itemCount;
-
-    console.log(cart.itemCount);
-    console.log(cart.total);
-    console.log(cart);
-
-}
-
 // function to display cart item
-function updateCart() {
-
-    // check cart items
-    if (cart.items.length === 0) {
-        return;
-    }
+updateCart = () => {
 
     // select item
     let cartItems = document.getElementById("cartItems");
@@ -226,10 +189,8 @@ function updateCart() {
 
             <button
                 class="deleteBtn"
-                onclick="removeItem('${product.id}')">
-
+                onclick="removeItem('${product.id}')"> 
                 <i class="fa-solid fa-trash"></i>
-
             </button>
 
         </div>
@@ -241,5 +202,204 @@ function updateCart() {
     // update total and item count on cart
     document.querySelector("#itemCount").innerHTML = cart.itemCount
     document.querySelector("#totalPrice").innerHTML = cart.total
+
+    // applay discount
+    if (cart.items.length == 0) {
+        document.querySelector(".finalPrice").innerHTML = ""
+    }
+    else if (cart.couponApplied) {
+        let finalPrice = cart.total - (cart.total * 20) / 100;
+        document.querySelector(".finalPrice").innerHTML = `<strong>Final Price (20% Off) :</strong> ₹${finalPrice}`;
+    }
+
+    // show item count on cart icon
+    document.querySelector("#cartCount").innerHTML = cart.itemCount;
+
+}
+
+// function to add itme to the card
+addToCart = (productId) => {
+
+    // check product already in cart
+    let alreadyAdded = cart.items.find((item) => item.id === productId);
+
+    if (alreadyAdded) {
+        alert("Product is already in the cart.");
+        return;
+    }
+
+    // find product
+    let product = products.find((item) => item.id === productId);
+
+    // insert that product into cart's items array
+    cart.items.push(product);
+
+    // calculat total
+    cart.total += product.price;
+
+    // increment items count
+    cart.itemCount += 1
+
+    // show item count on cart icon
+    document.querySelector("#cartCount").innerHTML = cart.itemCount;
+
+}
+
+// function to delete item from cart
+removeItem = (productId) => {
+
+    // find item index
+    let itemIndex = cart.items.findIndex((item) => item.id === productId);
+
+    // check item found
+    if (itemIndex === -1) {
+        alert("Product not found.");
+        return;
+    }
+
+    // decrease item count of cart
+    cart.itemCount--;
+
+    // decrease the total price of the cart
+    cart.total = (cart.total - cart.items[itemIndex].price)
+
+    // remove item
+    cart.items.splice(itemIndex, 1);
+
+    // show item count on cart icon
+    document.querySelector("#cartCount").innerHTML = cart.itemCount;
+
+    // clear receipt for new receipt
+    document.getElementById("result").innerHTML = "";
+
+    // update cart
+    updateCart();
+
+}
+
+// function to applay discount
+applayDiscount = () => {
+
+    // if already coupoun applyed
+    if (cart.couponApplied) {
+        alert("coupon already applyed");
+        document.querySelector("#couponInput").value = '';
+        return
+    }
+
+    // get applay coupoun input
+    const couponApplied = document.querySelector("#couponInput").value;
+
+    // empty cart validation
+    if (cart.items.length === 0) {
+        alert("cart is empty add products to cart first");
+        document.querySelector("#couponInput").value = '';
+        return
+    }
+
+    if (couponApplied === "") {
+        alert("please enter the coupon code");
+        return
+    }
+
+    // right coupon validation
+    if (couponApplied.toLowerCase() !== "happy") {
+        alert("invalid or expired coupon code");
+        document.querySelector("#couponInput").value = '';
+        return
+    }
+
+    // mark couponApplied flag true
+    cart.couponApplied = true;
+    document.querySelector("#couponInput").value = '';
+
+    // clear reciept for new receipt
+    document.getElementById("result").innerHTML = "";
+
+    // update card
+    updateCart()
+
+}
+
+// function to show receipt
+showReceipt = () => {
+
+    // check cart
+    if (cart.items.length === 0) {
+        alert("Your cart is empty.");
+        return;
+    }
+
+    // create receipt items
+    let receiptItems = "";
+
+    for (let product of cart.items) {
+        receiptItems += `<span>${product.name}</span>: ₹ ${product.price} <br>`;
+    }
+
+    // to calculate the final price after discount
+    let discount = 0;
+    let finalPrice = cart.total;
+
+    // receipt
+    let receipt = `
+        <div class="receipt">
+
+        ---------------- RECEIPT ----------------
+
+        ${receiptItems}
+
+        -----------------------------------------
+
+        <span>Subtotal</span>: ₹ ${cart.total}
+    `;
+
+    // discount
+    if (cart.couponApplied) {
+
+        discount = (cart.total * 20) / 100;
+        finalPrice = cart.total - discount;
+
+        receipt += `
+        <span>Discount (20%)</span>: ₹ ${discount}
+        <span>After Discount</span>: ₹ ${finalPrice}
+        `;
+
+    }
+
+    receipt += `
+    -----------------------------------------
+
+    <span>Total Items</span>: ${cart.itemCount}
+    <span>Total</span>: ₹ ${cart.couponApplied ? finalPrice : cart.total}
+
+    </div>`;
+
+    document.getElementById("result").innerHTML = receipt;
+
+}
+
+// function to clear state
+clearCart = () => {
+
+    // if no item in cart
+    if (cart.items.length === 0) {
+        alert("cart is already clear!");
+        return;
+    }
+
+    // cleart cart to initla state
+    cart = {
+        items: [],
+        total: 0,
+        itemCount: 0,
+        couponApplied: false
+    }
+
+    // clear receipt 
+    document.getElementById("result").innerHTML = "";
+
+    // update cart
+    updateCart();
 
 }

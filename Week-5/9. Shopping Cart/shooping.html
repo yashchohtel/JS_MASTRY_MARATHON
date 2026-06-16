@@ -28,13 +28,14 @@
 
             <div class="pageHeader">
                 <h2>Browse Products</h2>
-
                 <div class="cartIcon" id="openCartBtn">
                     <i class="fa-solid fa-cart-shopping"></i>
                     <span id="cartCount">0</span>
                 </div>
-
+                
             </div>
+            
+            <p class="discount">use code <strong>HAPPY</strong> to get 20% discount</p>
 
             <!-- rule -->
             <hr>
@@ -56,9 +57,9 @@
 
                 <div class="couponSection">
 
-                    <input type="number" id="couponInput" placeholder="Discount %">
+                    <input type="text" id="couponInput" placeholder="Coupon Code..">
 
-                    <button id="applyCouponBtn">
+                    <button id="applyCouponBtn" onclick="applayDiscount()">
                         Apply
                     </button>
 
@@ -76,15 +77,17 @@
 
                 <p><strong>Total Price :</strong> ₹<span id="totalPrice">0</span></p>
 
+                <p class="finalPrice"></p>
+
             </div>
 
             <div class="cartButtons">
 
-                <button id="showCartBtn">
+                <button id="showCartBtn" onclick="showReceipt()">
                     Show Receipt
                 </button>
 
-                <button id="clearCartBtn">
+                <button id="clearCartBtn" onclick="clearCart()">
                     Clear Cart
                 </button>
 
