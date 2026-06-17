@@ -33,6 +33,10 @@ h1 {
   font-weight: 800;
 }
 
+.mainHeading {
+  margin-top: 20px;
+}
+
 .weekRule {
   display: flex;
   align-items: center;
@@ -107,4 +111,5 @@ a:hover {
   font-weight: 600;
   margin-top: 10px;
   text-transform: capitalize;
+  text-align: left;
 }

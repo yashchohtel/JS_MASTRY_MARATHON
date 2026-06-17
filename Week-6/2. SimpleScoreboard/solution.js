@@ -1,121 +1,105 @@
-// a student object to store student data
-let student = {};
+// set the object to store players data
+let scoreboard = {
+    players: [],
+    roundsPlayed: 0
+};
 
-// function to add student data to the object
-addStudentData = () => {
+// function to add player
+function addPlayer() {
 
-    // an array store errors
-    const errors = [];
+    // get input
+    let playerName = document.getElementById("playerName").value.trim();
+    let result = document.getElementById("result");
 
-    // select result element
-    const result = document.getElementById("result")
-
-    // selecting input field (name age city)
-    const studentName = document.getElementById("studentName").value.trim();
-    const studentCity = document.getElementById("studentCity").value.trim();
-    const studentAge = Number(document.getElementById("studentAge").value);
-
-    // radio
-    const selectedCourse = document.querySelector('input[name="course"]:checked');
-
-    // checkbox
-    const isEnrolled = document.getElementById("isEnrolled").checked;
-
-    // validation
-    if (!studentName) {
-        errors.push("Student name is required");
-    }
-
-    if (!studentCity) {
-        errors.push("City is required");
-    }
-
-    if (!studentAge) {
-        errors.push("Age is required");
-    } else if (studentAge <= 0) {
-        errors.push("Age must be greater than 0");
-    }
-
-    if (!selectedCourse) {
-        errors.push("Please select a course");
-    }
-
-    // print all errors
-    if (errors.length > 0) {
-        result.innerHTML = errors.map(error => `<p>• ${error}</p>`).join("");
+    // validate empty input
+    if (playerName === "") {
+        result.innerHTML = "Please enter player name.";
         return;
     }
 
-    // insert the data into object 
-    student = {
-        name: studentName,
-        city: studentCity,
-        age: studentAge,
-        course: selectedCourse.value,
-        isEnrolled: isEnrolled ? "enrolled" : "not enrolled",
+    // create player object
+    let player = {
+        name: playerName,
+        score: 0
     };
 
-    // print data
-    let output = "";
+    // add player to array
+    scoreboard.players.push(player);
 
-    for (let key in student) {
-        output += `<p>${key} - ${student[key]}</p>`;
-    }
+    // insert player into select
+    playerList.innerHTML += `
+        <option value="${player.name}">
+            ${player.name}
+        </option>
+    `;
 
-    result.innerHTML = output;
+    // show feedback
+    result.innerHTML = "Player added successfully.";
 
-    result.innerHTML += `<p>---------------- <br> enter data and click update to update student data</p>`;
-
-    // reset form
-    document.getElementById("studentForm").reset();
-
+    // clear input
+    document.getElementById("playerName").value = "";
 }
 
-// a function to update the object
-updateStudentData = () => {
+// function to add points
+function addPoints() {
 
-    // select result element
-    const result = document.getElementById("result")
+    // get inputs
+    let playerName = document.getElementById("playerList").value;
+    let playerPoints = Number(document.getElementById("playerPoints").value);
+    let result = document.getElementById("result");
 
-    // validate if data exist or not to update
-    if (Object.keys(student).length === 0) {
-        result.innerHTML = "No data found. Please add student data first.";
-        return
+    // validate inputs
+    if (playerName === "" || playerPoints <= 0) {
+        result.innerHTML = "Please select player and enter valid points.";
+        return;
     }
 
-    // selecting input field (name age city)
-    const studentName = document.getElementById("studentName").value.trim();
-    const studentCity = document.getElementById("studentCity").value.trim();
-    const studentAge = Number(document.getElementById("studentAge").value);
-
-    // radio
-    const selectedCourse = document.querySelector('input[name="course"]:checked');
-
-    // checkbox
-    const isEnrolled = document.getElementById("isEnrolled").checked;
-
-    // update object
-    studentName && (student.name = studentName);
-    studentCity && (student.city = studentCity);
-    studentAge && (student.age = studentAge);
-    selectedCourse && (student.course = selectedCourse);
-    isEnrolled && (student.isEnrolled = isEnrolled ? "enrolled" : "not enrolled");
-
-    // add batchNumber property with value of 4 in object
-    student.batchNumber = 4;
-
-    // print data
-    let output = "";
-
-    for (let key in student) {
-        output += `<p>${key} - ${student[key]}</p>`;
+    // find player and add points
+    for (let player of scoreboard.players) {
+        if (player.name === playerName) {
+            player.score += playerPoints;
+            break;
+        }
     }
 
+    // increment rounds played
+    scoreboard.roundsPlayed++;
+
+    // show feedback
+    result.innerHTML = "Points added successfully.";
+
+    // clear points input
+    document.getElementById("playerPoints").value = "";
+    document.getElementById("playerList").value = "";
+}
+
+// function to show scoreboard
+function showScoreboard() {
+
+    let result = document.getElementById("result");
+
+    // validate no players
+    if (scoreboard.players.length === 0) {
+        result.innerHTML = "No players found.";
+        return;
+    }
+
+    // store output
+    let output = `
+        <h3>Rounds Played : ${scoreboard.roundsPlayed}</h3>
+    `;
+
+    // loop players
+    for (let player of scoreboard.players) {
+        output += `
+            <p>
+                <strong>Name:</strong> ${player.name}<br>
+                <strong>Score:</strong> ${player.score}
+            </p>
+            <hr>
+        `;
+    }
+
+    // display scoreboard
     result.innerHTML = output;
-
-    result.innerHTML += `<p>---------------- <br> Batch Number Added.</p>`;
-
-    // reset form
-    document.getElementById("studentForm").reset();
-
 }
