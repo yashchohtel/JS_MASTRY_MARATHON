@@ -1,121 +1,163 @@
-// a student object to store student data
-let student = {};
+// object structure
+let gradeBook = {
+    students: [],
+    classAverage: 0
+};
 
-// function to add student data to the object
-addStudentData = () => {
+// function to add student
+function addStudent() {
 
-    // an array store errors
-    const errors = [];
+    // get input values
+    let studentName = document.getElementById("studentName").value.trim();
+    let studentScoreInput = document.getElementById("studentScore").value;
+    let studentScore = Number(studentScoreInput);
+    let result = document.getElementById("result");
 
-    // select result element
-    const result = document.getElementById("result")
-
-    // selecting input field (name age city)
-    const studentName = document.getElementById("studentName").value.trim();
-    const studentCity = document.getElementById("studentCity").value.trim();
-    const studentAge = Number(document.getElementById("studentAge").value);
-
-    // radio
-    const selectedCourse = document.querySelector('input[name="course"]:checked');
-
-    // checkbox
-    const isEnrolled = document.getElementById("isEnrolled").checked;
-
-    // validation
-    if (!studentName) {
-        errors.push("Student name is required");
-    }
-
-    if (!studentCity) {
-        errors.push("City is required");
-    }
-
-    if (!studentAge) {
-        errors.push("Age is required");
-    } else if (studentAge <= 0) {
-        errors.push("Age must be greater than 0");
-    }
-
-    if (!selectedCourse) {
-        errors.push("Please select a course");
-    }
-
-    // print all errors
-    if (errors.length > 0) {
-        result.innerHTML = errors.map(error => `<p>• ${error}</p>`).join("");
+    // validate empty inputs
+    if (studentName === "" || studentScoreInput === "") {
+        result.innerHTML = "Please fill all fields.";
         return;
     }
 
-    // insert the data into object 
-    student = {
-        name: studentName,
-        city: studentCity,
-        age: studentAge,
-        course: selectedCourse.value,
-        isEnrolled: isEnrolled ? "enrolled" : "not enrolled",
-    };
-
-    // print data
-    let output = "";
-
-    for (let key in student) {
-        output += `<p>${key} - ${student[key]}</p>`;
+    // validate score
+    if (studentScore < 0 || studentScore > 100) {
+        result.innerHTML = "Score must be between 0 and 100.";
+        return;
     }
 
+    // create student object
+    let student = {
+        name: studentName,
+        score: studentScore
+    };
+
+    // add student to array
+    gradeBook.students.push(student);
+
+    // show feedback
+    result.innerHTML = "Student added successfully.";
+
+    // clear inputs
+    document.getElementById("studentName").value = "";
+    document.getElementById("studentScore").value = "";
+}
+
+// function to update class average
+function updateClassAverage() {
+
+    let result = document.getElementById("result");
+
+    // validate no students
+    if (gradeBook.students.length === 0) {
+        result.innerHTML = "No students found.";
+        return;
+    }
+
+    // store total score
+    let totalScore = 0;
+
+    // calculate total score
+    for (let student of gradeBook.students) {
+        totalScore += student.score;
+    }
+
+    // update class average
+    gradeBook.classAverage = totalScore / gradeBook.students.length;
+
+    // display average
+    result.innerHTML = `<p><strong>Class Average:</strong> ${gradeBook.classAverage.toFixed(2)}</p>`;
+}
+
+// function to show top student
+function showTopStudent() {
+
+    let result = document.getElementById("result");
+
+    // validate no students
+    if (gradeBook.students.length === 0) {
+        result.innerHTML = "No students found.";
+        return;
+    }
+
+    // store first student as highest
+    let highest = gradeBook.students[0];
+
+    // add first student as first topper
+    let toppers = [highest];
+
+    // find all top students
+    for (let i = 1; i < gradeBook.students.length; i++) {
+
+        let student = gradeBook.students[i];
+
+        // new highest score found
+        if (student.score > highest.score) {
+
+            highest = student;
+
+            // remove old toppers and add new highest
+            toppers = [student];
+
+        }
+
+        // another student with same highest score
+        else if (student.score === highest.score) {
+
+            toppers.push(student);
+
+        }
+
+    }
+
+    // store output
+    let output = "";
+
+    // loop top students
+    for (let topper of toppers) {
+
+        output += `
+        <p>
+            <strong>Name:</strong> ${topper.name}<br>
+            <strong>Score:</strong> ${topper.score}
+        </p>
+        <hr>
+    `;
+
+    }
+
+    // display top students
     result.innerHTML = output;
-
-    result.innerHTML += `<p>---------------- <br> enter data and click update to update student data</p>`;
-
-    // reset form
-    document.getElementById("studentForm").reset();
 
 }
 
-// a function to update the object
-updateStudentData = () => {
+// function to show grade book
+function showGradeBook() {
 
-    // select result element
-    const result = document.getElementById("result")
+    let result = document.getElementById("result");
 
-    // validate if data exist or not to update
-    if (Object.keys(student).length === 0) {
-        result.innerHTML = "No data found. Please add student data first.";
-        return
+    // validate no students
+    if (gradeBook.students.length === 0) {
+        result.innerHTML = "No students found.";
+        return;
     }
 
-    // selecting input field (name age city)
-    const studentName = document.getElementById("studentName").value.trim();
-    const studentCity = document.getElementById("studentCity").value.trim();
-    const studentAge = Number(document.getElementById("studentAge").value);
-
-    // radio
-    const selectedCourse = document.querySelector('input[name="course"]:checked');
-
-    // checkbox
-    const isEnrolled = document.getElementById("isEnrolled").checked;
-
-    // update object
-    studentName && (student.name = studentName);
-    studentCity && (student.city = studentCity);
-    studentAge && (student.age = studentAge);
-    selectedCourse && (student.course = selectedCourse);
-    isEnrolled && (student.isEnrolled = isEnrolled ? "enrolled" : "not enrolled");
-
-    // add batchNumber property with value of 4 in object
-    student.batchNumber = 4;
-
-    // print data
+    // store output
     let output = "";
 
-    for (let key in student) {
-        output += `<p>${key} - ${student[key]}</p>`;
+    // loop students
+    for (let student of gradeBook.students) {
+
+        output += `
+            <p>
+                <strong>Name:</strong> ${student.name}<br>
+                <strong>Score:</strong> ${student.score}
+            </p>
+            <hr>
+        `;
+
     }
 
+    // display grade book
     result.innerHTML = output;
-
-    result.innerHTML += `<p>---------------- <br> Batch Number Added.</p>`;
-
-    // reset form
-    document.getElementById("studentForm").reset();
 
 }
