@@ -1,121 +1,112 @@
-// a student object to store student data
-let student = {};
+// set groceries object
+let groceries = {
+    items: [],
+    totalItems: 0,
+    purchasedCount: 0
+};
 
-// function to add student data to the object
-addStudentData = () => {
+// function to add item
+function addItem() {
 
-    // an array store errors
-    const errors = [];
+    // get input values
+    let itemName = document.getElementById("itemName").value.trim();
+    let itemQuantity = Number(document.getElementById("itemQuantity").value);
 
-    // select result element
-    const result = document.getElementById("result")
+    let listContainer = document.getElementById("listContainer");
+    let emptyMessage = document.getElementById("emptyMessage");
+    let showProgressBtn = document.getElementById("showProgressBtn");
+    let result = document.getElementById("result");
 
-    // selecting input field (name age city)
-    const studentName = document.getElementById("studentName").value.trim();
-    const studentCity = document.getElementById("studentCity").value.trim();
-    const studentAge = Number(document.getElementById("studentAge").value);
-
-    // radio
-    const selectedCourse = document.querySelector('input[name="course"]:checked');
-
-    // checkbox
-    const isEnrolled = document.getElementById("isEnrolled").checked;
-
-    // validation
-    if (!studentName) {
-        errors.push("Student name is required");
-    }
-
-    if (!studentCity) {
-        errors.push("City is required");
-    }
-
-    if (!studentAge) {
-        errors.push("Age is required");
-    } else if (studentAge <= 0) {
-        errors.push("Age must be greater than 0");
-    }
-
-    if (!selectedCourse) {
-        errors.push("Please select a course");
-    }
-
-    // print all errors
-    if (errors.length > 0) {
-        result.innerHTML = errors.map(error => `<p>• ${error}</p>`).join("");
+    // validate empty inputs
+    if (itemName === "" || itemQuantity === "") {
+        result.innerHTML = "Please fill all fields.";
         return;
     }
 
-    // insert the data into object 
-    student = {
-        name: studentName,
-        city: studentCity,
-        age: studentAge,
-        course: selectedCourse.value,
-        isEnrolled: isEnrolled ? "enrolled" : "not enrolled",
-    };
-
-    // print data
-    let output = "";
-
-    for (let key in student) {
-        output += `<p>${key} - ${student[key]}</p>`;
+    // validate quantity
+    if (itemQuantity <= 0) {
+        result.innerHTML = "Please enter a valid quantity.";
+        return;
     }
 
-    result.innerHTML = output;
+    // create item object
+    let item = {
+        name: itemName,
+        quantity: itemQuantity,
+        purchased: false
+    };
 
-    result.innerHTML += `<p>---------------- <br> enter data and click update to update student data</p>`;
+    // add item to array
+    groceries.items.push(item);
 
-    // reset form
-    document.getElementById("studentForm").reset();
+    // increment total items
+    groceries.totalItems++;
+
+    // hide empty message
+    emptyMessage.style.display = "none";
+
+    // show progress button
+    showProgressBtn.style.display = "block";
+
+    // current item index
+    let index = groceries.items.length - 1;
+
+    // display item
+    listContainer.innerHTML += `
+        <div class="item">
+            <span>${item.name} (${item.quantity})</span>
+            <label>
+                <input type="checkbox" onchange="markPurchased(${index})">
+                Purchased
+            </label>
+        </div>
+    `;
+
+    // show feedback
+    result.innerHTML = `${itemName} added successfully, add next item.`;
+
+    // clear inputs
+    document.getElementById("itemName").value = "";
+    document.getElementById("itemQuantity").value = "";
 
 }
 
-// a function to update the object
-updateStudentData = () => {
+// function to mark item as purchased
+function markPurchased(index) {
 
-    // select result element
-    const result = document.getElementById("result")
+    // find the clicked item object
+    let item = groceries.items[index];
 
-    // validate if data exist or not to update
-    if (Object.keys(student).length === 0) {
-        result.innerHTML = "No data found. Please add student data first.";
-        return
+    // toggle purchased status
+    if (item.purchased === false) {
+
+        item.purchased = true;
+        groceries.purchasedCount++;
+
+    } else {
+
+        item.purchased = false;
+        groceries.purchasedCount--;
+
     }
 
-    // selecting input field (name age city)
-    const studentName = document.getElementById("studentName").value.trim();
-    const studentCity = document.getElementById("studentCity").value.trim();
-    const studentAge = Number(document.getElementById("studentAge").value);
+}
 
-    // radio
-    const selectedCourse = document.querySelector('input[name="course"]:checked');
+// function to show progress
+function showProgress() {
 
-    // checkbox
-    const isEnrolled = document.getElementById("isEnrolled").checked;
+    let result = document.getElementById("result");
 
-    // update object
-    studentName && (student.name = studentName);
-    studentCity && (student.city = studentCity);
-    studentAge && (student.age = studentAge);
-    selectedCourse && (student.course = selectedCourse);
-    isEnrolled && (student.isEnrolled = isEnrolled ? "enrolled" : "not enrolled");
-
-    // add batchNumber property with value of 4 in object
-    student.batchNumber = 4;
-
-    // print data
-    let output = "";
-
-    for (let key in student) {
-        output += `<p>${key} - ${student[key]}</p>`;
+    // validate empty list
+    if (groceries.totalItems === 0) {
+        result.innerHTML = "List is empty.";
+        return;
     }
 
-    result.innerHTML = output;
-
-    result.innerHTML += `<p>---------------- <br> Batch Number Added.</p>`;
-
-    // reset form
-    document.getElementById("studentForm").reset();
-
+    // display progress
+    result.innerHTML = `
+        <p><strong>Total Items:</strong> ${groceries.totalItems}</p>
+        <p><strong>Purchased:</strong> ${groceries.purchasedCount}</p>
+        <p><strong>Remaining:</strong> ${groceries.totalItems - groceries.purchasedCount}</p>
+    `;
 }
