@@ -22,89 +22,70 @@
             margin-bottom: 4rem;
         }
 
-        input {
+        .inputGroup {
+            display: flex;
+            gap: 10px;
+        }
+
+        .inputGroup input,
+        .inputGroup select {
+            flex: 1;
+        }
+
+        input,
+        select {
             width: 100%;
             padding: 12px;
             margin-top: 10px;
-
             border: none;
             border-radius: 10px;
-
             outline: none;
             font-size: 16px;
         }
 
-        h3 {
-            text-align: left;
-            font-size: 1.4rem;
-            text-transform: capitalize;
-            margin-top: 1.5rem;
-        }
-
-        .radioInput {
-            display: flex;
-            gap: 14px;
-            margin-top: 15px;
-            flex-direction: column;
-        }
-
-        .radioInput label {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-
-            font-size: 18px;
-            cursor: pointer;
-        }
-
-        .radioInput input {
-            width: 18px;
-            height: 18px;
-            margin: 0;
-        }
-
-        .checkboxInput {
-            margin-top: 15px;
-        }
-
-        .checkboxInput label {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-
-            font-size: 18px;
-            cursor: pointer;
-        }
-
-        .checkboxInput input {
-            width: 18px;
-            height: 18px;
-            margin: 0;
-        }
-
         .buttons {
             display: flex;
-            gap: 1rem;
-            margin-top: 20px;
+            gap: 10px;
+            margin-top: 10px;
         }
 
         button {
+            flex: 1;
             padding: 12px 25px;
-
             border: none;
             border-radius: 10px;
-
             background: black;
             color: white;
-
             cursor: pointer;
             font-size: 16px;
-
-            flex: 1;
         }
 
-        #result {
-            margin-top: rem;
+        #expenseTableContainer {
+            margin-top: 25px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            display: none;
+        }
+
+        th,
+        td {
+            padding: 12px;
+            border: 1px solid #ccc;
+            text-align: center;
+        }
+
+        th {
+            background: black;
+            color: white;
+        }
+
+        #emptyMessage {
+            font-size: 18px;
+            padding: 20px 0;
         }
     </style>
 
@@ -121,60 +102,87 @@
     <!-- Expense Logger -->
     <div class="container">
 
-        <form id="studentForm">
+        <h1 class="proHeading">Expense Logger</h1>
 
-            <h1 class="proHeading">Expense Logger</h1>
+        <p class="descHead">Enter Expense Details</p>
+        <div class="inputGroup">
 
-            <input type="text" id="studentName" placeholder="Enter Student Name">
+            <select id="expenseCategory">
 
-            <input type="text" id="studentCity" placeholder="Enter City">
+                <option value="">Select Category</option>
+                <option value="Food">Food</option>
+                <option value="Travel">Travel</option>
+                <option value="Shopping">Shopping</option>
+                <option value="Bills">Bills</option>
+                <option value="Entertainment">Entertainment</option>
 
-            <input type="number" id="studentAge" placeholder="Enter Age">
+            </select>
 
-            <h3>Select Course</h3>
+            <input type="number" id="expenseAmount" placeholder="Enter Amount">
+            
+        </div>
+        
+        <input type="text" id="expenseDescription" placeholder="Enter Description">
 
-            <div class="radioInput">
+        <div class="buttons">
 
-                <label>
-                    <input type="radio" name="course" value="Maths">
-                    Maths
-                </label>
+            <button type="button" onclick="addExpense()">
+                Add Expense
+            </button>
 
-                <label>
-                    <input type="radio" name="course" value="Physics">
-                    Physics
-                </label>
+        </div>
 
-                <label>
-                    <input type="radio" name="course" value="Biology">
-                    Biology
-                </label>
+        <div id="expenseTableContainer">
 
-            </div>
+            <p id="emptyMessage">
+                No expenses added.
+            </p>
 
-            <h3>Enrollment Status</h3>
+            <table id="expenseTable">
 
-            <div class="checkboxInput">
-                <label>
-                    <input type="checkbox" id="isEnrolled">
-                    Student Is Enrolled
-                </label>
-            </div>
+                <thead>
 
-            <div class="buttons">
+                    <tr>
 
-                <button type="button" onclick="addStudentData()">
-                    Add Student Data
-                </button>
+                        <th>Category</th>
+                        <th>Description</th>
+                        <th>Amount</th>
 
-                <button type="button" onclick="updateStudentData()">
-                    Update Student Data
-                </button>
+                    </tr>
 
-            </div>
+                </thead>
 
+                <tbody id="expenseTableBody">
 
-        </form>
+                </tbody>
+
+            </table>
+
+        </div>
+
+        <p class="descHead">Search By Category</p>
+        <select id="filterCategory">
+
+            <option value="">Select Category</option>
+            <option value="Food">Food</option>
+            <option value="Travel">Travel</option>
+            <option value="Shopping">Shopping</option>
+            <option value="Bills">Bills</option>
+            <option value="Entertainment">Entertainment</option>
+
+        </select>
+
+        <div class="buttons">
+
+            <button type="button" onclick="showByCategory()">
+                Show By Category
+            </button>
+
+            <button type="button" onclick="showTotal()">
+                Show Total
+            </button>
+
+        </div>
 
         <div id="result"></div>
 
