@@ -1,121 +1,163 @@
-// a student object to store student data
-let student = {};
+// set task manager 
+let taskManager = {
+    tasks: [],
+    completedCount: 0,
+    pendingCount: 0
+};
 
-// function to add student data to the object
-addStudentData = () => {
+// function to add task
+function addTask() {
 
-    // an array store errors
-    const errors = [];
+    // get input values
+    let taskTitle = document.getElementById("taskTitle").value.trim();
+    let taskPriority = document.getElementById("taskPriority").value;
 
-    // select result element
-    const result = document.getElementById("result")
+    let taskContainer = document.getElementById("taskContainer");
+    let emptyMessage = document.getElementById("emptyMessage");
+    let showSummaryBtn = document.getElementById("showSummaryBtn");
+    let result = document.getElementById("result");
 
-    // selecting input field (name age city)
-    const studentName = document.getElementById("studentName").value.trim();
-    const studentCity = document.getElementById("studentCity").value.trim();
-    const studentAge = Number(document.getElementById("studentAge").value);
-
-    // radio
-    const selectedCourse = document.querySelector('input[name="course"]:checked');
-
-    // checkbox
-    const isEnrolled = document.getElementById("isEnrolled").checked;
-
-    // validation
-    if (!studentName) {
-        errors.push("Student name is required");
-    }
-
-    if (!studentCity) {
-        errors.push("City is required");
-    }
-
-    if (!studentAge) {
-        errors.push("Age is required");
-    } else if (studentAge <= 0) {
-        errors.push("Age must be greater than 0");
-    }
-
-    if (!selectedCourse) {
-        errors.push("Please select a course");
-    }
-
-    // print all errors
-    if (errors.length > 0) {
-        result.innerHTML = errors.map(error => `<p>• ${error}</p>`).join("");
+    // validate empty inputs
+    if (taskTitle === "" || taskPriority === "") {
+        result.innerHTML = "Please fill all fields.";
         return;
     }
 
-    // insert the data into object 
-    student = {
-        name: studentName,
-        city: studentCity,
-        age: studentAge,
-        course: selectedCourse.value,
-        isEnrolled: isEnrolled ? "enrolled" : "not enrolled",
+    // create task object
+    let task = {
+        title: taskTitle,
+        priority: taskPriority,
+        completed: false
     };
 
-    // print data
-    let output = "";
+    // add task to array
+    taskManager.tasks.push(task);
 
-    for (let key in student) {
-        output += `<p>${key} - ${student[key]}</p>`;
-    }
+    // increment pending count
+    taskManager.pendingCount++;
 
-    result.innerHTML = output;
+    // hide empty message
+    emptyMessage.style.display = "none";
 
-    result.innerHTML += `<p>---------------- <br> enter data and click update to update student data</p>`;
+    // show summary button
+    showSummaryBtn.style.display = "block";
 
-    // reset form
-    document.getElementById("studentForm").reset();
+    // display task
+    taskContainer.innerHTML += `
+        <div class="task">
+
+            <span>${task.title} (${task.priority})</span>
+
+            <label>
+                <input
+                    type="checkbox"
+                    onchange="completeTask(${taskManager.tasks.length - 1})"
+                >
+                Done
+            </label>
+
+        </div>
+    `;
+
+    // show feedback
+    result.innerHTML = "Task added successfully.";
+
+    // clear inputs
+    document.getElementById("taskTitle").value = "";
+    document.getElementById("taskPriority").selectedIndex = 0;
 
 }
 
-// a function to update the object
-updateStudentData = () => {
+// function to mark task as completed
+function completeTask(index) {
 
-    // select result element
-    const result = document.getElementById("result")
+    // find clicked task
+    let task = taskManager.tasks[index];
 
-    // validate if data exist or not to update
-    if (Object.keys(student).length === 0) {
-        result.innerHTML = "No data found. Please add student data first.";
-        return
+    // mark and unmark task
+    if (task.completed === false) {
+
+        task.completed = true;
+        taskManager.completedCount++;
+        taskManager.pendingCount--;
+
+    } else {
+
+        task.completed = false;
+        taskManager.completedCount--;
+        taskManager.pendingCount++;
+
     }
 
-    // selecting input field (name age city)
-    const studentName = document.getElementById("studentName").value.trim();
-    const studentCity = document.getElementById("studentCity").value.trim();
-    const studentAge = Number(document.getElementById("studentAge").value);
+}
 
-    // radio
-    const selectedCourse = document.querySelector('input[name="course"]:checked');
+// function to show tasks by priority
+function showByPriority() {
 
-    // checkbox
-    const isEnrolled = document.getElementById("isEnrolled").checked;
+    // get input
+    let priority = document.getElementById("filterPriority").value;
+    let result = document.getElementById("result");
 
-    // update object
-    studentName && (student.name = studentName);
-    studentCity && (student.city = studentCity);
-    studentAge && (student.age = studentAge);
-    selectedCourse && (student.course = selectedCourse);
-    isEnrolled && (student.isEnrolled = isEnrolled ? "enrolled" : "not enrolled");
+    // validate no tasks
+    if (taskManager.tasks.length === 0) {
+        result.innerHTML = "No tasks found add taks first.";
+        return;
+    }
 
-    // add batchNumber property with value of 4 in object
-    student.batchNumber = 4;
+    // validate empty input
+    if (priority === "") {
+        result.innerHTML = "Please select a priority.";
+        return;
+    }
 
-    // print data
+    // store output
     let output = "";
 
-    for (let key in student) {
-        output += `<p>${key} - ${student[key]}</p>`;
+    // find and display tasks
+    for (let task of taskManager.tasks) {
+
+        if (task.priority === priority) {
+
+            output += `
+                <p>
+                    <strong>Task:</strong> ${task.title}<br>
+                    <strong>Priority:</strong> ${task.priority}<br>
+                    <strong>Status:</strong> ${task.completed ? "Completed" : "Pending"}
+                </p>
+                <hr>
+            `;
+
+        }
+
     }
 
+    // validate no matching tasks
+    if (output === "") {
+        result.innerHTML = "No tasks found for this priority.";
+        return;
+    }
+
+    // display tasks
     result.innerHTML = output;
 
-    result.innerHTML += `<p>---------------- <br> Batch Number Added.</p>`;
+}
 
-    // reset form
-    document.getElementById("studentForm").reset();
+// function to show summary
+function showSummary() {
+
+    let result = document.getElementById("result");
+
+    // validate no tasks
+    if (taskManager.tasks.length === 0) {
+        result.innerHTML = "No tasks found.";
+        return;
+    }
+
+    // display summary
+    result.innerHTML = `
+        <p><strong>Total Tasks:</strong> ${taskManager.tasks.length}</p>
+        <p><strong>Completed Tasks:</strong> ${taskManager.completedCount}</p>
+        <p><strong>Pending Tasks:</strong> ${taskManager.pendingCount}</p>
+    `;
 
 }

@@ -109,4 +109,5 @@ function showProgress() {
         <p><strong>Purchased:</strong> ${groceries.purchasedCount}</p>
         <p><strong>Remaining:</strong> ${groceries.totalItems - groceries.purchasedCount}</p>
     `;
+    
 }
