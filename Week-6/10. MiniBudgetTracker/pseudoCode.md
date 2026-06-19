@@ -40,3 +40,72 @@ EDGE :-
 ---
 
 PSEUDOCODE :-
+
+<!-- function to add income -->
+addIncome = () => {
+
+    get description and amount
+
+    validate empty inputs
+
+    convert amount to number
+
+    validate amount
+
+    create transaction object
+
+    add transaction
+
+    update balance
+
+    update total income
+
+    update current balance
+
+    show success message
+
+    clear inputs
+
+}
+
+<!-- function to add expense -->
+addExpense = () => {
+
+    get description and amount
+
+    validate empty inputs
+
+    convert amount to number
+
+    validate amount
+
+    validate balance
+
+    create transaction object
+
+    add transaction
+
+    update balance
+
+    update total expense
+
+    update current balance
+
+    show success message
+
+    clear inputs
+
+}
+
+<!-- function to show transactions -->
+showTransactions = () => {
+
+    validate no transactions
+
+    create output
+
+    loop transactions array
+
+    display transactions
+
+}

@@ -1,121 +1,182 @@
-// a student object to store student data
-let student = {};
+// set object structure
+let movieDb = {
+    movies: [],
+    watchedCount: 0
+};
 
-// function to add student data to the object
-addStudentData = () => {
+// function to add movie
+function addMovie() {
 
-    // an array store errors
-    const errors = [];
+    // get input values
+    let movieTitle = document.getElementById("movieTitle").value.trim();
+    let movieGenre = document.getElementById("movieGenre").value;
+    let movieRating = document.getElementById("movieRating").value.trim();
 
-    // select result element
-    const result = document.getElementById("result")
+    let movieContainer = document.getElementById("movieContainer");
+    let emptyMessage = document.getElementById("emptyMessage");
+    let result = document.getElementById("result");
 
-    // selecting input field (name age city)
-    const studentName = document.getElementById("studentName").value.trim();
-    const studentCity = document.getElementById("studentCity").value.trim();
-    const studentAge = Number(document.getElementById("studentAge").value);
-
-    // radio
-    const selectedCourse = document.querySelector('input[name="course"]:checked');
-
-    // checkbox
-    const isEnrolled = document.getElementById("isEnrolled").checked;
-
-    // validation
-    if (!studentName) {
-        errors.push("Student name is required");
-    }
-
-    if (!studentCity) {
-        errors.push("City is required");
-    }
-
-    if (!studentAge) {
-        errors.push("Age is required");
-    } else if (studentAge <= 0) {
-        errors.push("Age must be greater than 0");
-    }
-
-    if (!selectedCourse) {
-        errors.push("Please select a course");
-    }
-
-    // print all errors
-    if (errors.length > 0) {
-        result.innerHTML = errors.map(error => `<p>• ${error}</p>`).join("");
+    // validate empty inputs
+    if (movieTitle === "" || movieGenre === "" || movieRating === "") {
+        result.innerHTML = "Please fill all fields.";
         return;
     }
 
-    // insert the data into object 
-    student = {
-        name: studentName,
-        city: studentCity,
-        age: studentAge,
-        course: selectedCourse.value,
-        isEnrolled: isEnrolled ? "enrolled" : "not enrolled",
+    // convert rating to number
+    movieRating = Number(movieRating);
+
+    // validate rating
+    if (movieRating < 0 || movieRating > 10) {
+        result.innerHTML = "Rating must be between 0 and 10.";
+        return;
+    }
+
+    // validate duplicate movie
+    for (let movie of movieDb.movies) {
+
+        if (movie.title.toLowerCase() === movieTitle.toLowerCase()) {
+            result.innerHTML = "Movie already exists.";
+            return;
+        }
+
+    }
+
+    // create movie object
+    let movie = {
+        title: movieTitle,
+        genre: movieGenre,
+        rating: movieRating,
+        watched: false
     };
 
-    // print data
-    let output = "";
+    // add movie
+    movieDb.movies.push(movie);
 
-    for (let key in student) {
-        output += `<p>${key} - ${student[key]}</p>`;
+    // hide empty message
+    emptyMessage.style.display = "none";
+
+    // display movie
+    movieContainer.innerHTML += `
+        <div class="movie">
+
+            <span>
+                ${movie.title} (${movie.genre}) - ⭐ ${movie.rating}
+            </span>
+
+            <label>
+
+                <input
+                    type="checkbox"
+                    onchange="markWatched(${movieDb.movies.length - 1})"
+                >
+
+                Watched
+
+            </label>
+
+        </div>
+    `;
+
+    // show feedback
+    result.innerHTML = "Movie added successfully.";
+
+    // clear inputs
+    document.getElementById("movieTitle").value = "";
+    document.getElementById("movieGenre").selectedIndex = 0;
+    document.getElementById("movieRating").value = "";
+
+}
+
+// function to mark movie as watched
+function markWatched(index) {
+
+    // find clicked movie
+    let movie = movieDb.movies[index];
+
+    // mark and unmark movie
+    if (movie.watched === false) {
+
+        movie.watched = true;
+        movieDb.watchedCount++;
+
+    } else {
+
+        movie.watched = false;
+        movieDb.watchedCount--;
+
     }
-
-    result.innerHTML = output;
-
-    result.innerHTML += `<p>---------------- <br> enter data and click update to update student data</p>`;
-
-    // reset form
-    document.getElementById("studentForm").reset();
 
 }
 
-// a function to update the object
-updateStudentData = () => {
+// function to recommend movie
+function recommend() {
 
-    // select result element
-    const result = document.getElementById("result")
+    // get input
+    let genre = document.getElementById("recommendGenre").value;
+    let result = document.getElementById("result");
 
-    // validate if data exist or not to update
-    if (Object.keys(student).length === 0) {
-        result.innerHTML = "No data found. Please add student data first.";
-        return
+    // validate no movies
+    if (movieDb.movies.length === 0) {
+        result.innerHTML = "No movies found.";
+        return;
     }
 
-    // selecting input field (name age city)
-    const studentName = document.getElementById("studentName").value.trim();
-    const studentCity = document.getElementById("studentCity").value.trim();
-    const studentAge = Number(document.getElementById("studentAge").value);
+    // validate empty genre
+    if (genre === "") {
+        result.innerHTML = "Please select a genre.";
+        return;
+    }
 
-    // radio
-    const selectedCourse = document.querySelector('input[name="course"]:checked');
+    // find recommended movies
+    let recommendedMovies = movieDb.movies.filter(
+        movie => movie.genre.toLowerCase() === genre.toLowerCase() 
+    );
 
-    // checkbox
-    const isEnrolled = document.getElementById("isEnrolled").checked;
+    // validate no recommendation
+    if (recommendedMovies.length === 0) {
+        result.innerHTML = "No movies available for recommendation.";
+        return;
+    }
 
-    // update object
-    studentName && (student.name = studentName);
-    studentCity && (student.city = studentCity);
-    studentAge && (student.age = studentAge);
-    selectedCourse && (student.course = selectedCourse);
-    isEnrolled && (student.isEnrolled = isEnrolled ? "enrolled" : "not enrolled");
-
-    // add batchNumber property with value of 4 in object
-    student.batchNumber = 4;
-
-    // print data
+    // store output
     let output = "";
 
-    for (let key in student) {
-        output += `<p>${key} - ${student[key]}</p>`;
+    // display recommended movies
+    for (let movie of recommendedMovies) {
+
+        output += `
+            <p>
+                <strong>Title:</strong> ${movie.title}<br>
+                <strong>Genre:</strong> ${movie.genre}<br>
+                <strong>Rating:</strong> ⭐ ${movie.rating}
+            </p>
+            <hr>
+        `;
+
     }
 
+    // display result
     result.innerHTML = output;
 
-    result.innerHTML += `<p>---------------- <br> Batch Number Added.</p>`;
+}
 
-    // reset form
-    document.getElementById("studentForm").reset();
+// function to show stats
+function showStats() {
+
+    let result = document.getElementById("result");
+
+    // validate no movies
+    if (movieDb.movies.length === 0) {
+        result.innerHTML = "No movies found.";
+        return;
+    }
+
+    // display stats
+    result.innerHTML = `
+        <p><strong>Total Movies:</strong> ${movieDb.movies.length}</p>
+        <p><strong>Watched Movies:</strong> ${movieDb.watchedCount}</p>
+        <p><strong>Unwatched Movies:</strong> ${movieDb.movies.length - movieDb.watchedCount}</p>
+    `;
 
 }
+

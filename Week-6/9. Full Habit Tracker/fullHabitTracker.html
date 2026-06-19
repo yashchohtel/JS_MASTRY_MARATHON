@@ -22,89 +22,81 @@
             margin-bottom: 4rem;
         }
 
+        .inputGroup {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .inputGroup input {
+            flex: 1;
+        }
+
         input {
             width: 100%;
             padding: 12px;
             margin-top: 10px;
-
             border: none;
             border-radius: 10px;
-
             outline: none;
             font-size: 16px;
         }
 
-        h3 {
-            text-align: left;
-            font-size: 1.4rem;
-            text-transform: capitalize;
-            margin-top: 1.5rem;
-        }
-
-        .radioInput {
-            display: flex;
-            gap: 14px;
-            margin-top: 15px;
-            flex-direction: column;
-        }
-
-        .radioInput label {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-
-            font-size: 18px;
-            cursor: pointer;
-        }
-
-        .radioInput input {
-            width: 18px;
-            height: 18px;
-            margin: 0;
-        }
-
-        .checkboxInput {
-            margin-top: 15px;
-        }
-
-        .checkboxInput label {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-
-            font-size: 18px;
-            cursor: pointer;
-        }
-
-        .checkboxInput input {
-            width: 18px;
-            height: 18px;
-            margin: 0;
-        }
-
         .buttons {
             display: flex;
-            gap: 1rem;
-            margin-top: 20px;
+            gap: 10px;
+            margin-top: 15px;
         }
 
-        button {
+        .buttons button {
             padding: 12px 25px;
-
             border: none;
             border-radius: 10px;
-
             background: black;
             color: white;
-
             cursor: pointer;
             font-size: 16px;
+        }
 
+        .actBtn button {
             flex: 1;
         }
 
-        #result {
-            margin-top: rem;
+        .habitHeader {
+            display: flex;
+            justify-content: space-between;
+            font-weight: 700;
+            font-size: 18px;
+            padding: 12px 0;
+            border-bottom: 2px solid #7d7d7d;
+            margin-top: 20px;
+        }
+
+        #habitContainer {
+            margin-top: 15px;
+            text-align: left;
+            margin-bottom: 30px;
+        }
+
+        .habit {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #8f8f8f;
+            font-size: 18px;
+        }
+
+        .habit label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+        }
+
+        .habit input {
+            width: 18px;
+            height: 18px;
+            margin: 0;
         }
     </style>
 
@@ -121,60 +113,55 @@
     <!-- Habit Tracker -->
     <div class="container">
 
-        <form id="studentForm">
+        <h1 class="proHeading">Habit Tracker</h1>
 
-            <h1 class="proHeading">Habit Tracker</h1>
+        <p class="descHead">Enter Habit Details</p>
 
-            <input type="text" id="studentName" placeholder="Enter Student Name">
+        <div class="inputGroup">
 
-            <input type="text" id="studentCity" placeholder="Enter City">
+            <input type="text" id="habitName" placeholder="Enter Habit Name">
 
-            <input type="number" id="studentAge" placeholder="Enter Age">
+            <input type="number" id="targetPerWeek" placeholder="Target Per Week">
 
-            <h3>Select Course</h3>
+        </div>
 
-            <div class="radioInput">
+        <div class="buttons">
 
-                <label>
-                    <input type="radio" name="course" value="Maths">
-                    Maths
-                </label>
+            <button type="button" onclick="addHabit()">
+                Add Habit
+            </button>
 
-                <label>
-                    <input type="radio" name="course" value="Physics">
-                    Physics
-                </label>
+        </div>
 
-                <label>
-                    <input type="radio" name="course" value="Biology">
-                    Biology
-                </label>
+        <div class="habitHeader">
 
-            </div>
+            <span>Habits</span>
 
-            <h3>Enrollment Status</h3>
+            <span>Today's Status</span>
 
-            <div class="checkboxInput">
-                <label>
-                    <input type="checkbox" id="isEnrolled">
-                    Student Is Enrolled
-                </label>
-            </div>
+        </div>
 
-            <div class="buttons">
+        <div id="habitContainer">
 
-                <button type="button" onclick="addStudentData()">
-                    Add Student Data
-                </button>
+            <p id="emptyMessage">No habits yet.</p>
 
-                <button type="button" onclick="updateStudentData()">
-                    Update Student Data
-                </button>
+        </div>
 
-            </div>
+        <div class="buttons actBtn">
 
+            <button type="button" onclick="showHabits()">
+                Show Habits
+            </button>
 
-        </form>
+            <button type="button" onclick="showStats()">
+                Show Stats
+            </button>
+
+            <button type="button" onclick="resetDay()">
+                Reset Day
+            </button>
+
+        </div>
 
         <div id="result"></div>
 

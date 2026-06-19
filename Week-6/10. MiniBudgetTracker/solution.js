@@ -1,121 +1,180 @@
-// a student object to store student data
-let student = {};
+// set object structure
+let budget = {
+    transactions: [],
+    balance: 0,
+    totalIncome: 0,
+    totalExpenses: 0
+};
 
-// function to add student data to the object
-addStudentData = () => {
+// function to add income
+function addIncome() {
 
-    // an array store errors
-    const errors = [];
+    // get input values
+    let incomeDescription = document.getElementById("incomeDescription").value.trim();
+    let incomeAmount = document.getElementById("incomeAmount").value.trim();
 
-    // select result element
-    const result = document.getElementById("result")
+    let balance = document.getElementById("balance");
+    let result = document.getElementById("result");
 
-    // selecting input field (name age city)
-    const studentName = document.getElementById("studentName").value.trim();
-    const studentCity = document.getElementById("studentCity").value.trim();
-    const studentAge = Number(document.getElementById("studentAge").value);
-
-    // radio
-    const selectedCourse = document.querySelector('input[name="course"]:checked');
-
-    // checkbox
-    const isEnrolled = document.getElementById("isEnrolled").checked;
-
-    // validation
-    if (!studentName) {
-        errors.push("Student name is required");
-    }
-
-    if (!studentCity) {
-        errors.push("City is required");
-    }
-
-    if (!studentAge) {
-        errors.push("Age is required");
-    } else if (studentAge <= 0) {
-        errors.push("Age must be greater than 0");
-    }
-
-    if (!selectedCourse) {
-        errors.push("Please select a course");
-    }
-
-    // print all errors
-    if (errors.length > 0) {
-        result.innerHTML = errors.map(error => `<p>• ${error}</p>`).join("");
+    // validate empty inputs
+    if (incomeDescription === "" || incomeAmount === "") {
+        result.innerHTML = "Please fill all fields.";
         return;
     }
 
-    // insert the data into object 
-    student = {
-        name: studentName,
-        city: studentCity,
-        age: studentAge,
-        course: selectedCourse.value,
-        isEnrolled: isEnrolled ? "enrolled" : "not enrolled",
-    };
+    // convert amount to number
+    incomeAmount = Number(incomeAmount);
 
-    // print data
-    let output = "";
-
-    for (let key in student) {
-        output += `<p>${key} - ${student[key]}</p>`;
+    // validate amount
+    if (incomeAmount <= 0) {
+        result.innerHTML = "Amount must be greater than 0.";
+        return;
     }
 
-    result.innerHTML = output;
+    // create transaction object
+    let transaction = {
+        type: "Income",
+        description: incomeDescription,
+        amount: incomeAmount
+    };
 
-    result.innerHTML += `<p>---------------- <br> enter data and click update to update student data</p>`;
+    // add transaction
+    budget.transactions.push(transaction);
 
-    // reset form
-    document.getElementById("studentForm").reset();
+    // update balance
+    budget.balance += incomeAmount;
+
+    // update total income
+    budget.totalIncome += incomeAmount;
+
+    // update current balance
+    balance.innerHTML = `Current Balance : ₹${budget.balance}`;
+
+    // show success message
+    result.innerHTML = "Income added successfully.";
+
+    // clear inputs
+    document.getElementById("incomeDescription").value = "";
+    document.getElementById("incomeAmount").value = "";
 
 }
 
-// a function to update the object
-updateStudentData = () => {
+// function to add expense
+function addExpense() {
 
-    // select result element
-    const result = document.getElementById("result")
+    // get input values
+    let expenseDescription = document.getElementById("expenseDescription").value.trim();
+    let expenseAmount = document.getElementById("expenseAmount").value.trim();
 
-    // validate if data exist or not to update
-    if (Object.keys(student).length === 0) {
-        result.innerHTML = "No data found. Please add student data first.";
-        return
+    let balance = document.getElementById("balance");
+    let result = document.getElementById("result");
+
+    // validate empty inputs
+    if (expenseDescription === "" || expenseAmount === "") {
+        result.innerHTML = "Please fill all fields.";
+        return;
     }
 
-    // selecting input field (name age city)
-    const studentName = document.getElementById("studentName").value.trim();
-    const studentCity = document.getElementById("studentCity").value.trim();
-    const studentAge = Number(document.getElementById("studentAge").value);
+    // convert amount to number
+    expenseAmount = Number(expenseAmount);
 
-    // radio
-    const selectedCourse = document.querySelector('input[name="course"]:checked');
+    // validate amount
+    if (expenseAmount <= 0) {
+        result.innerHTML = "Amount must be greater than 0.";
+        return;
+    }
 
-    // checkbox
-    const isEnrolled = document.getElementById("isEnrolled").checked;
+    // validate balance
+    if (expenseAmount > budget.balance) {
 
-    // update object
-    studentName && (student.name = studentName);
-    studentCity && (student.city = studentCity);
-    studentAge && (student.age = studentAge);
-    selectedCourse && (student.course = selectedCourse);
-    isEnrolled && (student.isEnrolled = isEnrolled ? "enrolled" : "not enrolled");
+        result.innerHTML = `
+            <p>Insufficient balance.</p>
+            <p><strong>Expense:</strong> ₹${expenseAmount}</p>
+            <p><strong>Available Balance:</strong> ₹${budget.balance}</p>
+            <p><strong>Short By:</strong> ₹${expenseAmount - budget.balance}</p>
+        `;
 
-    // add batchNumber property with value of 4 in object
-    student.batchNumber = 4;
+        return;
 
-    // print data
+    }
+
+    // create transaction object
+    let transaction = {
+        type: "Expense",
+        description: expenseDescription,
+        amount: expenseAmount
+    };
+
+    // add transaction
+    budget.transactions.push(transaction);
+
+    // update balance
+    budget.balance -= expenseAmount;
+
+    // update total expense
+    budget.totalExpenses += expenseAmount;
+
+    // update current balance
+    balance.innerHTML = `Current Balance : ₹${budget.balance}`;
+
+    // show success message
+    result.innerHTML = "Expense added successfully.";
+
+    // clear inputs
+    document.getElementById("expenseDescription").value = "";
+    document.getElementById("expenseAmount").value = "";
+
+}
+
+// function to show transactions
+function showTransactions() {
+
+    let result = document.getElementById("result");
+
+    // validate no transactions
+    if (budget.transactions.length === 0) {
+        result.innerHTML = "No transactions found.";
+        return;
+    }
+
+    // create output
     let output = "";
 
-    for (let key in student) {
-        output += `<p>${key} - ${student[key]}</p>`;
+    // display transactions
+    for (let transaction of budget.transactions) {
+
+        output += `
+            <p>
+                <strong>Type:</strong> ${transaction.type}<br>
+                <strong>Description:</strong> ${transaction.description}<br>
+                <strong>Amount:</strong> ₹${transaction.amount}
+            </p>
+            <hr>
+        `;
+
     }
 
+    // display output
     result.innerHTML = output;
 
-    result.innerHTML += `<p>---------------- <br> Batch Number Added.</p>`;
+}
 
-    // reset form
-    document.getElementById("studentForm").reset();
+// function to show summary
+function showSummary() {
+
+    let result = document.getElementById("result");
+
+    // validate no transactions
+    if (budget.transactions.length === 0) {
+        result.innerHTML = "No transactions found.";
+        return;
+    }
+
+    // display summary
+    result.innerHTML = `
+        <p><strong>Current Balance:</strong> ₹${budget.balance}</p>
+        <p><strong>Total Income:</strong> ₹${budget.totalIncome}</p>
+        <p><strong>Total Expenses:</strong> ₹${budget.totalExpenses}</p>
+    `;
 
 }

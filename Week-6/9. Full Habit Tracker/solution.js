@@ -1,121 +1,195 @@
-// a student object to store student data
-let student = {};
+// set object structure
+let habitTracker = {
+    habits: [],
+    totalHabits: 0,
+    todayCompleted: 0
+};
 
-// function to add student data to the object
-addStudentData = () => {
+// function to add habit
+function addHabit() {
 
-    // an array store errors
-    const errors = [];
+    // get input values
+    let habitName = document.getElementById("habitName").value.trim();
+    let targetPerWeek = document.getElementById("targetPerWeek").value.trim();
 
-    // select result element
-    const result = document.getElementById("result")
+    let habitContainer = document.getElementById("habitContainer");
+    let emptyMessage = document.getElementById("emptyMessage");
+    let result = document.getElementById("result");
 
-    // selecting input field (name age city)
-    const studentName = document.getElementById("studentName").value.trim();
-    const studentCity = document.getElementById("studentCity").value.trim();
-    const studentAge = Number(document.getElementById("studentAge").value);
-
-    // radio
-    const selectedCourse = document.querySelector('input[name="course"]:checked');
-
-    // checkbox
-    const isEnrolled = document.getElementById("isEnrolled").checked;
-
-    // validation
-    if (!studentName) {
-        errors.push("Student name is required");
-    }
-
-    if (!studentCity) {
-        errors.push("City is required");
-    }
-
-    if (!studentAge) {
-        errors.push("Age is required");
-    } else if (studentAge <= 0) {
-        errors.push("Age must be greater than 0");
-    }
-
-    if (!selectedCourse) {
-        errors.push("Please select a course");
-    }
-
-    // print all errors
-    if (errors.length > 0) {
-        result.innerHTML = errors.map(error => `<p>• ${error}</p>`).join("");
+    // validate empty inputs
+    if (habitName === "" || targetPerWeek === "") {
+        result.innerHTML = "Please fill all fields.";
         return;
     }
 
-    // insert the data into object 
-    student = {
-        name: studentName,
-        city: studentCity,
-        age: studentAge,
-        course: selectedCourse.value,
-        isEnrolled: isEnrolled ? "enrolled" : "not enrolled",
-    };
+    // convert target per week to number
+    targetPerWeek = Number(targetPerWeek);
 
-    // print data
-    let output = "";
-
-    for (let key in student) {
-        output += `<p>${key} - ${student[key]}</p>`;
+    // validate target
+    if (targetPerWeek <= 0) {
+        result.innerHTML = "Target must be greater than 0.";
+        return;
     }
 
-    result.innerHTML = output;
+    // validate duplicate habit
+    for (let habit of habitTracker.habits) {
 
-    result.innerHTML += `<p>---------------- <br> enter data and click update to update student data</p>`;
+        if (habit.name.toLowerCase() === habitName.toLowerCase()) {
+            result.innerHTML = "Habit already exists.";
+            return;
+        }
 
-    // reset form
-    document.getElementById("studentForm").reset();
+    }
+
+    // create habit object
+    let habit = {
+        name: habitName,
+        targetPerWeek: targetPerWeek,
+        completed: false
+    };
+
+    // add habit
+    habitTracker.habits.push(habit);
+
+    // increment total habits
+    habitTracker.totalHabits++;
+
+    // hide empty message
+    emptyMessage.style.display = "none";
+
+    // display habit
+    habitContainer.innerHTML += `
+        <div class="habit">
+
+            <span>
+                ${habit.name} (${habit.targetPerWeek}/week)
+            </span>
+
+            <label>
+
+                <input
+                    type="checkbox"
+                    onchange="markDone(${habitTracker.habits.length - 1})"
+                >
+
+                Done
+
+            </label>
+
+        </div>
+    `;
+
+    // show success message
+    result.innerHTML = "Habit added successfully.";
+
+    // clear inputs
+    document.getElementById("habitName").value = "";
+    document.getElementById("targetPerWeek").value = "";
 
 }
 
-// a function to update the object
-updateStudentData = () => {
+// function to mark as done 
+markDone = (index) => {
 
-    // select result element
-    const result = document.getElementById("result")
+    // find the habbit
+    let habit = habitTracker.habits[index]
 
-    // validate if data exist or not to update
-    if (Object.keys(student).length === 0) {
-        result.innerHTML = "No data found. Please add student data first.";
-        return
+    // mark/unmark as complete and increment todayCompleted
+    if (habit.completed === false) {
+
+        habit.completed = true;
+        habitTracker.todayCompleted++;
+
+    } else {
+
+        habit.completed = false;
+        habitTracker.todayCompleted--;
+
     }
 
-    // selecting input field (name age city)
-    const studentName = document.getElementById("studentName").value.trim();
-    const studentCity = document.getElementById("studentCity").value.trim();
-    const studentAge = Number(document.getElementById("studentAge").value);
+    console.log(habitTracker);
 
-    // radio
-    const selectedCourse = document.querySelector('input[name="course"]:checked');
+}
 
-    // checkbox
-    const isEnrolled = document.getElementById("isEnrolled").checked;
+// function to show habits
+function showHabits() {
 
-    // update object
-    studentName && (student.name = studentName);
-    studentCity && (student.city = studentCity);
-    studentAge && (student.age = studentAge);
-    selectedCourse && (student.course = selectedCourse);
-    isEnrolled && (student.isEnrolled = isEnrolled ? "enrolled" : "not enrolled");
+    let result = document.getElementById("result");
 
-    // add batchNumber property with value of 4 in object
-    student.batchNumber = 4;
+    // validate no habits
+    if (habitTracker.habits.length === 0) {
+        result.innerHTML = "No habits found.";
+        return;
+    }
 
-    // print data
+    // create output
     let output = "";
 
-    for (let key in student) {
-        output += `<p>${key} - ${student[key]}</p>`;
+    // display habits
+    for (let habit of habitTracker.habits) {
+
+        output += `
+            <p>
+                <strong>Habit:</strong> ${habit.name}<br>
+                <strong>Target:</strong> ${habit.targetPerWeek}/week<br>
+                <strong>Status:</strong> ${habit.completed ? "Completed" : "Pending"}
+            </p>
+            <hr>
+        `;
+
     }
 
+    // display output
     result.innerHTML = output;
 
-    result.innerHTML += `<p>---------------- <br> Batch Number Added.</p>`;
+}
 
-    // reset form
-    document.getElementById("studentForm").reset();
+// function to show stats
+function showStats() {
+
+    let result = document.getElementById("result");
+
+    // validate no habits
+    if (habitTracker.habits.length === 0) {
+        result.innerHTML = "No habits found.";
+        return;
+    }
+
+    // display stats
+    result.innerHTML = `
+        <p><strong>Total Habits:</strong> ${habitTracker.totalHabits}</p>
+        <p><strong>Completed Today:</strong> ${habitTracker.todayCompleted}</p>
+        <p><strong>Remaining Habits:</strong> ${habitTracker.totalHabits - habitTracker.todayCompleted}</p>
+    `;
+
+}
+
+// function to reset today
+resetDay = () => {
+
+    let result = document.getElementById("result");
+
+    // validate no habits
+    if (habitTracker.habits.length === 0) {
+        result.innerHTML = "No habits found.";
+        return;
+    }
+
+    // loop all habit to mark un completed
+    for (let habit of habitTracker.habits) {
+        habit.completed = false;
+    }
+
+    // update today completed
+    habitTracker.todayCompleted = 0
+
+    // uncheck all checkboxes
+    let checkboxes = document.querySelectorAll("#habitContainer input[type='checkbox']");
+
+    for (let checkbox of checkboxes) {
+        checkbox.checked = false;
+    }
+
+    result.innerHTML = "habit reset done";
 
 }
