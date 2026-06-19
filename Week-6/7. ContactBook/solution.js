@@ -1,121 +1,233 @@
-// a student object to store student data
-let student = {};
+// set object structure
+let contactBook = {
+    contacts: [],
+    totalContacts: 0
+};
 
-// function to add student data to the object
-addStudentData = () => {
+// function to add contact
+function addContact() {
 
-    // an array store errors
-    const errors = [];
+    // get input values
+    let contactName = document.getElementById("contactName").value.trim();
+    let contactPhone = document.getElementById("contactPhone").value.trim();
+    let contactCity = document.getElementById("contactCity").value.trim();
+    let result = document.getElementById("result");
 
-    // select result element
-    const result = document.getElementById("result")
-
-    // selecting input field (name age city)
-    const studentName = document.getElementById("studentName").value.trim();
-    const studentCity = document.getElementById("studentCity").value.trim();
-    const studentAge = Number(document.getElementById("studentAge").value);
-
-    // radio
-    const selectedCourse = document.querySelector('input[name="course"]:checked');
-
-    // checkbox
-    const isEnrolled = document.getElementById("isEnrolled").checked;
-
-    // validation
-    if (!studentName) {
-        errors.push("Student name is required");
-    }
-
-    if (!studentCity) {
-        errors.push("City is required");
-    }
-
-    if (!studentAge) {
-        errors.push("Age is required");
-    } else if (studentAge <= 0) {
-        errors.push("Age must be greater than 0");
-    }
-
-    if (!selectedCourse) {
-        errors.push("Please select a course");
-    }
-
-    // print all errors
-    if (errors.length > 0) {
-        result.innerHTML = errors.map(error => `<p>• ${error}</p>`).join("");
+    // validate empty inputs
+    if (contactName === "" || contactPhone === "" || contactCity === "") {
+        result.innerHTML = "Please fill all fields.";
         return;
     }
 
-    // insert the data into object 
-    student = {
-        name: studentName,
-        city: studentCity,
-        age: studentAge,
-        course: selectedCourse.value,
-        isEnrolled: isEnrolled ? "enrolled" : "not enrolled",
-    };
-
-    // print data
-    let output = "";
-
-    for (let key in student) {
-        output += `<p>${key} - ${student[key]}</p>`;
+    // validate phone number length
+    if (contactPhone.length !== 10) {
+        result.innerHTML = "Phone number must be exactly 10 digits.";
+        return;
     }
 
-    result.innerHTML = output;
+    // validate duplicate contact
+    for (let contact of contactBook.contacts) {
 
-    result.innerHTML += `<p>---------------- <br> enter data and click update to update student data</p>`;
+        if (contact.name.toLowerCase() === contactName.toLowerCase()) {
+            result.innerHTML = "Contact name already exists.";
+            return;
+        }
 
-    // reset form
-    document.getElementById("studentForm").reset();
+        if (contact.phone === contactPhone) {
+            result.innerHTML = "Phone number already exists.";
+            return;
+        }
+
+    }
+
+    // create contact object
+    let contact = {
+        name: contactName,
+        phone: contactPhone,
+        city: contactCity
+    };
+
+    // add contact
+    contactBook.contacts.push(contact);
+
+    // increment total contacts
+    contactBook.totalContacts++;
+
+    // show feedback
+    result.innerHTML = "Contact added successfully.";
+
+    // clear inputs
+    document.getElementById("contactName").value = "";
+    document.getElementById("contactPhone").value = "";
+    document.getElementById("contactCity").value = "";
 
 }
 
-// a function to update the object
-updateStudentData = () => {
+// function to find contact
+function findContact() {
 
-    // select result element
-    const result = document.getElementById("result")
+    // get input
+    let name = document.getElementById("findName").value.trim();
+    let result = document.getElementById("result");
 
-    // validate if data exist or not to update
-    if (Object.keys(student).length === 0) {
-        result.innerHTML = "No data found. Please add student data first.";
-        return
+    // validate no contacts
+    if (contactBook.contacts.length === 0) {
+        result.innerHTML = "No contacts found.";
+        return;
     }
 
-    // selecting input field (name age city)
-    const studentName = document.getElementById("studentName").value.trim();
-    const studentCity = document.getElementById("studentCity").value.trim();
-    const studentAge = Number(document.getElementById("studentAge").value);
+    // validate empty input
+    if (name === "") {
+        result.innerHTML = "Please enter a name.";
+        return;
+    }
 
-    // radio
-    const selectedCourse = document.querySelector('input[name="course"]:checked');
+    // find contact
+    let contact = contactBook.contacts.find(
+        contact => contact.name.toLowerCase() === name.toLowerCase()
+    );
 
-    // checkbox
-    const isEnrolled = document.getElementById("isEnrolled").checked;
+    // validate contact not found
+    if (!contact) {
+        result.innerHTML = "Contact not found.";
+        return;
+    }
 
-    // update object
-    studentName && (student.name = studentName);
-    studentCity && (student.city = studentCity);
-    studentAge && (student.age = studentAge);
-    selectedCourse && (student.course = selectedCourse);
-    isEnrolled && (student.isEnrolled = isEnrolled ? "enrolled" : "not enrolled");
+    // display contact
+    result.innerHTML = `
+        <p><strong>Name:</strong> ${contact.name}</p>
+        <p><strong>Phone:</strong> ${contact.phone}</p>
+        <p><strong>City:</strong> ${contact.city}</p>
+    `;
 
-    // add batchNumber property with value of 4 in object
-    student.batchNumber = 4;
+    document.getElementById("findName").value = "";
 
-    // print data
+}
+
+// function to show contacts by city
+function showByCity() {
+
+    // get input
+    let city = document.getElementById("searchCity").value.trim();
+    let result = document.getElementById("result");
+
+    // validate no contacts
+    if (contactBook.contacts.length === 0) {
+        result.innerHTML = "No contacts found.";
+        return;
+    }
+
+    // validate empty input
+    if (city === "") {
+        result.innerHTML = "Please enter a city.";
+        return;
+    }
+
+    // find contacts
+    let cityContacts = contactBook.contacts.filter(
+        contact => contact.city.toLowerCase() === city.toLowerCase()
+    );
+
+    // validate city not found
+    if (cityContacts.length === 0) {
+        result.innerHTML = "No contacts found for this city.";
+        return;
+    }
+
+    // store output
     let output = "";
 
-    for (let key in student) {
-        output += `<p>${key} - ${student[key]}</p>`;
+    // display contacts
+    for (let contact of cityContacts) {
+
+        output += `
+            <p>
+                <strong>Name:</strong> ${contact.name}<br>
+                <strong>Phone:</strong> ${contact.phone}
+            </p>
+            <hr>
+        `;
+
     }
 
     result.innerHTML = output;
 
-    result.innerHTML += `<p>---------------- <br> Batch Number Added.</p>`;
+    document.getElementById("searchCity").value = "";
 
-    // reset form
-    document.getElementById("studentForm").reset();
+}
+
+// function to delete contact
+function deleteContact() {
+
+    // get input
+    let name = document.getElementById("deleteName").value.trim();
+    let result = document.getElementById("result");
+
+    // validate no contacts
+    if (contactBook.contacts.length === 0) {
+        result.innerHTML = "No contacts found.";
+        return;
+    }
+
+    // validate empty input
+    if (name === "") {
+        result.innerHTML = "Please enter a name.";
+        return;
+    }
+
+    // find contact index
+    let index = contactBook.contacts.findIndex(
+        contact => contact.name.toLowerCase() === name.toLowerCase()
+    );
+
+    // validate contact not found
+    if (index === -1) {
+        result.innerHTML = "Contact not found.";
+        return;
+    }
+
+    // delete contact
+    contactBook.contacts.splice(index, 1);
+
+    // decrement total contacts
+    contactBook.totalContacts--;
+
+    // show feedback
+    result.innerHTML = "Contact deleted successfully.";
+
+    document.getElementById("deleteName").value = "";
+
+}
+
+// function to show all contacts
+function showContacts() {
+
+    let result = document.getElementById("result");
+
+    // validate no contacts
+    if (contactBook.contacts.length === 0) {
+        result.innerHTML = "No contacts found.";
+        return;
+    }
+
+    // store output
+    let output = "";
+
+    // display all contacts
+    for (let contact of contactBook.contacts) {
+
+        output += `
+            <p>
+                <strong>Name:</strong> ${contact.name}<br>
+                <strong>Phone:</strong> ${contact.phone}<br>
+                <strong>City:</strong> ${contact.city}
+            </p>
+            <hr>
+        `;
+
+    }
+
+    // display contacts
+    result.innerHTML = output;
 
 }
